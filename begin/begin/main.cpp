@@ -1,5 +1,12 @@
+#include <iostream>
+#include "integerNumbers.h"
+
+using namespace std;
+
 int main()
 {
-	// dfdsfdsfdsf
+	int number = 0;
+	cin >> number;
+	cout << invertedNumber(number);
 	return 0;
 }
