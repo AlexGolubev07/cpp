@@ -9,4 +9,5 @@ int lenNumber(int number);
 // invert number
 int invertedNumber(int number);
 
+// power number
 int power(int x, int y);

@@ -1,12 +1,11 @@
 #include <iostream>
 #include "integerNumbers.h"
+#include "myMath.h"
 
 using namespace std;
 
 int main()
 {
-	int number = 0;
-	cin >> number;
-	cout << invertedNumber(number);
+	cout << sum(5);
 	return 0;
 }

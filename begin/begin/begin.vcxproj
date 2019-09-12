@@ -125,9 +125,11 @@
   <ItemGroup>
     <ClCompile Include="digits.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="myMath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="integerNumbers.h" />
+    <ClInclude Include="myMath.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
