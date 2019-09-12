@@ -6,6 +6,12 @@ using namespace std;
 
 int main()
 {
-	cout << sum(5);
+	int a[3];
+	for (int i = 0; i < 3; i++)
+	{
+		cin >> a[i];
+	}
+	
+	cout << maxEven(a, 3);
 	return 0;
 }
