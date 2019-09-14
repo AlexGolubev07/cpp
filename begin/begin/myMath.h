@@ -17,3 +17,15 @@ int maxFromArray(int* a, int size);
 
 // max
 int maxEven(int* a, int size);
+
+//sumOf5
+int sumOf5(int* a, int size);
+
+//sumOf5
+int sumOf5(int* a, int size);
+
+//maxOf3
+int maxOf3(int* a, int size);
+
+//productOf7
+int productOf7(int* a, int size);

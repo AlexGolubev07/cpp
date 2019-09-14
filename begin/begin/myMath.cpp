@@ -63,7 +63,14 @@ int maxFromArray(int* a, int size)
 			m = a[i];
 		}
 	}
-	return m;
+	if (m == 0)
+	{
+		cout << "no meed numbers";
+	}
+	else
+	{
+		return m;
+	}
 }
 
 int maxEven(int* a, int size)
@@ -76,5 +83,72 @@ int maxEven(int* a, int size)
 			m = a[i];
 		}
 	}
-	return m;
+	if (m == 0)
+	{
+		cout << "no meed numbers";
+	}
+	else
+	{
+		return m;
+	}
+}
+
+int sumOf5(int* a, int size)
+{
+	int m = 0;
+	for (int i = 0; i < size; i++)
+	{
+		if (a[i] % 5 == 0 && a[i] > m)
+		{
+			m += a[i];
+		}
+	}
+	if (m == 0)
+	{
+		cout << "no meed numbers";
+	}
+	else
+	{
+		return m;
+	}
+}
+
+int maxOf3(int* a, int size)
+{
+	int m = 0;
+	for (int i = 0; i < size; i++)
+	{
+		if (a[i] % 3 == 0 && a[i] > m && a[i] % 10 ==7)
+		{
+			m = a[i];
+		}
+	}
+	if (m == 0)
+	{
+		cout << "no meed numbers";
+	}
+	else
+	{
+		return m;
+	}
+}
+
+int productOf7(int* a, int size)
+{
+	int m = 1;
+	for (int i = 0; i < size; i++)
+	{
+		if (a[i] % 7 == 0 && a[i] > m)
+		{
+			m *= a[i];
+		}
+	}
+	if (m == 1)
+	{
+		cout << "no meed numbers";
+	}
+	else
+	{
+		return m;
+	}
 }
