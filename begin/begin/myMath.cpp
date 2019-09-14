@@ -65,7 +65,7 @@ int maxFromArray(int* a, int size)
 	}
 	if (m == 0)
 	{
-		cout << "no meed numbers";
+		//cout << "no meed numbers";
 	}
 	else
 	{
@@ -85,7 +85,7 @@ int maxEven(int* a, int size)
 	}
 	if (m == 0)
 	{
-		cout << "no meed numbers";
+		//cout << "no meed numbers";
 	}
 	else
 	{
@@ -105,7 +105,7 @@ int sumOf5(int* a, int size)
 	}
 	if (m == 0)
 	{
-		cout << "no meed numbers";
+		//cout << "no meed numbers";
 	}
 	else
 	{
@@ -113,6 +113,7 @@ int sumOf5(int* a, int size)
 	}
 }
 
+// % 7 /3
 int maxOf3(int* a, int size)
 {
 	int m = 0;
@@ -123,14 +124,7 @@ int maxOf3(int* a, int size)
 			m = a[i];
 		}
 	}
-	if (m == 0)
-	{
-		cout << "no meed numbers";
-	}
-	else
-	{
-		return m;
-	}
+	return m;
 }
 
 int productOf7(int* a, int size)
@@ -145,7 +139,7 @@ int productOf7(int* a, int size)
 	}
 	if (m == 1)
 	{
-		cout << "no meed numbers";
+		//cout << "no meed numbers";
 	}
 	else
 	{
