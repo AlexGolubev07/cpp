@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{085E3F6B-ADE4-479E-8CB9-BB2C03F586AB}</ProjectGuid>
-    <RootNamespace>begin</RootNamespace>
+    <ProjectGuid>{B6AB5B0A-13E8-46F9-8207-9A92A3751563}</ProjectGuid>
+    <RootNamespace>secondAttempt</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -123,13 +123,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="digits.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="myMath.cpp" />
+    <ClInclude Include="integerNumbers.h" />
+    <ClInclude Include="myArray.h" />
+    <ClInclude Include="myMath.h" />
+    <ClInclude Include="sort.h" />
+    <ClInclude Include="taskWithArrays.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="integerNumbers.h" />
-    <ClInclude Include="myMath.h" />
+    <ClCompile Include="digits.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="myArray.cpp" />
+    <ClCompile Include="myMath.cpp" />
+    <ClCompile Include="sort.cpp" />
+    <ClCompile Include="taskWithArrays.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
