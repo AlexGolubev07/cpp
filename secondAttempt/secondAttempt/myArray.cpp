@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 
 using namespace std;
 
@@ -27,6 +28,7 @@ namespace myArray
 
 	void arrayInRand(int* a, int size)
 	{
+		srand(time(0));
 		for (int i = 0; i < size; ++i)
 		{
 			a[i] = rand() % 100 + 1;
@@ -43,8 +45,8 @@ namespace myArray
 
 	void swap(int* a, int index1, int index2)
 	{
-		int temp = index1;
-		index1 = index2;
-		index2 = temp;
+		int temp = a[index1];
+		a[index1] = a[index2];
+		a[index2] = temp;
 	}
 }
