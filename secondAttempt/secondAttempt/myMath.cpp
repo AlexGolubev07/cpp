@@ -1,14 +1,49 @@
+#include <cassert>
+
 namespace myMath
 {
-
 	int factorial(int number)
 	{
+		assert(number >= 0);
 		int f = 1;
 		for (int i = 2; i <= number; i++)
 		{
 			f *= i;
 		}
 		return f;
+	}
+
+	/*
+	n! = n * (n-1)!  for n >= 2
+	1! = 1
+	4! = 4 * 3! = 4 * 3 * 2! = 4 * 3 * 2 * 1! = 4 * 3 * 2 * 1! = 4 * 3 * 2 * 1 * 0! = 4 * 3 * 2 * 1 * 1
+	*/
+
+	int facRec(int number)
+	{
+		assert(number >= 0);
+		if (number == 0)
+		{
+			return 1;
+		}
+		else
+		{
+			return number * facRec(number - 1);
+		}
+	}
+
+	int recSum(int number)
+	{
+		if (number == 0)
+		{
+			return 0;
+		}
+		else
+		{
+			return number + recSum(number - 1);
+		}
+
+
 	}
 
 	int sum(int number)
@@ -33,6 +68,11 @@ namespace myMath
 		{
 			return number2;
 		}
+	}
+
+	int min(int number1, int number2)
+	{
+		return -max(-number1, -number2);
 	}
 
 	int max(int number1, int number2, int number3)

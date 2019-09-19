@@ -9,5 +9,14 @@ int lenNumber(int number);
 // invert number
 int invertedNumber(int number);
 
+//
+int smartInvertNumber(int number);
+
 // power number
 int power(int x, int y);
+
+//
+int gcd(int number1, int number2);
+
+//
+int euclid(int number1, int number2);

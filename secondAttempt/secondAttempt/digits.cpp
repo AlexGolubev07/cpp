@@ -48,3 +48,25 @@ int invertedNumber(int number)
 	invertedNumber /= 10;
 	return invertedNumber;
 }
+
+int smartInvertNumber(int number)
+{
+	int r = 0;
+	while (number != 0)
+	{
+		r = 10 * r + number % 10;
+		number /= 10;
+	}
+	return r;
+}
+
+/*
+6743
+3476 = 3 * 10^3 + 4 * 10^2 + 7 * 10 + 6 = 10(3 * 10^2 + 4 * 10 + 7) + 6 = 10(10(3 * 10 + 4) + 7) + 6
+
+r = 0
+r = 10 * r + 3
+r = 10 * r + 4 = 10 * 3 + 4
+r = 10 * r + 7 = 10(10 * 3 + 4) + 7
+r = 10 * r + 6 = 10(10(10 * 3 + 4) + 7) + 6
+*/
