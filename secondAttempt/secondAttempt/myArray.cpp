@@ -18,6 +18,21 @@ namespace myArray
 		return m;
 	}
 
+	int secondMax(int* a, int size)
+	{
+		int n = 0;
+		int m = a[0];
+		for (int i = 1; i < size; i++)
+		{
+			if (a[i] > m)
+			{
+				n = m;
+				m = a[i];
+			}
+		}
+		return n;
+	}
+
 	void arrayIn(int* a, int size)
 	{
 		for (int i = 0; i < size; ++i)
