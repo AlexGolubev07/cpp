@@ -24,7 +24,7 @@ namespace myArray
 		int m = a[0];
 		for (int i = 1; i < size; i++)
 		{
-			if (a[i] > m)
+			if (a[i] >= m)
 			{
 				n = m;
 				m = a[i];

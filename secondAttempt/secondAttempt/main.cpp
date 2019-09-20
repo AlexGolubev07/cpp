@@ -9,6 +9,6 @@ using namespace std;
 
 int main()
 {
-	cout << myMath::sum(5);
+	cout << secondMax(5);
 	return 0;
 }

@@ -22,5 +22,8 @@ namespace myMath
 
 	// max
 	int max(int number1, int number2, int number3);
+
+	//
+	int secondMax(int* a, int size)
 }
 
