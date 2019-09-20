@@ -4,14 +4,12 @@
 #include "myArray.h"
 #include "taskWithArrays.h"
 #include "sort.h"
+#include <ctime>
 
 using namespace std;
 
 int main()
 {
-	int a[5];
-	myArray::arrayIn(a, 5);
-	//myArray::arrayOut(a, 5);
-	cout << myArray::secondMax(a, 5);
+	cout << integerNumbers::euclidNotRec(100, 150); //it's working
 	return 0;
 }

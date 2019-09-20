@@ -22,5 +22,6 @@ namespace myMath
 
 	// max
 	int max(int number1, int number2, int number3);
+
 }
 

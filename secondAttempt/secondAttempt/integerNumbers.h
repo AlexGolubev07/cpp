@@ -1,22 +1,28 @@
 #pragma once
 
-// Calculate sum of digits
-int sumOfDigit(int number);
+namespace integerNumbers
+{
+	// Calculate sum of digits
+	int sumOfDigit(int number);
 
-// Calculate number length
-int lenNumber(int number);
+	// Calculate number length
+	int lenNumber(int number);
 
-// invert number
-int invertedNumber(int number);
+	// invert number
+	int invertedNumber(int number);
 
-//
-int smartInvertNumber(int number);
+	//
+	int smartInvertNumber(int number);
 
-// power number
-int power(int x, int y);
+	// power number
+	int power(int x, int y);
 
-//
-int gcd(int number1, int number2);
+	//
+	int gcd(int number1, int number2);
 
-//
-int euclid(int number1, int number2);
+	//
+	int euclidRec(int number1, int number2);
+
+	//NotRecEuclid
+	int euclidNotRec(int number1, int number2);
+}
