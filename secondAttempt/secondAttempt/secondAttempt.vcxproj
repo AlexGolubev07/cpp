@@ -126,6 +126,7 @@
     <ClInclude Include="integerNumbers.h" />
     <ClInclude Include="myArray.h" />
     <ClInclude Include="myMath.h" />
+    <ClInclude Include="oge.h" />
     <ClInclude Include="sort.h" />
     <ClInclude Include="taskWithArrays.h" />
   </ItemGroup>
@@ -135,11 +136,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="myArray.cpp" />
     <ClCompile Include="myMath.cpp" />
+    <ClCompile Include="oge.cpp" />
     <ClCompile Include="sort.cpp" />
     <ClCompile Include="taskWithArrays.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="hw190919.txt" />
+    <Text Include="oge\oge20.txt" />
+    <Text Include="oge\oge621.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

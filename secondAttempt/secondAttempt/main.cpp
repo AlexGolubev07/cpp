@@ -5,11 +5,12 @@
 #include "taskWithArrays.h"
 #include "sort.h"
 #include <ctime>
+#include "oge.h"
 
 using namespace std;
 
 int main()
 {
-	cout << integerNumbers::euclidNotRec(100, 150); //it's working
+	oge::oge621();
 	return 0;
 }
