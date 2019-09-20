@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include "myMath.h"
 
 using namespace std;
 
@@ -20,9 +21,9 @@ namespace myArray
 
 	int secondMax(int* a, int size)
 	{
-		int n = 0;
-		int m = a[0];
-		for (int i = 1; i < size; i++)
+		int m = myMath::max(a[0], a[1]);
+		int n = myMath::min(a[0], a[1]);
+		for (int i = 2; i < size; i++)
 		{
 			if (a[i] >= m)
 			{
@@ -56,6 +57,7 @@ namespace myArray
 		{
 			cout << a[i] << " ";
 		}
+		cout << endl;
 	}
 
 	void swap(int* a, int index1, int index2)

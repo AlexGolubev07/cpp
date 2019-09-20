@@ -16,4 +16,7 @@ namespace myArray
 
 	// swap
 	void swap(int* a, int index1, int index2);
+
+	//
+	int secondMax(int* a, int size);
 }

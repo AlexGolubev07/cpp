@@ -20,6 +20,3 @@ int gcd(int number1, int number2);
 
 //
 int euclid(int number1, int number2);
-
-//secondMax
-int secondMax(int* a, int size)
