@@ -7,4 +7,6 @@ namespace oge
 	void oge621();
 
 	void oge40();
+
+	void oge80();
 }

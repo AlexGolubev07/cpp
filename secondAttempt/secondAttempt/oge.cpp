@@ -53,4 +53,21 @@ namespace oge
 		}
 		cout << result;
 	}
+
+	void oge80()
+	{
+		int number = 0;
+		int amount = 0;
+		int result = 30000;
+		cin >> amount;
+		for (int i = 0; i < amount; i++)
+		{
+			cin >> number;
+			if (number % 3 == 0 && number < result)
+			{
+				result = number;
+			}
+		}
+		cout << result;
+	}
 }
