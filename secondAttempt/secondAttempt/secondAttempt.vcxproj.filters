@@ -73,7 +73,10 @@
     <Text Include="oge40.txt">
       <Filter>Source Files</Filter>
     </Text>
-    <Text Include="80.txt">
+    <Text Include="oge80.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="oge784t.txt">
       <Filter>Source Files</Filter>
     </Text>
   </ItemGroup>

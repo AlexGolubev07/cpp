@@ -9,4 +9,6 @@ namespace oge
 	void oge40();
 
 	void oge80();
+
+	void oge784();
 }

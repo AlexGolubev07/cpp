@@ -70,4 +70,20 @@ namespace oge
 		}
 		cout << result;
 	}
+
+	void oge784()
+	{
+		int number = 0;
+		int result = 0;
+		cin >> number;
+		while (number != 0)
+		{
+			if (number % 6 == 0 && number % 10 == 4)
+			{
+				result += number;
+			}
+			cin >> number;
+		}
+		cout << result;
+	}
 }
