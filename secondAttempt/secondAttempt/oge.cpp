@@ -58,7 +58,7 @@ namespace oge
 	{
 		int number = 0;
 		int amount = 0;
-		int result = 30000;
+		int result = 30001;
 		cin >> amount;
 		for (int i = 0; i < amount; i++)
 		{
