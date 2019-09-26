@@ -36,4 +36,21 @@ namespace oge
 		}
 		cout << result;
 	}
+
+	void oge40()
+	{
+		int number = 0;
+		int amount = 0;
+		int result = 0;
+		cin >> amount;
+		for (int i = 0; i < amount; i++)
+		{
+			cin >> number;
+			if (number % 6 == 0)
+			{
+				result += number;
+			}
+		}
+		cout << result;
+	}
 }
