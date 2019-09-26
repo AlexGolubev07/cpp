@@ -86,4 +86,33 @@ namespace oge
 		}
 		cout << result;
 	}
+
+	void oge1071()
+	{
+		int number = 0;
+		int amount = 0;
+		int loosers = 0;
+		int result = 0;
+		cin >> amount;
+		for (int i = 0; i < amount; i++)
+		{
+			cin >> number;
+			if (number == 0)
+			{
+				++loosers;
+			}
+			if (number > result)
+			{
+				result = number;
+			}
+		}
+		if (loosers != 0)
+		{
+			cout << "No" << endl << result << " - best result";
+		}
+		else
+		{
+			cout << "Yes" << endl << result << " - best result";
+		}
+	}
 }

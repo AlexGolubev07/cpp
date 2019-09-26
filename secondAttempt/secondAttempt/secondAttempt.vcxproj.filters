@@ -79,5 +79,8 @@
     <Text Include="oge784t.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="oge1071.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

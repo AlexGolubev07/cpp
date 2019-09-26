@@ -11,4 +11,6 @@ namespace oge
 	void oge80();
 
 	void oge784();
+
+	void oge1071();
 }

@@ -141,6 +141,7 @@
     <ClCompile Include="taskWithArrays.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="oge1071.txt" />
     <Text Include="oge784t.txt" />
     <Text Include="oge80.txt" />
     <Text Include="hw190919.txt" />
