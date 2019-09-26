@@ -114,5 +114,33 @@ namespace oge
 		{
 			cout << "Yes" << endl << result << " - best result";
 		}
+
+	}
+	
+	void oge1253()
+	{
+		int sum = 0;
+		int number = 0;
+		int result = 0;
+		int amount = 0;
+		cin >> number;
+		while (number != 0)
+		{
+			if (number % 8 == 0)
+			{
+				sum += number;
+				++amount;
+			}
+			cin >> number;
+		}
+		if (amount == 0)
+		{
+			cout << "No";
+		}
+		else
+		{
+			int x = (sum / double(amount)) * 10;
+			cout << x / 10.0;
+		}
 	}
 }

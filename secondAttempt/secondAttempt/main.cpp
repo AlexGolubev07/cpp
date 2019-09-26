@@ -11,6 +11,6 @@ using namespace std;
 
 int main()
 {
-	oge::oge784();
+	oge::oge1253();
 	return 0;
 }
