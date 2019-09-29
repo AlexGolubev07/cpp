@@ -9,11 +9,6 @@
 
 using namespace std;
 
-int func(int x)
-{
-	return x + 5;
-}
-
 int main()
 {
 	int a[5];
