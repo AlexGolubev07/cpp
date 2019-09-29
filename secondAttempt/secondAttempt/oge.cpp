@@ -106,7 +106,7 @@ namespace oge
 				result = number;
 			}
 		}
-		if (loosers != 0)
+		if (loosers > 1)
 		{
 			cout << "No" << endl << result << " - best result";
 		}

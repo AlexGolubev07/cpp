@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include "myMath.h"
+#include "Limits.h"
 
 using namespace std;
 
@@ -21,18 +22,51 @@ namespace myArray
 
 	int secondMax(int* a, int size)
 	{
-		int m = myMath::max(a[0], a[1]);
-		int n = myMath::min(a[0], a[1]);
-		for (int i = 2; i < size; i++)
+		int m1 = INT_MIN;
+		int m2 = INT_MIN;
+		for (int i = 0; i < size; i++)
 		{
-			if (a[i] >= m)
+			#pragma region another method
+			/*bool condition1 = a[i] <= m2;
+			bool condition2 = a[i] > m2 && a[i] <= m1;
+			bool condition3 = a[i] > m1;*/
+			#pragma endregion
+			
+			if (a[i] <= m2)
 			{
-				n = m;
-				m = a[i];
+				continue;
+			}
+			if (a[i] > m2 && a[i] <= m1)
+			{
+				m2 = a[i];
+				continue;
+			}
+			if (a[i] > m1)
+			{
+				m2 = m1;
+				m1 = a[i];
+				continue;
 			}
 		}
-		return n;
+		return m2;
 	}
+
+	//int thirdMax(int* a, int size)
+	//{//не слышу ¬ас
+	//	int z = myMath::max(a[0], a[1]);
+	//	int m = myMath::max(a[0], a[1]);
+	//	int n = myMath::min(a[0], a[1]);
+	//	for (int i = 2; i < size; i++)
+	//	{
+	//		if (a[i] >= m)
+	//		{
+	//			z 
+	//			n = m;
+	//			m = a[i];
+	//		}
+	//	}
+	//	return n;
+	//}
 
 	void arrayIn(int* a, int size)
 	{

@@ -9,8 +9,15 @@
 
 using namespace std;
 
+int func(int x)
+{
+	return x + 5;
+}
+
 int main()
 {
-	oge::oge1253();
+	int a[5];
+	myArray::arrayIn(a, 5);
+	cout << myArray::secondMax(a, 5);
 	return 0;
 }

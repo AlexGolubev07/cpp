@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Header.h" />
     <ClInclude Include="integerNumbers.h" />
     <ClInclude Include="myArray.h" />
     <ClInclude Include="myMath.h" />
