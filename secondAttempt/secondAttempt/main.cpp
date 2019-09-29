@@ -13,6 +13,6 @@ int main()
 {
 	int a[5];
 	myArray::arrayIn(a, 5);
-	cout << myArray::secondMax(a, 5);
+	cout << myArray::thirdMax(a, 5);
 	return 0;
 }

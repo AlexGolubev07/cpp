@@ -2,6 +2,7 @@
 #include <ctime>
 #include "myMath.h"
 #include "Limits.h"
+#include <cassert>
 
 using namespace std;
 
@@ -22,6 +23,7 @@ namespace myArray
 
 	int secondMax(int* a, int size)
 	{
+		assert(size >= 2);
 		int m1 = INT_MIN;
 		int m2 = INT_MIN;
 		for (int i = 0; i < size; i++)
@@ -51,22 +53,39 @@ namespace myArray
 		return m2;
 	}
 
-	//int thirdMax(int* a, int size)
-	//{//не слышу ¬ас
-	//	int z = myMath::max(a[0], a[1]);
-	//	int m = myMath::max(a[0], a[1]);
-	//	int n = myMath::min(a[0], a[1]);
-	//	for (int i = 2; i < size; i++)
-	//	{
-	//		if (a[i] >= m)
-	//		{
-	//			z 
-	//			n = m;
-	//			m = a[i];
-	//		}
-	//	}
-	//	return n;
-	//}
+	int thirdMax(int* a, int size)
+	{
+		assert(size >= 3);
+		int m1 = INT_MIN;
+		int m2 = INT_MIN;
+		int m3 = INT_MIN;
+		for (int i = 0; i < size; i++)
+		{
+
+			if (a[i] <= m3)
+			{
+				continue;
+			}
+			if (a[i] > m3 && a[i] <= m2)
+			{
+				m3 = a[i];
+				continue;
+			}
+			if (a[i] > m2 && a[i] <= m1)
+			{
+				m3 = m2;
+				m2 = a[i];
+				continue;
+			}
+			if (a[i] > m1)
+			{
+				m3 = m2;
+				m2 = m1;
+				m1 = a[i];
+			}
+		}
+		return m3;
+	}
 
 	void arrayIn(int* a, int size)
 	{

@@ -19,4 +19,6 @@ namespace myArray
 
 	//
 	int secondMax(int* a, int size);
+
+	int thirdMax(int* a, int size);
 }
