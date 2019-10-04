@@ -8,10 +8,9 @@
 #include "oge.h"
 #include "test.h"
 
-using namespace myMath::extremum;
+using namespace std;
 
 int main()
 {
-	std::cout << maxFrom3Alt(1, 2, 3);
-	test::math::extremum::maxFrom3Alt();
+	std::cout << myMath::factorialSumAlt(3);
 }

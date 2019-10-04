@@ -106,5 +106,15 @@ namespace myMath
 		}
 		return result;
 	}
+
+	int factorialSumAlt(int number)
+	{
+		int result = 0;
+		for (int i = 1; i <= number; ++i)
+		{
+			result += myMath::factorial(i);
+		}
+		return result;
+	}
 }
 
