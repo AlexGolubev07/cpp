@@ -30,5 +30,7 @@ namespace myMath
 	long long factorialSum(int number);
 
 	long long factorialSumAlt(int number);
+
+	long sumFacRec(int number);
 }
 

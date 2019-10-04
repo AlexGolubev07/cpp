@@ -13,5 +13,5 @@ using namespace std;
 
 int main()
 {
-	compareTime::factorialSum();
+	cout << myMath::sumFacRec(4);
 }

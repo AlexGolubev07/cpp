@@ -20,19 +20,6 @@ namespace myMath
 	4! = 4 * 3! = 4 * 3 * 2! = 4 * 3 * 2 * 1! = 4 * 3 * 2 * 1! = 4 * 3 * 2 * 1 * 0! = 4 * 3 * 2 * 1 * 1
 	*/
 
-	int facRec(int number)
-	{
-		assert(number >= 0);
-		if (number == 0)
-		{
-			return 1;
-		}
-		else
-		{
-			return number * facRec(number - 1);
-		}
-	}
-
 	int recSum(int number)
 	{
 		if (number == 0)
@@ -107,6 +94,8 @@ namespace myMath
 		return result;
 	}
 
+
+
 	long long factorialSumAlt(int number)
 	{
 		long long result = 0;
@@ -115,6 +104,32 @@ namespace myMath
 			result += myMath::factorial(i);
 		}
 		return result;
+	}
+
+	int facRec(int number)
+	{
+		assert(number >= 0);
+		if (number == 0)
+		{
+			return 1;
+		}
+		else
+		{
+			return number * facRec(number - 1);
+		}
+	}
+	
+	long sumFacRec(int number)
+	{
+		assert(number >= 1);
+		if (number == 1)
+		{
+			return 1;
+		}
+		else
+		{
+			return 1 + (number - 1) * sumFacRec(number - 1);
+		}
 	}
 }
 
