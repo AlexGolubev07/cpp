@@ -27,8 +27,8 @@ namespace myMath
 	//recSum
 	int recSum(int number);
 
-	int factorialSum(int number);
+	long long factorialSum(int number);
 
-	int factorialSumAlt(int number);
+	long long factorialSumAlt(int number);
 }
 

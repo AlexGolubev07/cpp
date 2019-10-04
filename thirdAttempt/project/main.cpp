@@ -7,10 +7,11 @@
 #include <ctime>
 #include "oge.h"
 #include "test.h"
+#include "algorythmCompare.h"
 
 using namespace std;
 
 int main()
 {
-	std::cout << myMath::factorialSumAlt(3);
+	compareTime::factorialSum();
 }

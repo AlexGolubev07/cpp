@@ -97,9 +97,9 @@ namespace myMath
 		}
 	}
 
-	int factorialSum(int number)
+	long long factorialSum(int number)
 	{
-		int result = 1;
+		long long result = 1;
 		for (int i = number; i > 1; --i)
 		{
 			result = 1 + result * i;
@@ -107,9 +107,9 @@ namespace myMath
 		return result;
 	}
 
-	int factorialSumAlt(int number)
+	long long factorialSumAlt(int number)
 	{
-		int result = 0;
+		long long result = 0;
 		for (int i = 1; i <= number; ++i)
 		{
 			result += myMath::factorial(i);
