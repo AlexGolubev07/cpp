@@ -1,6 +1,6 @@
 #pragma once
 
-namespace integerNumbers
+namespace intNum
 {
 	// Calculate sum of digits
 	int sumOfDigit(int number);

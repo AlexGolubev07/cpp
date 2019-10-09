@@ -143,11 +143,27 @@ namespace test
 	}
 	// end of math namespace
 
+	namespace intNum
+	{
+		void sumOfDigits()
+		{
+			if (intNum::sumOfDigits(123) == 6)
+			{
+				cout << "test2.1 passed" << endl;
+			}
+		}
+	}
+
 	namespace myArray
 	{
 		//no tests
 	}
 	//end of myArray namespace
+
+	namespace compareTime 
+	{
+		//no tests
+	}
 
 
 }
