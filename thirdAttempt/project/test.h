@@ -192,8 +192,28 @@ namespace test
 				cout << "test2.4 failed" << endl;
 			}
 		}
+
+		void euclidRec()
+		{
+			if (intNum::euclidRec(12, 18) == 6)
+			{
+				cout << "test2.5 passed" << endl;
+			}
+			else
+			{
+				cout << "test2.5 failed" << endl;
+			}
+		}
+
+		void euclidNotRec()
+		{
+			if (intNum::euclidNotRec(12, 18) == 6)
+			{
+				cout << "test2.1 passed" << endl;
+			}
+		}
 	}
-	//end of
+	//end of intNum namespace
 	namespace myArray
 	{
 		//no tests
