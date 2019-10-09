@@ -3,45 +3,93 @@
 
 namespace myMath
 {
-	int factorial(int number)
+	namespace tWF
 	{
-		assert(number >= 0);
-		int f = 1;
-		for (int i = 2; i <= number; i++)
+		int factorial(int number)
 		{
-			f *= i;
+			assert(number >= 0);
+			int f = 1;
+			for (int i = 2; i <= number; i++)
+			{
+				f *= i;
+			}
+			return f;
 		}
-		return f;
+
+		long long factorialSum(int number)
+		{
+			long long result = 1;
+			for (int i = number; i > 1; --i)
+			{
+				result = 1 + result * i;
+			}
+			return result;
+		}
+
+		long long factorialSumAlt(int number)
+		{
+			long long result = 0;
+			for (int i = 1; i <= number; ++i)
+			{
+				result += myMath::tWF::factorial(i);
+			}
+			return result;
+		}
+
+		int facRec(int number)
+		{
+			assert(number >= 0);
+			if (number == 0)
+			{
+				return 1;
+			}
+			else
+			{
+				return number * facRec(number - 1);
+			}
+		}
+
+		long sumFacRec(int number)
+		{
+			assert(number >= 1);
+			if (number == 1)
+			{
+				return 1;
+			}
+			else
+			{
+				return 1 + (number - 1) * sumFacRec(number - 1);
+			}
+		}
 	}
+	//end of tWF
 
-	/*
-	n! = n * (n-1)!  for n >= 2
-	1! = 1
-	4! = 4 * 3! = 4 * 3 * 2! = 4 * 3 * 2 * 1! = 4 * 3 * 2 * 1! = 4 * 3 * 2 * 1 * 0! = 4 * 3 * 2 * 1 * 1
-	*/
-
-	int recSum(int number)
+	namespace sum
 	{
-		if (number == 0)
+		int recSum(int number)
 		{
-			return 0;
+			if (number == 0)
+			{
+				return 0;
+			}
+			else
+			{
+				return number + recSum(number - 1);
+			}
 		}
-		else
+
+		int sum(int number)
 		{
-			return number + recSum(number - 1);
+			int f = 0;
+
+			for (int i = 1; i <= number; i++)
+			{
+				f += i;
+			}
+			return f;
 		}
 	}
-
-	int sum(int number)
-	{
-		int f = 0;
-
-		for (int i = 1; i <= number; i++)
-		{
-			f += i;
-		}
-		return f;
-	}
+	//end of sum
 
 	namespace extremum
 	{
@@ -82,54 +130,7 @@ namespace myMath
 			}
 			return m;
 		}
-	}
-
-	long long factorialSum(int number)
-	{
-		long long result = 1;
-		for (int i = number; i > 1; --i)
-		{
-			result = 1 + result * i;
-		}
-		return result;
-	}
-
-
-
-	long long factorialSumAlt(int number)
-	{
-		long long result = 0;
-		for (int i = 1; i <= number; ++i)
-		{
-			result += myMath::factorial(i);
-		}
-		return result;
-	}
-
-	int facRec(int number)
-	{
-		assert(number >= 0);
-		if (number == 0)
-		{
-			return 1;
-		}
-		else
-		{
-			return number * facRec(number - 1);
-		}
-	}
-	
-	long sumFacRec(int number)
-	{
-		assert(number >= 1);
-		if (number == 1)
-		{
-			return 1;
-		}
-		else
-		{
-			return 1 + (number - 1) * sumFacRec(number - 1);
-		}
+		//end of extrimum
 	}
 }
 

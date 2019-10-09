@@ -13,5 +13,5 @@ using namespace std;
 
 int main()
 {
-	cout << myMath::sumFacRec(4);
+	cout << myMath::sum::sum(4);
 }

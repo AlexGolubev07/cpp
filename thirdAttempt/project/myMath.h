@@ -15,22 +15,29 @@ namespace myMath
 
 		int maxFrom3Alt(int number1, int number2, int number3);
 	}
-	// calculate factorial
-	int factorial(int number);
+	namespace tWF
+	{
+	
+		// calculate factorial
+		int factorial(int number);
 
-	//
-	int facRec(int number);
+		//
+		int facRec(int number);
 
-	// description
-	int sum(int number);
+		long long factorialSum(int number);
 
-	//recSum
-	int recSum(int number);
+		long long factorialSumAlt(int number);
 
-	long long factorialSum(int number);
+		long sumFacRec(int number);
+	}
 
-	long long factorialSumAlt(int number);
+	namespace sum
+	{
+		// description
+		int sum(int number);
 
-	long sumFacRec(int number);
+		//recSum
+		int recSum(int number);
+	}
 }
 

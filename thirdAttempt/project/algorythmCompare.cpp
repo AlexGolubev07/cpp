@@ -11,7 +11,7 @@ namespace compareTime
 		unsigned startTime1 = clock();
 		for (int i = 0; i < replays; i++)
 		{
-			myMath::factorialSum(15);
+			myMath::tWF::factorialSum(15);
 		}
 		unsigned endTime1 = clock();
 		unsigned time1 = endTime1 - startTime1;
@@ -19,7 +19,7 @@ namespace compareTime
 		unsigned startTime2 = clock();
 		for (int i = 0; i < replays; i++)
 		{
-			myMath::factorialSumAlt(15);
+			myMath::tWF::factorialSumAlt(15);
 		}
 		unsigned endTime2 = clock();
 		unsigned time2 = endTime2 - startTime2;
