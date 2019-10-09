@@ -143,17 +143,57 @@ namespace test
 	}
 	// end of math namespace
 
-	namespace intNum
+	namespace intNumbers
 	{
 		void sumOfDigits()
 		{
-			if (intNum::sumOfDigits(123) == 6)
+			if(intNum::sumOfDigit(123) == 6)
 			{
 				cout << "test2.1 passed" << endl;
 			}
+			else
+			{
+				cout << "test2.1 failed" << endl;
+			}
+		}
+
+		void lenNumber()
+		{
+			if (intNum::lenNumber(12345) == 5)
+			{
+				cout << "test2.2 passed" << endl;
+			}
+			else
+			{
+				cout << "test2.2 failed" << endl;
+			}
+		}
+
+		void invertedNumber()
+		{
+			if (intNum::invertedNumber(123) == 321)
+			{
+				cout << "test2.3 passed" << endl;
+			}
+			else
+			{
+				cout << "test2.3 failed" << endl;
+			}
+		}
+
+		void smartInverNumber()
+		{
+			if (intNum::smartInvertNumber(123) == 321)
+			{
+				cout << "test2.4 passed" << endl;
+			}
+			else
+			{
+				cout << "test2.4 failed" << endl;
+			}
 		}
 	}
-
+	//end of
 	namespace myArray
 	{
 		//no tests
