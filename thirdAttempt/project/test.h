@@ -192,6 +192,7 @@ namespace test
 				cout << "test2.4 failed" << endl;
 			}
 		}
+<<<<<<< HEAD
 
 		void euclidRec()
 		{
@@ -244,8 +245,10 @@ namespace test
 >>>>>>> parent of d4d2f51... hw101019cleared
 			}
 		}
+=======
+>>>>>>> parent of d3c5e2c... intNum
 	}
-	//end of intNum namespace
+	//end of
 	namespace myArray
 	{
 		//no tests
