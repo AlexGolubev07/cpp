@@ -192,7 +192,6 @@ namespace test
 				cout << "test2.4 failed" << endl;
 			}
 		}
-<<<<<<< HEAD
 
 		void euclidRec()
 		{
@@ -210,8 +209,6 @@ namespace test
 		{
 			if (intNum::euclidNotRec(12, 18) == 6)
 			{
-<<<<<<< HEAD
-<<<<<<< HEAD
 				cout << "test2.6 passed" << endl;
 			}
 			else
@@ -241,16 +238,8 @@ namespace test
 			else
 			{
 				cout << "test2.8 passed" << endl;
-=======
-				cout << "test2.1 passed" << endl;
->>>>>>> parent of d4d2f51... hw101019cleared
-=======
-				cout << "test2.1 passed" << endl;
->>>>>>> parent of d4d2f51... hw101019cleared
 			}
 		}
-=======
->>>>>>> parent of d3c5e2c... intNum
 	}
 	//end of
 	namespace myArray
