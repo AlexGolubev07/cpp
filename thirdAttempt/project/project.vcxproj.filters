@@ -76,6 +76,9 @@
     <Text Include="hw031019.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="hw101019.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Image Include="instr.PNG">

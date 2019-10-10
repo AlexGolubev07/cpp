@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="hw031019.txt" />
+    <Text Include="hw101019.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="instr.PNG" />
