@@ -15,6 +15,7 @@ namespace myMath
 
 		int maxFrom3Alt(int number1, int number2, int number3);
 	}
+
 	namespace tWF
 	{
 	

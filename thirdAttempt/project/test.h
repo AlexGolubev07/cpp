@@ -6,7 +6,7 @@ using namespace std;
 
 namespace test
 {
-	namespace math
+	namespace mathTets
 	{
 		namespace extremum
 		{
@@ -20,7 +20,6 @@ namespace test
 				{
 					cout << "test1.1 failed" << endl;
 				}
-
 			}
 
 			 void max()
@@ -143,7 +142,7 @@ namespace test
 	}
 	// end of math namespace
 
-	namespace intNumbers
+	namespace intNumTest
 	{
 		void sumOfDigits()
 		{
@@ -193,66 +192,57 @@ namespace test
 			}
 		}
 
-		void euclidRec()
+		namespace gcd
 		{
-			if (intNum::euclidRec(12, 18) == 6)
+			void euclidNotRec()
 			{
-				cout << "test2.5 passed" << endl;
+				if (intNum::gcd::euclidRec(12, 18) == 6)
+				{
+					cout << "test2.5 passed" << endl;
+				}
+				else
+				{
+					cout << "test2.5 failed" << endl;
+				}
 			}
-			else
-			{
-				cout << "test2.5 failed" << endl;
-			}
-		}
 
-		void euclidNotRec()
-		{
-			if (intNum::euclidNotRec(12, 18) == 6)
+			void euclidRec()
 			{
-				cout << "test2.6 passed" << endl;
+				if (intNum::gcd::euclidNotRec(12, 18) == 6)
+				{
+					cout << "test2.6 passed" << endl;
+				}
+				else
+				{
+					cout << "test2.6 failed" << endl;
+				}
 			}
-			else
-			{
-				cout << "test2.6 failed" << endl;
-			}
-		}
 
-		void euclidRec()
-		{
-			if (intNum::euclidRec(12, 18) == 6)
+			void gcd()
 			{
-				cout << "test2.7 passed" << endl;
-			}
-			else
-			{
-				cout << "test2.7 failed" << endl;
-			}
-		}
-
-		void gcd()
-		{
-			if (intNum::gcd)
-			{
-				cout << "test2.8 passed" << endl;
-			}
-			else
-			{
-				cout << "test2.8 passed" << endl;
+				if (intNum::gcd::gcd(4, 8) == 4)
+				{
+					cout << "test2.7 passed" << endl;
+				}
+				else
+				{
+					cout << "test2.7 passed" << endl;
+				}
 			}
 		}
+		//en dof gcd
 	}
-	//end of
-	namespace myArray
+	//end ofintNumbers
+
+	namespace myArrayTest
 	{
 		//no tests
 	}
 	//end of myArray namespace
 
-	namespace compareTime 
+	namespace compareTimeTest 
 	{
 		//no tests
 	}
-
-
 }
 // end of test namespace

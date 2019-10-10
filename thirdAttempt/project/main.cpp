@@ -13,5 +13,8 @@ using namespace std;
 
 int main()
 {
-	cout << myMath::sum::sum(4);
+	test::intNumTest::gcd::gcd();
+	test::intNumTest::gcd::euclidNotRec();
+	test::intNumTest::gcd::euclidRec();
+	return 0;
 }

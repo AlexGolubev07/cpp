@@ -17,12 +17,15 @@ namespace intNum
 	// power number
 	int power(int x, int y);
 
-	//
-	int gcd(int number1, int number2);
+	namespace gcd
+	{
+		//
+		int gcd(int number1, int number2);
 
-	//
-	int euclidRec(int number1, int number2);
+		//
+		int euclidRec(int number1, int number2);
 
-	//NotRecEuclid
-	int euclidNotRec(int number1, int number2);
+		//NotRecEuclid
+		int euclidNotRec(int number1, int number2);
+	}
 }
