@@ -209,6 +209,7 @@ namespace test
 		{
 			if (intNum::euclidNotRec(12, 18) == 6)
 			{
+<<<<<<< HEAD
 				cout << "test2.6 passed" << endl;
 			}
 			else
@@ -238,6 +239,9 @@ namespace test
 			else
 			{
 				cout << "test2.8 passed" << endl;
+=======
+				cout << "test2.1 passed" << endl;
+>>>>>>> parent of d4d2f51... hw101019cleared
 			}
 		}
 	}
