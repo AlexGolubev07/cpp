@@ -13,5 +13,5 @@ using namespace std;
 
 int main()
 {
-	cout << myMath::sum::sum(4);
+	cout << intNum::gcd(4, 6);
 }

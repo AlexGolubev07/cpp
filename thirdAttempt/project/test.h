@@ -209,7 +209,35 @@ namespace test
 		{
 			if (intNum::euclidNotRec(12, 18) == 6)
 			{
-				cout << "test2.1 passed" << endl;
+				cout << "test2.6 passed" << endl;
+			}
+			else
+			{
+				cout << "test2.6 failed" << endl;
+			}
+		}
+
+		/*void euclidRec()
+		{
+			if (intNum::euclidRec(12, 18) == 6)
+			{
+				cout << "test2.7 passed" << endl;
+			}
+			else
+			{
+				cout << "test2.7 failed" << endl;
+			}
+		}
+		*/
+		void gcd()
+		{
+			if (intNum::gcd(4, 6) == 2)
+			{
+				cout << "test2.8 passed" << endl;
+			}
+			else
+			{
+				cout << "test2.8 passed" << endl;
 			}
 		}
 	}
