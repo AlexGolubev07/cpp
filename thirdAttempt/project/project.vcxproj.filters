@@ -44,9 +44,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="digits.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="division.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

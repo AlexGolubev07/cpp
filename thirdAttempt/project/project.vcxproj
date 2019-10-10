@@ -135,7 +135,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="algorythmCompare.cpp" />
-    <ClCompile Include="digits.cpp" />
     <ClCompile Include="division.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="myArray.cpp" />

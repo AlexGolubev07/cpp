@@ -217,7 +217,7 @@ namespace test
 			}
 		}
 
-		/*void euclidRec()
+		void euclidRec()
 		{
 			if (intNum::euclidRec(12, 18) == 6)
 			{
@@ -228,10 +228,10 @@ namespace test
 				cout << "test2.7 failed" << endl;
 			}
 		}
-		*/
+
 		void gcd()
 		{
-			if (intNum::gcd(4, 6) == 2)
+			if (intNum::gcd)
 			{
 				cout << "test2.8 passed" << endl;
 			}
