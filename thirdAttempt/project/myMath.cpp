@@ -16,6 +16,19 @@ namespace myMath
 			return f;
 		}
 
+		int facRec(int number)
+		{
+			assert(number >= 0);
+			if (number == 0)
+			{
+				return 1;
+			}
+			else
+			{
+				return number * facRec(number - 1);
+			}
+		}
+
 		long long factorialSum(int number)
 		{
 			long long result = 1;
@@ -36,19 +49,7 @@ namespace myMath
 			return result;
 		}
 
-		int facRec(int number)
-		{
-			assert(number >= 0);
-			if (number == 0)
-			{
-				return 1;
-			}
-			else
-			{
-				return number * facRec(number - 1);
-			}
-		}
-
+		
 		long sumFacRec(int number)
 		{
 			assert(number >= 1);
@@ -111,7 +112,7 @@ namespace myMath
 			return -max(-number1, -number2);
 		}
 
-		int max(int number1, int number2, int number3)
+		int max3(int number1, int number2, int number3)
 		{
 			return max(number1, max(number2, number3));
 		}

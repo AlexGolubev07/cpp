@@ -28,4 +28,13 @@ namespace intNum
 		//NotRecEuclid
 		int euclidNotRec(int number1, int number2);
 	}
+
+	namespace sequences
+	{
+		// return fibonacci
+		int fibIter(int n);
+
+		// return fibonacci
+		int fibRec(int n);
+	}
 }

@@ -96,8 +96,16 @@ namespace intNum
 		return invertedNumber;
 	}
 
+	
+
 	int smartInvertNumber(int number)
 	{
-		return 0;
+		int result = 0;
+		while(int(number / 10) != 0)
+		{
+			result = result * 10 + number % 10;
+			number = int(number / 10);
+		}
+		return result * 10 + number;
 	}
 }

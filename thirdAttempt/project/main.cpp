@@ -13,8 +13,6 @@ using namespace std;
 
 int main()
 {
-	test::intNumTest::gcd::gcd();
-	test::intNumTest::gcd::euclidNotRec();
-	test::intNumTest::gcd::euclidRec();
+	compareTime::factorial();
 	return 0;
 }

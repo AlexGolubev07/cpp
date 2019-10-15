@@ -141,8 +141,10 @@
     <ClCompile Include="myArray.cpp" />
     <ClCompile Include="myMath.cpp" />
     <ClCompile Include="oge.cpp" />
+    <ClCompile Include="sequences.cpp" />
     <ClCompile Include="sort.cpp" />
     <ClCompile Include="taskWithArrays.cpp" />
+    <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="hw031019.txt" />

@@ -11,7 +11,7 @@ namespace myMath
 		int min(int number1, int number2);
 
 		// max
-		int max(int number1, int number2, int number3);
+		int max3(int number1, int number2, int number3);
 
 		int maxFrom3Alt(int number1, int number2, int number3);
 	}
