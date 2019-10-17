@@ -129,6 +129,7 @@
     <ClInclude Include="myArray.h" />
     <ClInclude Include="myMath.h" />
     <ClInclude Include="oge.h" />
+    <ClInclude Include="olympic.h" />
     <ClInclude Include="sort.h" />
     <ClInclude Include="taskWithArrays.h" />
     <ClInclude Include="test.h" />
@@ -141,12 +142,16 @@
     <ClCompile Include="myArray.cpp" />
     <ClCompile Include="myMath.cpp" />
     <ClCompile Include="oge.cpp" />
+    <ClCompile Include="olympic.cpp" />
     <ClCompile Include="sequences.cpp" />
     <ClCompile Include="sort.cpp" />
     <ClCompile Include="taskWithArrays.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="hw101019.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="181008.pdf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

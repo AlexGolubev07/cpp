@@ -8,11 +8,13 @@
 #include "oge.h"
 #include "test.h"
 #include "algorythmCompare.h"
+#include "olympic.h"
 
 using namespace std;
 
 int main()
 {
-	compareTime::factorial();
+	string name = "abc";
+	cout << olympic::year2018::class9::beauty("adelaida");
 	return 0;
 }
