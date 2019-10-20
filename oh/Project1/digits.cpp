@@ -1,4 +1,5 @@
 #include "myMath.h"
+#include <cassert>
 
 namespace intNum
 {
@@ -6,6 +7,11 @@ namespace intNum
 	{
 		bool isPrime(int number)
 		{
+			assert(number > 0);
+			if (number == 1)
+			{
+				return false;
+			}
 			for (int i = 2; i < number; i++)
 			{
 				if (number % i == 0)

@@ -13,4 +13,12 @@ namespace olympic
 			string beauty(string name);
 		}
 	}
+
+	namespace year2019
+	{
+		namespace class9
+		{
+			void primeSum2011(int n);
+		}
+	}
 }

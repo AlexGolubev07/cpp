@@ -14,7 +14,6 @@ using namespace std;
 
 int main()
 {
-	string name = "abc";
-	cout << olympic::year2018::class9::beauty("adelaida");
+	olympic::year2019::class9::primeSum2011(3);
 	return 0;
 }
