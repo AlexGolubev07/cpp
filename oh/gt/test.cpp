@@ -55,6 +55,14 @@ TEST(intNum, euclidRec)
 	EXPECT_EQ(intNum::gcd::euclidRec(10, 15), 5);
 	EXPECT_EQ(intNum::gcd::euclidRec(10, 20), 10);
 }
+
+#pragma region primaryNumbers
+
+TEST(intnum, isPrime)
+{
+	EXPECT_EQ(intNum::primaryNumbers::isPrime(87), true);
+	EXPECT_EQ(intNum::primaryNumbers::isPrime(2), true);
+}
 #pragma endregion
 
 #pragma endregion

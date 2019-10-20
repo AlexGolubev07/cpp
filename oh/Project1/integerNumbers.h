@@ -4,7 +4,7 @@ namespace intNum
 {
 	namespace primaryNumbers
 	{
-		bool IsPrime(int number);
+		bool isPrime(int number);
 	}
 
 	// Calculate sum of digits

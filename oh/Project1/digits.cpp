@@ -4,7 +4,7 @@ namespace intNum
 {
 	namespace primaryNumbers
 	{
-		bool IsPrime(int number)
+		bool isPrime(int number)
 		{
 			for (int i = 2; i < number; i++)
 			{
