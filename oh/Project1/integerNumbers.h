@@ -2,6 +2,11 @@
 
 namespace intNum
 {
+	namespace primaryNumbers
+	{
+		bool IsPrime(int number);
+	}
+
 	// Calculate sum of digits
 	int sumOfDigit(int number);
 

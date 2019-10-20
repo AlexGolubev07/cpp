@@ -37,6 +37,26 @@ TEST(intNum, lenNumber)
 	EXPECT_EQ(intNum::lenNumber(1001), 4);
 }
 
+#pragma region gcd
+TEST(intNum, gcd)
+{
+	EXPECT_EQ(intNum::gcd::gcd(10, 15), 5);
+	EXPECT_EQ(intNum::gcd::gcd(10, 20), 10);
+}
+
+TEST(intNum, euclidNotRec)
+{
+	EXPECT_EQ(intNum::gcd::euclidNotRec(10, 15), 5);
+	EXPECT_EQ(intNum::gcd::euclidNotRec(10, 20), 10);
+}
+
+TEST(intNum, euclidRec)
+{
+	EXPECT_EQ(intNum::gcd::euclidRec(10, 15), 5);
+	EXPECT_EQ(intNum::gcd::euclidRec(10, 20), 10);
+}
+#pragma endregion
+
 #pragma endregion
 
 #pragma region olympic

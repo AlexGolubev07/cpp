@@ -2,6 +2,21 @@
 
 namespace intNum
 {
+	namespace primaryNumbers
+	{
+		bool IsPrime(int number)
+		{
+			for (int i = 2; i < number; i++)
+			{
+				if (number % i == 0)
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+	}
+
 	namespace gcd
 	{
 		int gcd(int number1, int number2)
@@ -97,7 +112,6 @@ namespace intNum
 	}
 
 	
-
 	int smartInvertNumber(int number)
 	{
 		int result = 0;
