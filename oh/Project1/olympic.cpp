@@ -1,5 +1,6 @@
 #include <iostream>
 #include "integerNumbers.h"
+#include <cassert>
 
 using namespace std;
 
@@ -49,10 +50,11 @@ namespace olympic
 	{
 		namespace class9
 		{
-			int amountPrime2011()
+			int amountPrime(int const number)
 			{
+				assert(number > 0);
 				int count = 0;
-				for (int i = 2; i <= 2011; i++)
+				for (int i = 2; i <= number; i++)
 				{
 					if (intNum::primaryNumbers::isPrime(i))
 					{
@@ -62,11 +64,11 @@ namespace olympic
 				return count;
 			}
 
-			void arrayIn(int* a)
+			int* arrayOfPrime(int const number, int const size)
 			{
-				int const size = amountPrime2011();
+				int* a = new int[size];
 				int position = 0;
-				for (int i = 2; i <= 2011; i++)
+				for (int i = 2; i <= number; i++)
 				{
 					if (intNum::primaryNumbers::isPrime(i))
 					{
@@ -74,46 +76,12 @@ namespace olympic
 						++position;
 					}
 				}
+				return a;
 			}
 
-			void primeSum2011(int n)
+			void primeSum(int const number)
 			{
-				int const size = amountPrime2011();
-				int* a = new int[size];
-				arrayIn(a);
-				/*for (int i = 0; i < size; i++)
-				{
-					cout << a[i] << " ";
-				}*/
-				cout << endl;
-
-				for (int i = 0; i < size - n + 1; i++)
-				{
-					int sum = 0;
-					int test = a[i];
-					for (int j = i; j < i + n; j++)
-					{
-						sum += a[i];
-					}
-					if (test == 661)
-					{
-						cout << a[i] << " " << a[i + 1] << " " << a[i + 2] << " " << sum << endl;
-					} 
-
-					if (sum == 2011)
-					{
-						cout << a[i];
-						for (int j = i + 1; j < i + n; j++)
-						{
-							cout << " + " << a[i];
-						}
-						cout << " = " << sum;
-						delete[] a;
-						return;
-					}
-				}
-				cout << "No solution!";
-				delete[] a;
+				// ehh
 			}
 		}
 	}

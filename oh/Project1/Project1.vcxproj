@@ -130,6 +130,7 @@
     <ClInclude Include="myMath.h" />
     <ClInclude Include="oge.h" />
     <ClInclude Include="olympic.h" />
+    <ClInclude Include="olympicHelp.h" />
     <ClInclude Include="sort.h" />
     <ClInclude Include="taskWithArrays.h" />
     <ClInclude Include="test.h" />

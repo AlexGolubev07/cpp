@@ -45,6 +45,9 @@
     <ClInclude Include="olympic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="olympicHelp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="algorythmCompare.cpp">
