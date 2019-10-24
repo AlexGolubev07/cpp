@@ -1,6 +1,7 @@
 #include <iostream>
 #include "integerNumbers.h"
 #include <cassert>
+#include <string>
 
 using namespace std;
 
@@ -79,9 +80,26 @@ namespace olympic
 				return a;
 			}
 
-			void primeSum(int const number)
+			string primeSum(int const number, int const amount)
 			{
-				// ehh
+				int const size = amountPrime(number);
+				int* a = arrayOfPrime(number, size);
+
+				for (int n = 0; n < size - 2; ++n)
+				{
+					int sum = a[n] + a[n + 1] + a[n + 2];
+
+					if (sum == number)
+					{
+						string result = to_string(a[n]) + " + " + to_string(a[n + 1]) + " + " + to_string(a[n + 2]);
+						result += " = " + to_string(number);
+						delete[] a;
+						return result;
+					}
+				}
+
+				return "no solution!";
+				delete[] a;
 			}
 		}
 	}

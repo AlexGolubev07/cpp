@@ -8,21 +8,14 @@
 #include "oge.h"
 #include "test.h"
 #include "algorythmCompare.h"
-#include "olympicHelp.h"
+#include "olympic.h"
 
 using namespace std;
 using namespace olympic::year2019::class9;
 
 int main()
 {
-	int size = amountPrime(10);
-	int* a = arrayOfPrime(10, size);
+	cout << primeSum(2011);
 
-	for (int i = 0; i < amountPrime(10); i++)
-	{
-		cout << a[i] << " ";
-	}
-
-	delete[] a;
 	return 0;
 }

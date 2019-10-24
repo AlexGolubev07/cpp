@@ -105,4 +105,9 @@ TEST(olympic, arrayOfPrime)
 	delete[] t2Test;
 }
 
+TEST(olympic, primeSum)
+{
+	EXPECT_EQ("661 + 673 + 677 = 2011", olympic::year2019::class9::primeSum(2011));
+}
+
 #pragma endregion

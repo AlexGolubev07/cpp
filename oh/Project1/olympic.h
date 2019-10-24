@@ -18,7 +18,7 @@ namespace olympic
 	{
 		namespace class9
 		{
-			void primeSum2011(int n);
+			string primeSum(int const number, int const amount = 3);
 		}
 	}
 }
