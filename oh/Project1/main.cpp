@@ -9,13 +9,14 @@
 #include "test.h"
 #include "algorythmCompare.h"
 #include "olympic.h"
+#include "ege.h"
 
 using namespace std;
 using namespace olympic::year2019::class9;
 
 int main()
 {
-	cout << primeSum(2011);
+	ege::ege25::ege251::ege7682();
 
 	return 0;
 }

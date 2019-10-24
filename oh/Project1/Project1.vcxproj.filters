@@ -48,6 +48,9 @@
     <ClInclude Include="olympicHelp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ege.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="algorythmCompare.cpp">
@@ -83,9 +86,13 @@
     <ClCompile Include="olympic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ege251.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="hw101019.txt" />
+    <Text Include="hw241019.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="181008.pdf" />
