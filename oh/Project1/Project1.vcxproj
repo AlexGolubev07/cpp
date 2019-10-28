@@ -153,6 +153,7 @@
   <ItemGroup>
     <Text Include="hw101019.txt" />
     <Text Include="hw241019.txt" />
+    <Text Include="Text.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="181008.pdf" />

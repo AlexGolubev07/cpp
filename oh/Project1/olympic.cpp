@@ -87,11 +87,20 @@ namespace olympic
 
 				for (int n = 0; n < size - 2; ++n)
 				{
-					int sum = a[n] + a[n + 1] + a[n + 2];
+					int sum = 0;
+
+					for (int i = n; i < n + amount; ++i)
+					{
+						sum += a[i];
+					}
 
 					if (sum == number)
 					{
-						string result = to_string(a[n]) + " + " + to_string(a[n + 1]) + " + " + to_string(a[n + 2]);
+						string result = to_string(a[n]);
+						for (int i = 1; i < amount; ++i)
+						{
+							result += " + " + to_string(a[i]);
+						}
 						result += " = " + to_string(number);
 						delete[] a;
 						return result;
@@ -102,7 +111,7 @@ namespace olympic
 				delete[] a;
 			}
 
-			int frecenBoc()
+			/*int frecenBoc()
 			{
 				int xa;
 				int ya;
@@ -143,7 +152,7 @@ namespace olympic
 				
 
 
-			}
+			}*/
 		}
 	}
 }

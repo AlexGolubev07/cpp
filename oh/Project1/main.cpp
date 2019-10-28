@@ -16,7 +16,7 @@ using namespace olympic::year2019::class9;
 
 int main()
 {
-	ege::ege25::ege251::ege7682();
+	cout << primeSum(2 + 3 + 5 + 7 + 11, 5);
 
 	return 0;
 }
