@@ -85,7 +85,7 @@ namespace olympic
 				int const size = amountPrime(number);
 				int* a = arrayOfPrime(number, size);
 
-				for (int n = 0; n < size - 2; ++n)
+				for (int n = 0; n < size - amount + 1; ++n)
 				{
 					int sum = 0;
 
