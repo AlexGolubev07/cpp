@@ -101,6 +101,49 @@ namespace olympic
 				return "no solution!";
 				delete[] a;
 			}
+
+			int frecenBoc()
+			{
+				int xa;
+				int ya;
+				int xb;
+				int yb;
+				int xc;
+				int yc;
+				std::cin >> xa >> ya >> xb >> yb >> xc >> yc;
+				int secondPart();
+				{
+					if (xa != 0)
+					{
+						xb -= xa;
+						xc -= xa;
+						xa = 0;
+						secondPart;
+					}
+					if (ya != 0)
+					{
+						yb -= ya;
+						yc -= ya;
+						ya = 0;
+						secondPart;
+					}
+					if ((xb / yb) = (xc / yc))
+					{
+						cout <<  "BOTH";
+					}
+					if ((xb / yb) > (xc / yc))
+					{
+						cout << "LEFT";
+					}
+					if ((xb / yb) < (xc / yc) && (xb < xc && yb < yc)  || ())
+					{
+						cout << "RIGHT";
+					}
+				}
+				
+
+
+			}
 		}
 	}
 }
