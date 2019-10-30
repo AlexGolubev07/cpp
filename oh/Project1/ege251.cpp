@@ -121,6 +121,83 @@ namespace ege
 				}
 				cout << result;
 			}
+
+			void ege6936()
+			{
+
+				#define N 2014
+
+				float a[N];
+				float d, r;
+				int i, j, k;
+				int result1;
+				int result2;
+				int number1;
+				int number2;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				i = 0;
+				j = a[i];
+				k = a[i + 1];
+				if (j > k)
+				{
+					result1 = j - k;
+				}
+				else
+				{
+					result1 = k - j;
+				}
+				for (i = 1; i < N - 1; ++i)
+				{
+					result2 = result1;
+					j = a[i];
+					k = a[i + 1];
+					if (j > k)
+					{
+						result1 = j - k;
+					}
+					else
+					{
+						result1 = k - j;
+					}
+					if (result1 > result2)
+					{
+
+					}
+					else
+					{
+						result1 = result2;
+						number1 = j;
+						number2 = k;
+					}
+				}
+				cout << number1 << number2;
+			}
+
+			void ege11126()
+			{
+				#define N 50
+				
+				int a[N];
+				int i, j, k;
+				int result = 0;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				for (i = 0; i < N - 1; ++i)
+				{
+					j = a[i];
+					k = a[i + 1];
+					if (j > 9 && k > 9)
+					{
+						++result;
+					}
+				}
+				cout << result;
+			}
 		}
 	}
 }
