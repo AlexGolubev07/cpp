@@ -132,6 +132,7 @@
     <ClInclude Include="oge.h" />
     <ClInclude Include="olympic.h" />
     <ClInclude Include="olympicHelp.h" />
+    <ClInclude Include="plane.h" />
     <ClInclude Include="sort.h" />
     <ClInclude Include="taskWithArrays.h" />
     <ClInclude Include="test.h" />

@@ -10,14 +10,18 @@
 #include "algorythmCompare.h"
 #include "olympic.h"
 #include "ege.h"
+#include "plane.h"
 
 using namespace std;
-using namespace olympic::year2019::class9;
+using namespace plane;
 
 int main()
 {
-	cout << primeSum(2 + 3 + 5 + 7 + 11, 5);
+	Point p;
+	p.x = 10;
+	p.y = 11;
 
+	cout << p;
 
 	return 0;
 }
