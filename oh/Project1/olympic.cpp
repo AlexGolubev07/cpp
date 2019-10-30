@@ -65,9 +65,8 @@ namespace olympic
 				return count;
 			}
 
-			int* arrayOfPrime(int const number, int const size)
+			void arrayOfPrime(int const number, int const size, int* a)
 			{
-				int* a = new int[size];
 				int position = 0;
 				for (int i = 2; i <= number; i++)
 				{
@@ -77,13 +76,13 @@ namespace olympic
 						++position;
 					}
 				}
-				return a;
 			}
 
 			string primeSum(int const number, int const amount)
 			{
 				int const size = amountPrime(number);
-				int* a = arrayOfPrime(number, size);
+				int* a = new int[size];
+				arrayOfPrime(number, size, a);
 
 				for (int n = 0; n < size - amount + 1; ++n)
 				{
@@ -97,7 +96,7 @@ namespace olympic
 					if (sum == number)
 					{
 						string result = to_string(a[n]);
-						for (int i = 1; i < amount; ++i)
+						for (int i = n + 1; i < n + amount; ++i)
 						{
 							result += " + " + to_string(a[i]);
 						}

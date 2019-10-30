@@ -7,7 +7,7 @@ namespace olympic
 		namespace class9
 		{
 			int amountPrime(int const number);
-			int* arrayOfPrime(int const number, int const size);
+			void arrayOfPrime(int const number, int const size, int* a);
 		}
 	}
 }

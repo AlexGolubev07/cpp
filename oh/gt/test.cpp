@@ -89,7 +89,8 @@ TEST(olympic, amountOfPrime)
 TEST(olympic, arrayOfPrime)
 {
 	int t1[4] = { 2, 3, 5, 7 };
-	int* t1Test = olympic::year2019::class9::arrayOfPrime(10, 4);
+	int* t1Test = new int[4];
+	olympic::year2019::class9::arrayOfPrime(10, 4, t1Test);
 	for (int i = 0; i < 4; i++)
 	{
 		EXPECT_EQ(t1[i], t1Test[i]);
@@ -97,7 +98,8 @@ TEST(olympic, arrayOfPrime)
 	delete[] t1Test;
 
 	int t2[5] = { 2, 3, 5, 7, 11 };
-	int* t2Test = olympic::year2019::class9::arrayOfPrime(12, 5);
+	int* t2Test = new int[5];
+	olympic::year2019::class9::arrayOfPrime(12, 5, t2Test);
 	for (int i = 0; i < 5; i++)
 	{
 		EXPECT_EQ(t2[i], t2Test[i]);
