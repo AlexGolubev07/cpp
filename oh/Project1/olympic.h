@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include "plane.h"
 
 using namespace std;
 
@@ -19,6 +20,8 @@ namespace olympic
 		namespace class9
 		{
 			string primeSum(int const number, int const amount = 3);
+
+			string frekenBok(plane::point::Point freken, plane::point::Point karlson, plane::point::Point malysh);
 		}
 	}
 }

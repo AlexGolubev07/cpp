@@ -13,7 +13,6 @@
 #include "plane.h"
 
 using namespace std;
-using namespace plane;
 
 int main()
 {
