@@ -154,6 +154,7 @@
   <ItemGroup>
     <Text Include="hw101019.txt" />
     <Text Include="hw241019.txt" />
+    <Text Include="hw311019.txt" />
     <Text Include="Text.txt" />
   </ItemGroup>
   <ItemGroup>
