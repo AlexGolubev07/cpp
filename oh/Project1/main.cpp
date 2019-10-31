@@ -17,11 +17,6 @@ using namespace plane;
 
 int main()
 {
-	Point p;
-	p.x = 10;
-	p.y = 11;
-
-	cout << p;
 
 	return 0;
 }

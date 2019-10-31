@@ -28,7 +28,7 @@ namespace ege
 
 				cout << k;
 			}
-
+			
 			void ege7770()
 			{
 				#define N 40
@@ -36,7 +36,7 @@ namespace ege
 				int i;
 				int j;
 				int k;
-				int l = 0;
+				k = 0;
 				for (i = 0; i < N; i++)
 				{
 					cin >> a[i];
@@ -44,13 +44,12 @@ namespace ege
 				for (i = 0; i < N - 1; ++i)
 				{
 					j = a[i] + a[i + 1];
-					k = a[i] * a[i + 1];
-					if (k % 2 = 0 && j % 7 = 0)
+					if ((a[i] * a[i + 1]) % 2 == 0 && j % 7 == 0)
 					{
-						++l;
+						++k;
 					}
 				}
-				cout << l;
+				cout << k;
 			}
 
 			void ege8113()
@@ -59,7 +58,7 @@ namespace ege
 				
 				int a[N];
 				int i, j, k;
-				int result;
+				k = 0;
 				for (i = 0; i < N; i++)
 				{
 					cin >> a[i];
@@ -67,22 +66,21 @@ namespace ege
 				for (i = 0; i < N - 1; ++i)
 				{
 					j = a[i];
-					k = a[i + 1];
-					if (j % 3 = 0 && k % 3 = 0)
+					if (j % 3 == 0 && a[i + 1] % 3 == 0)
 					{
-						++result;
+						++k;
 					}
 				}
-				cout << result;
+				cout << k;
 			}
 
-			void ege8763()
+			void ege8673()
 			{
 				#define N 40
 				
 				long a[N];
 				long i, j, k;
-				int result = 0;
+				k = 0;
 				for (i = 0; i < N; i++)
 				{
 					cin >> a[i];
@@ -90,13 +88,12 @@ namespace ege
 				for (i = 0; i < N - 1; ++i)
 				{
 					j = a[i] + a[i + 1];
-					k = a[i] * a[i + 1];
-					if (j % 2 = 0 && k > 100)
+					if (j % 2 == 0 && (a[i] * a[i + 1]) > 100)
 					{
-						++result;
+						++k;
 					}
 				}
-				cout << result;
+				cout << k;
 			}
 
 			void ege9376()
@@ -105,7 +102,7 @@ namespace ege
 				
 				int a[N];
 				int i, j, k;
-				int result;
+				k = 0;
 				for (i = 0; i < N; i++)
 				{
 					cin >> a[i];
@@ -113,13 +110,12 @@ namespace ege
 				for (i = 0; i < N - 1; ++i)
 				{
 					j = a[i];
-					k = a[i + 1];
-					if (j % 3 = 0 || k % 3 = 0)
+					if (j % 3 == 0 || a[i + 1] % 3 == 0)
 					{
-						++result;
+						++k;
 					}
 				}
-				cout << result;
+				cout << k;
 			}
 
 			void ege6936()
@@ -130,50 +126,22 @@ namespace ege
 				float a[N];
 				float d, r;
 				int i, j, k;
-				int result1;
-				int result2;
-				int number1;
-				int number2;
+
 				for (i = 0; i < N; i++)
 				{
 					cin >> a[i];
 				}
-				i = 0;
-				j = a[i];
-				k = a[i + 1];
-				if (j > k)
-				{
-					result1 = j - k;
-				}
-				else
-				{
-					result1 = k - j;
-				}
+				r = abs(a[1] - a[0]);
 				for (i = 1; i < N - 1; ++i)
 				{
-					result2 = result1;
-					j = a[i];
-					k = a[i + 1];
-					if (j > k)
+					d = abs(a[i + 1] - a[i]);
+					if (d < r)
 					{
-						result1 = j - k;
-					}
-					else
-					{
-						result1 = k - j;
-					}
-					if (result1 > result2)
-					{
-
-					}
-					else
-					{
-						result1 = result2;
-						number1 = j;
-						number2 = k;
+						r = d;
+						j = i;
 					}
 				}
-				cout << number1 << number2;
+				cout << a[j] << " " << a[j + 1];
 			}
 
 			void ege11126()
@@ -182,7 +150,7 @@ namespace ege
 				
 				int a[N];
 				int i, j, k;
-				int result = 0;
+				k = 0;
 				for (i = 0; i < N; i++)
 				{
 					cin >> a[i];
@@ -190,13 +158,79 @@ namespace ege
 				for (i = 0; i < N - 1; ++i)
 				{
 					j = a[i];
-					k = a[i + 1];
-					if (j > 9 && k > 9)
+					if (j > 9 && a[i + 1] > 9 && j < 100 && a[i + 1] < 100)
 					{
-						++result;
+						++k;
 					}
 				}
-				cout << result;
+				cout << k;
+			}
+
+			void ege11321()
+			{
+				#define N 2000
+				
+				int a[N];
+				int i, j, k;
+				k = 0;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				for (i = 0; i < N - 1; ++i)
+				{
+					j = a[i];
+					if (j % 10 == 9 && a[i + 1] % 10 == 9)
+					{
+						++k;
+					}
+				}
+				cout << k;
+			}
+
+			
+		}
+		namespace ege252
+		{
+			void ege9209()
+			{
+				#define N 2000
+
+				int a[N];
+				int i, k;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				k = 0;
+				for (i = 0; i < N; ++i)
+				{
+					k += a[i];
+				}
+				if (k % 2 == 0)
+				{
+					k = 0;
+					for (i = 0; i < N; ++i)
+					{
+						if (a[i] % 2 == 0)
+						{
+							++k;
+						}
+					}
+					cout << k;
+				}
+				else
+				{
+					k = 0;
+					for (i = 0; i < N; ++i)
+					{
+						if (a[i] % 2 != 0)
+						{
+							++k;
+						}
+					}
+					cout << k;
+				}
 			}
 		}
 	}

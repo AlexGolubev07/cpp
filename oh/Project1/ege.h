@@ -7,14 +7,28 @@ namespace ege
 		namespace ege251
 		{
 			void ege7682();
+
+			void ege7770();
+
+			void ege8113();
+
+			void ege8673();
+
+			void ege9376();
+
+			void ege6936();
+
+			void ege11126();
+
+			void ege11321();
 		}
 		// end of namespace ege251
 
 		namespace ege252
 		{
-
+			void ege9209();
 		}
-		// end of namespace ege252
+		// end of namespace ege2522
 
 		namespace ege253
 		{
