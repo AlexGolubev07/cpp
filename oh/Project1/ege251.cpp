@@ -194,7 +194,7 @@ namespace ege
 		{
 			void ege9209()
 			{
-				#define N 2000
+#define N 2000
 
 				int a[N];
 				int i, k;
@@ -231,6 +231,62 @@ namespace ege
 					}
 					cout << k;
 				}
+			}
+
+			void ege9811()
+			{
+				#define N 2015
+					
+				int a[N];
+				int i, j, k;
+				for (i = 0; i < N; i++)
+				{
+						cin >> a[i];
+				}
+				j = 0;
+				for (i = 1; i < N - 1; ++i)
+				{
+					if (a[i] < a[i - 1] && a[i] < a[i + 1])
+					{
+						if (((a[i + 1] - a[i]) + (a[i - 1] - a[i])) > j)
+						{
+							j = i;
+						}
+					}
+				}
+				cout << a[j];
+			}
+
+			void ege2914()
+			{
+				#define N 30
+				
+				int a[N];
+				int min, max, i, sum;
+				float sred1, sred2;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				min = a[0];
+				max = a[0];
+				sum = a[0];
+				for (i = 1; i < N; ++i)
+				{
+					sum += a[i];
+					if (a[i] > max)
+					{
+						max = a[i];
+					}
+					if (a[i] < min)
+					{
+						min = a[i];
+					}
+				}
+				sred1 = (min + max) / 2;
+				sred2 = sum / N;
+				min = sred1 - sred2;
+				cout << min;
 			}
 		}
 	}

@@ -16,6 +16,23 @@ using namespace std;
 
 int main()
 {
-
+	string a;
+	int colvo;
+	string message;
+	int result = 0;
+	int length;
+	string l = "0@";
+	cin >> colvo;
+	int i;
+	for (i = 0; i < colvo; ++i)
+	{
+		cin >> message;
+		length = message.length();
+		if (message[length - 1] == l[1])
+		{
+			result = i + 1 - result;
+		}
+	}
+	cout << result;
 	return 0;
 }
