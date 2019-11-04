@@ -27,12 +27,50 @@ namespace ege
 		namespace ege252
 		{
 			void ege9209();
+
+			void ege9811();
+
+			void ege2914();
+
+			void ege2925();
+
+			void ege3622();
+
+			void ege5289();
+
+			void ege7383();
+
+			void ege6200();
+
+			void ege10301();
+
+			void ege10399();
+
+			void ege13636();
 		}
 		// end of namespace ege2522
 
 		namespace ege253
 		{
+			void ege7936();
 
+			void ege9660();
+
+			void ege2910();
+
+			void ege2905();
+
+			void ege3614();
+
+			void ege5501();
+
+			void ege11254();
+
+			void ege13421();
+
+			void ege13501();
+
+			void ege14240();
 		}
 		// end of namespace ege253
 

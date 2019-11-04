@@ -194,7 +194,7 @@ namespace ege
 		{
 			void ege9209()
 			{
-#define N 2000
+				#define N 2000
 
 				int a[N];
 				int i, k;
@@ -482,6 +482,204 @@ namespace ege
 			void ege13636()
 			{
 				// I need to know shestnadzatirichnost' well
+			}
+		}
+		namespace ege253
+		{
+			void ege7936()
+			{
+				#define N 2000
+				int a[N];
+				int i, j, k, m;
+				j = 0;
+				k = 0;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				for (i = 0; i < N; ++i)
+				{
+					if (a[i] % 2 == 0)
+					{
+						++j;
+					}
+					else
+					{
+						++k;
+					}
+				}
+				if (j >= k)
+				{
+					j = 0;
+					for (i = 0; i < N; ++i)
+					{
+						if (a[i] > j)
+						{
+							j = a[i];
+						}
+					}
+				}
+				else 
+				{
+					j = 0;
+					for (i = 0; i < N; ++i)
+					{
+						if (a[i] > j)
+						{
+							j = a[i];
+						}
+					}
+				}
+				cout << j;
+			}
+
+			void ege9660()
+			{
+				#define N 40 
+				
+				int a[N];
+				int i, j, max;
+				max = 0;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				for (i = 0; i < N; i++)
+				{
+					if (a[i] > max&& a[i] > 9 && a[i] < 100 && a[i] % 3 != 0)
+					{
+						max = a[i];
+					}
+				}
+				cout << max;
+			}
+
+			void ege2910()
+			{
+				// array 10 * 10
+			}
+
+			void ege2905()
+			{
+				#define N 30 
+				
+				int a[N];
+				int i, j, max;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				max = -20;
+				for (i = 0; i < N; ++i)
+				{
+					if (a[i] < 0 && a[i] > max)
+					{
+						max = a[i];
+					}
+				}
+				cout << max;
+			}
+
+			void ege3614()
+			{
+				#define N 40
+				
+				int a[N];
+				int i, k, max, max2;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				max = -2 147 483 648;
+				max2 = -2 147 483 648;
+				for (i = 0; i < N; ++i)
+				{
+					if (a[i] > max)
+					{
+						max2 = max;
+						max = a[i];
+					}
+				}
+				cout << max2;
+			}
+
+			void ege5501()
+			{
+				#define N 20
+				int a[N];
+				int i, j, max;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				max = 0;
+				for (i = 0; i < N; ++i)
+				{
+					if (a[i] > 99 && a[i] < 1000 && a[i] % 5 == 0 && a[i] > max)
+					{
+						max = a[i];
+					}
+				}
+				cout << max;
+			}
+
+			void ege11254()
+			{
+				#define N 2016
+				int a[N];
+				int i, m, k;
+				m = 1;
+				for (i = 0; i > N; ++i)
+				{
+					cin >> a[i];
+				}
+				for (i = 0; i < N; ++i)
+				{
+					m *= a[i];
+				}
+				if (m % 2 == 0)
+				{
+					m = 0;
+					for (i = 0; i < N; ++i)
+					{
+						if(a[i] % 2 == 0 && a[i] > m)
+						{
+							m = a[i];
+						}
+					}
+				}
+				else
+				{
+					m = 0;
+					for (i = 0; i < N; ++i)
+					{
+						if (a[i] % 2 != 0 && a[i] > m)
+						{
+							m = a[i];
+						}
+					}
+				}
+				cout << m;
+			}
+			
+			void ege13421() //the easiest ege number ever!
+			{
+				#define N 2017
+					int a[N];
+					int i, m, k;
+					for (i = 0; i < N; i++)
+						cin >> a[i];
+					cout << 0;
+			}
+
+			void ege13501()
+			{
+				// shestnadzatirichnaya system again
+			}
+
+			void ege14240()
+			{
+				// - || -
 			}
 		}
 	}
