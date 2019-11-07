@@ -153,7 +153,7 @@ namespace olympic
 					{
 						return "Right";
 					}
-					if (karlson.y == 0)
+					if (karlson.x / karlson.y == malysh.x / malysh.y)
 					{
 						return "Both";
 					}
