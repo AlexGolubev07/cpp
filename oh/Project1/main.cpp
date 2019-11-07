@@ -21,9 +21,10 @@ int main()
 	plane::point::Point k;
 
 	cin >> f >> m >> k;
-	cout << f << m << k;
+	cout << f << m << k << endl;
 
-	cout << olympic::year2019::class9::frekenBok(f, k , m);
+	cout << olympic::year2019::class9::frekenBok(f, m , k);
 
+	
 	return 0;
 }

@@ -19,7 +19,7 @@ namespace plane
 			return sqrt(x + y);
 		}
 
-		Point& shift(Point const& origin, Point const& p)
+		Point shift(Point const& origin, Point const& p)
 		{
 			Point result;
 			result.x = p.x - origin.x;
@@ -27,11 +27,11 @@ namespace plane
 			return result;
 		}
 
-		Point& rotation(double const cos, double const sin, Point const& p)
+		Point rotation(double const cosinus, double const sinus, Point const& p)
 		{
 			Point result;
-			result.x = p.x * cos - p.y * sin;
-			result.y = p.x * sin + p.y * cos;
+			result.x = p.x * cosinus - p.y * sinus;
+			result.y = p.x * sinus + p.y * cosinus;
 			return result;
 		}
 
