@@ -590,8 +590,8 @@ namespace ege
 				{
 					cin >> a[i];
 				}
-				max = -2 147 483 648;
-				max2 = -2 147 483 648;
+				max = INT_MIN;
+				max2 = INT_MIN;
 				for (i = 0; i < N; ++i)
 				{
 					if (a[i] > max)
@@ -680,6 +680,122 @@ namespace ege
 			void ege14240()
 			{
 				// - || -
+			}
+		}
+		namespace ege254
+		{
+			void ege2918()
+			{
+
+			}
+
+			void ege2932()
+			{
+
+			}
+
+			void ege6349()
+			{
+				#define N 30 
+				long a[N];
+				long i, j, p;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				j = 1;
+				for (i = 0; i < N; ++i)
+				{
+					if (a[i] > 9 && a[i] < 100 && ((a[i] - (a[i] % 10)) / 10 + (a[i] % 10)) % 2 == 0)
+					{
+						j *= a[i];
+					}
+				}
+				cout << j;
+			}
+
+			void ege7426()
+			{
+				#define N 20
+				int a[N];
+				int i, j, max;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				max = 0;
+				for (i = 0; i < N; ++i)
+				{
+					if (a[i] > 9 && a[i] < 100 && (a[i] % ((a[i] - (a[i] % 10)) / 10 != 0 && a[i] > max)))
+					{
+						max = a[i];
+					}
+				}
+				cout << max;
+			}
+
+			void ege4957()
+			{
+				#define N 70
+				long a[N];
+				long i, j, x, y;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				x = a[0] - a[1];
+				for (i = 0; i < N; ++i)
+				{
+					for (j = 0; j < N; ++j)
+					{
+						y = a[i] - a[j];
+						if (x > y)
+						{
+							y = x;
+						}
+					}
+				}
+				cout << y;
+			}
+
+			void ege5068()
+			{
+				#define N 70 
+				int a[N];
+				int i, j, x, y;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				j = 2147483648;
+				for (i = 0; i < N - 1; ++i)
+				{
+					if ((a[i] + a[i + 1]) % 2 == 0 && (a[i] + a[i + 1]) < j)
+					{
+						j = a[i] + a[i + 1];
+					}
+				}
+				cout << j;
+			}
+
+			void ege6790()
+			{
+				#define N 2014
+				int a[N];
+				int i, j, k;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				j = 0;
+				for (i = 1; i < N; ++i)
+				{
+					if (a[i] > (a[i - 1] * 2))
+					{
+						++j;
+					}
+				}
+				cout << j;
 			}
 		}
 	}

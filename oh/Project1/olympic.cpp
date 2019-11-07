@@ -2,6 +2,7 @@
 #include "integerNumbers.h"
 #include <cassert>
 #include <string>
+#include "plane.h"
 
 using namespace std;
 
@@ -108,6 +109,60 @@ namespace olympic
 
 				return "no solution!";
 				delete[] a;
+			}
+
+			string frekenBok(plane::point::Point freken, plane::point::Point karlson, plane::point::Point malysh)
+			{
+				// shift to frekenBok
+				karlson = plane::point::shift(freken, karlson);
+				malysh = plane::point::shift(freken, malysh);
+				freken = plane::point::shift(freken, freken);
+				cout << freken << karlson << malysh << endl;
+
+				// rotation
+				plane::point::Point O;
+				O.x = 0;
+				O.y = 0;
+				double const gyp = plane::point::distanceBetweenPoints(O, malysh);
+				double cosinus = malysh.x / gyp;
+				double sinus = malysh.y / gyp;
+				cout << freken << karlson << malysh << endl;
+
+				karlson = plane::point::rotation(cosinus, sinus, karlson);
+				malysh = plane::point::rotation(cosinus, sinus, malysh);
+
+				// result
+				if (malysh.x < 0)
+				{
+					if (karlson.y > 0)
+					{
+						return "Right";
+					}
+					if (karlson.y == 0)
+					{
+						return "Both";
+					}
+					if (karlson.y < 0)
+					{
+						return "Left";
+					}
+				}
+				if (malysh.x > 0)
+				{
+					if (karlson.y < 0)
+					{
+						return "Right";
+					}
+					if (karlson.y == 0)
+					{
+						return "Both";
+					}
+					if (karlson.y > 0)
+					{
+						return "Left";
+					}
+				}
+				return "chto-to ne tak";
 			}
 
 			/*int frecenBoc()

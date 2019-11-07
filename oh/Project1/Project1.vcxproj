@@ -147,6 +147,7 @@
     <ClCompile Include="myMath.cpp" />
     <ClCompile Include="oge.cpp" />
     <ClCompile Include="olympic.cpp" />
+    <ClCompile Include="plane.cpp" />
     <ClCompile Include="sequences.cpp" />
     <ClCompile Include="sort.cpp" />
     <ClCompile Include="taskWithArrays.cpp" />

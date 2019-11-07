@@ -42,9 +42,6 @@
     <ClInclude Include="test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="olympic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="olympicHelp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -52,6 +49,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="plane.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="olympic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -86,10 +86,13 @@
     <ClCompile Include="taskWithArrays.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ege251.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="olympic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ege251.cpp">
+    <ClCompile Include="plane.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
