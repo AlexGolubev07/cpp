@@ -103,6 +103,7 @@
       <Filter>Source Files</Filter>
     </Text>
     <Text Include="hw311019.txt" />
+    <Text Include="hw101119.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="181008.pdf" />

@@ -44,6 +44,7 @@ namespace olympic
 						return res1;
 					}
 				}
+				return "unreal case";
 			}
 		}
 	}
@@ -117,7 +118,6 @@ namespace olympic
 				karlson = plane::point::shift(freken, karlson);
 				malysh = plane::point::shift(freken, malysh);
 				freken = plane::point::shift(freken, freken);
-				cout << freken << " " << malysh << " " << karlson << endl;
 
 				// rotation
 				plane::point::Point O;
@@ -129,7 +129,6 @@ namespace olympic
 
 				karlson = plane::point::rotation(cosinus, sinus, karlson);
 				malysh = plane::point::rotation(cosinus, sinus, malysh);
-				cout << freken << " " << malysh << " " << karlson << endl;
 
 				// result
 				if (malysh.x < 0)
