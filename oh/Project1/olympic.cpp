@@ -44,6 +44,7 @@ namespace olympic
 						return res1;
 					}
 				}
+				return "unreal case";
 			}
 		}
 	}
@@ -111,13 +112,12 @@ namespace olympic
 				delete[] a;
 			}
 
-			string frekenBok(plane::point::Point freken, plane::point::Point karlson, plane::point::Point malysh)
+			string frekenBok(plane::point::Point freken, plane::point::Point malysh, plane::point::Point karlson)
 			{
 				// shift to frekenBok
 				karlson = plane::point::shift(freken, karlson);
 				malysh = plane::point::shift(freken, malysh);
 				freken = plane::point::shift(freken, freken);
-				cout << freken << karlson << malysh << endl;
 
 				// rotation
 				plane::point::Point O;
@@ -126,7 +126,6 @@ namespace olympic
 				double const gyp = plane::point::distanceBetweenPoints(O, malysh);
 				double cosinus = malysh.x / gyp;
 				double sinus = malysh.y / gyp;
-				cout << freken << karlson << malysh << endl;
 
 				karlson = plane::point::rotation(cosinus, sinus, karlson);
 				malysh = plane::point::rotation(cosinus, sinus, malysh);
@@ -153,7 +152,7 @@ namespace olympic
 					{
 						return "Right";
 					}
-					if (karlson.x / karlson.y == malysh.x / malysh.y)
+					if (karlson.y == 0)
 					{
 						return "Both";
 					}

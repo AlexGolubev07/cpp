@@ -21,7 +21,7 @@ namespace olympic
 		{
 			string primeSum(int const number, int const amount = 3);
 
-			string frekenBok(plane::point::Point freken, plane::point::Point karlson, plane::point::Point malysh);
+			string frekenBok(plane::point::Point freken, plane::point::Point malysh, plane::point::Point karlson);
 		}
 	}
 }

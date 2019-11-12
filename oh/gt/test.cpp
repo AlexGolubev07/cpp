@@ -2,6 +2,7 @@
 #include "../project1/integerNumbers.h"
 #include "../Project1/olympic.h"
 #include "../Project1/olympicHelp.h"
+#include "../Project1/plane.h"
 
 #pragma region intNumGCD
 
@@ -69,6 +70,18 @@ TEST(intnum, isPrime)
 
 #pragma endregion
 
+#pragma region plane
+TEST(plane, shift)
+{
+	plane::point::Point O(2, 3);
+	plane::point::Point p1(4, 5);
+	plane::point::Point p2(2, 2);
+	plane::point::Point p = plane::point::shift(O, p1);
+	EXPECT_EQ(p, p2);
+}
+#pragma endregion
+
+
 #pragma region olympic
 
 TEST(olympic, beauty)
@@ -111,5 +124,50 @@ TEST(olympic, primeSum)
 {
 	EXPECT_EQ("661 + 673 + 677 = 2011", olympic::year2019::class9::primeSum(2011));
 }
+
+#pragma region freken
+TEST(olympic, freken1)
+{
+	plane::point::Point f(1, 2);
+	plane::point::Point m(3, 6);
+	plane::point::Point k(2, 4);
+	string expectedValue = "Both";
+	string realValue = olympic::year2019::class9::frekenBok(f, m, k);
+	EXPECT_EQ(expectedValue, realValue);
+}
+
+TEST(olympic, freken2)
+{
+	plane::point::Point f(1, 2);
+	plane::point::Point m(3, 6);
+	plane::point::Point k(2, 5);
+	string expectedValue = "Left";
+	string realValue = olympic::year2019::class9::frekenBok(f, m, k);
+	EXPECT_EQ(expectedValue, realValue);
+}
+
+TEST(olympic, freken3)
+{
+	plane::point::Point f(1, 2);
+	plane::point::Point m(3, 6);
+	plane::point::Point k(2, 3);
+	string expectedValue = "Right";
+	string realValue = olympic::year2019::class9::frekenBok(f, m, k);
+	EXPECT_EQ(expectedValue, realValue);
+}
+
+TEST(olympic, freken4)
+{
+	plane::point::Point f(1, 2);
+	plane::point::Point m(3, 6);
+	plane::point::Point k(1, 4);
+	string expectedValue = "Left";
+	string realValue = olympic::year2019::class9::frekenBok(f, m, k);
+	EXPECT_EQ(expectedValue, realValue);
+}
+
+
+#pragma endregion
+
 
 #pragma endregion

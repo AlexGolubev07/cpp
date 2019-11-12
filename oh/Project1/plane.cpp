@@ -10,7 +10,7 @@ namespace plane
 {
 	namespace point
 	{
-		int distanceBetweenPoints(Point const& p1, Point const& p2)
+		double distanceBetweenPoints(Point const& p1, Point const& p2)
 		{
 			double x = p2.x - p1.x;
 			x *= x;
@@ -19,7 +19,13 @@ namespace plane
 			return sqrt(x + y);
 		}
 
-		Point& shift(Point const& origin, Point const& p)
+		Point::Point(int const x, int const y)
+		{
+			this->x = x;
+			this->y = y;
+		}
+
+		Point shift(Point const& origin, Point const& p)
 		{
 			Point result;
 			result.x = p.x - origin.x;
@@ -27,11 +33,11 @@ namespace plane
 			return result;
 		}
 
-		Point& rotation(double const cos, double const sin, Point const& p)
+		Point rotation(double const cosinus, double const sinus, Point const& p)
 		{
 			Point result;
-			result.x = p.x * cos - p.y * sin;
-			result.y = p.x * sin + p.y * cos;
+			result.x = p.x * cosinus + p.y * sinus;
+			result.y = -p.x * sinus + p.y * cosinus;
 			return result;
 		}
 
@@ -51,5 +57,11 @@ namespace plane
 
 			return in;
 		}
+
+		bool operator== (Point const& p1, Point const& p2)
+		{
+			return ((p1.x == p2.x) && (p1.y == p2.y));
+		}
 	}
+	// end of point namespace
 }

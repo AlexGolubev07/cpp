@@ -16,14 +16,5 @@ using namespace std;
 
 int main()
 {
-	plane::point::Point f;
-	plane::point::Point m;
-	plane::point::Point k;
-
-	cin >> f >> m >> k;
-	cout << f << m << k;
-
-	cout << olympic::year2019::class9::frekenBok(f, k , m);
-
-	return 0;
+	ege::ege25::ege252::ege3622();
 }

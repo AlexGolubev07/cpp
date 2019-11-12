@@ -233,7 +233,7 @@ namespace ege
 				}
 			}
 
-			void ege9811()
+			void ege9811byAlex()
 			{
 				#define N 2015
 					
@@ -249,6 +249,30 @@ namespace ege
 					if (a[i] < a[i - 1] && a[i] < a[i + 1])
 					{
 						if (((a[i + 1] - a[i]) + (a[i - 1] - a[i])) > j)
+						{
+							j = i;
+						}
+					}
+				}
+				cout << a[j];
+			}
+
+			void ege9811()
+			{
+				#define N 2015
+
+				int a[N];
+				int i, j, k;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				j = 0;
+				for (i = 1; i < N - 1; ++i)
+				{
+					if (a[i] < a[i - 1] && a[i] < a[i + 1])
+					{
+						if (a[i] < j)
 						{
 							j = i;
 						}
@@ -314,7 +338,7 @@ namespace ege
 
 			void ege3622()
 			{
-				#define N 40 
+				#define N 8
 				
 				int a[N]; 
 				int i, l, lmax, s, smax;
@@ -323,28 +347,35 @@ namespace ege
 					cin >> a[i];
 				}
 				lmax = 0;
-				smax = 0;
+				smax = 1;
 				s = 0;
 				for (i = 0; i < N - 1; ++i)
 				{
 					if (a[i] < a[i + 1])
 					{
 						++smax;
+						if (i == N - 2)
+						{
+							if (smax > lmax)
+							{
+								lmax = smax;
+								l = i + 1;
+							}
+						}
 					}
 					else
 					{
-						++smax;
 						if (smax > lmax)
 						{
 							lmax = smax;
 							l = i;
 						}
-						smax = 0;
+						smax = 1;
 					}
 				}
-				for (i = 0; i < lmax - 1; ++i)
+				for (i = l - lmax + 1; i <= l; ++i)
 				{
-					s += a[l - i];
+					s += a[i];
 				}
 				cout << s;
 			}
