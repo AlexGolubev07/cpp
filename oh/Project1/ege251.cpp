@@ -767,7 +767,7 @@ namespace ege
 				{
 					cin >> a[i];
 				}
-				j = 2147483648;
+				j = INT_MAX;
 				for (i = 0; i < N - 1; ++i)
 				{
 					if ((a[i] + a[i + 1]) % 2 == 0 && (a[i] + a[i + 1]) < j)
@@ -797,6 +797,182 @@ namespace ege
 				}
 				cout << j;
 			}
+
+			void ege7426()
+			{
+				#define N 20
+				int a[N];
+				int i, j, max;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				max = 0;
+				for (i = 0; i < N; ++i)
+				{
+					if (a[i] > max&& a[i] > 9 && a[i] < 100 && a[i] % (a[i] - a[i] % 10) / 10 != 0)
+					{
+						max = a[i];
+					}
+				}
+				cout << max;
+			}
+
+			void ege6969()
+			{
+				#define N 2014
+				int a[N];
+				int i, j, k;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				k = 0;
+				for (i = 0; i < N; ++i)
+				{
+					if ((a[i] + a[N - i]) > 20)
+					{
+						++k;
+					}
+				}
+				cout << k / 2;
+			}
+
+			void ege13752()
+			{
+                int const n = 30; //not define)(po ysloviu
+				long a[n];
+				long i, j, k;
+				for (i = 0; i < n; i++)
+				{
+					cin >> a[i];
+				}
+				k = 0;
+				for (i = 0; i < n; ++i)
+				{
+					if (a[i] > 100 && a[i] % 5 != 0)
+					{
+						++k;
+					}
+				}
+				for (i = 0; i < n; ++i)
+				{
+					if (a[i] > 100 && a[i] % 5 != 0)
+					{
+						a[i] = k;
+					}
+				}
+				for (i = 0; i < n; i++)
+				{
+					cout << a[i];
+				}
+			}
+
+			void ege15810()
+			{
+				const int n = 2018;
+				int a[n];
+				int i, k, m;
+				for (i = 0; i < n; ++i)
+				{
+					cin >> a[i];
+				}
+				m = 0;
+				for (i = 0; i < n; ++i)
+				{
+					if (a[i] > 100 && (100 - a[i]) < m)
+					{
+						m = 100 - a[i];
+					}
+				}
+				for (i = 0; i < n; ++i)
+				{
+					if (a[i] < 100)
+					{
+						a[i] += m;
+					}
+				}
+				for (i = 0; i < n; ++i)
+				{
+					cout << a[i];
+				}
+			}
+
+			void ege16400()
+			{
+				const int n = 2018;
+				int a[n];
+				int i, k, m;
+				for (i = 0; i < n; ++i)
+				{
+					cin >> a[i];
+				}
+				m = 15001;
+				for (i = 0; i < n; ++i)
+				{
+					if (a[i] < m)
+					{
+						m = a[i];
+					}
+				}
+				for (i = 0; i < n; ++i)
+				{
+					if (a[i] > (m * 2))
+					{
+						a[i] -= m * 2;
+					}
+				}
+				for (i = 0; i < n; ++i)
+				{
+					cout << a[i] << endl;
+				}
+			}
+
+
+			void ege17343()
+			{
+				const int n = 2019;
+				int a[n];
+				int i, k, m;
+				for (i = 0; i < n; ++i)
+				{
+					cin >> a[i];
+				}
+				k = 15001;
+				m = 15001;
+				for (i = 0; i < n; ++i)
+				{
+					if (a[i] % 2 == 0 && a[i] < k)
+					{
+						k = a[i];
+					}
+					if (a[i] % 2 != 0 && a[i] < m)
+					{
+						m = a[i];
+					}
+				}
+				m += k;
+				for (i = 0; i < n; ++i)
+				{
+					if (a[i] > m)
+					{
+						a[i] -= m;
+					}
+				}
+				for (i = 0; i < n; ++i)
+				{
+					cout << a[i];
+				}
+			}
+
+			void ege18573()
+			{
+				// how can I do medium arifmetic without tu
+			}
+		}
+		namespace ege255
+		{
+
 		}
 	}
 }
