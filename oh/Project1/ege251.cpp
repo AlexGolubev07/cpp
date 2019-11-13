@@ -1000,10 +1000,99 @@ namespace ege
 			{
 				// how can I do medium arifmetic without tu
 			}
-		}
-		namespace ege255
+		} // 
+		namespace ege255 //1000 strings)
 		{
+			void ege9706()
+			{
+				#define N 30
+				int a[N];
+				int i, j, min;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				min = 10001;
+				for (i = 0; i < N; ++i)
+				{
+					if (a[i] > 99 && a[i] < 1000 && a[i] % 7 == 0)
+					{
+						min = a[i];
+					}
+				}
+				if (min != 10001)
+				{
+					cout << min;
+				}
+				else
+				{
+					cout << "не найдено";
+				}
+			}
 
+			void ege3602()
+			{
+				#define N 50 
+				float a[N];
+				int i, j;
+				for (int i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				for (i = 0; i < N; ++i)
+				{
+					if (a[i] < 0)
+					{
+						cout << i;
+						break;
+					}
+				}
+			}
+
+			void ege4703()
+			{
+				#define N 70
+				int a[N];
+				int i, j, m;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				m = INT_MAX;
+				for (i = 0; i < N; ++i)
+				{
+					if (a[i] > 0 && a[i] % 2 != 0 && a[i] < m)
+					{
+						m = a[i];
+					}
+				}
+				cout << m;
+			}
+
+			void ege11281()
+			{
+				#define N 70
+				int a[N];
+				int i, j, m;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				j = 1;
+				m = INT_MAX;
+				for (i = 0; i < N; ++i)
+				{
+					j *= a[i];
+				}
+				for (i = 0; i < N; ++i)
+				{
+					if ((a[i] % 2) == (j % 2) && a[i] < m)
+					{ 
+						m = a[i];
+					}
+				}
+				cout << m;
+			}
 		}
 	}
 }
