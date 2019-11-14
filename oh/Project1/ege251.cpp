@@ -745,26 +745,6 @@ namespace ege
 				cout << j;
 			}
 
-			void ege7426()
-			{
-				#define N 20
-				int a[N];
-				int i, j, max;
-				for (i = 0; i < N; i++)
-				{
-					cin >> a[i];
-				}
-				max = 0;
-				for (i = 0; i < N; ++i)
-				{
-					if (a[i] > 9 && a[i] < 100 && (a[i] % ((a[i] - (a[i] % 10)) / 10 != 0 && a[i] > max)))
-					{
-						max = a[i];
-					}
-				}
-				cout << max;
-			}
-
 			void ege4957()
 			{
 				#define N 70
@@ -861,7 +841,7 @@ namespace ege
 				k = 0;
 				for (i = 0; i < N; ++i)
 				{
-					if ((a[i] + a[N - i]) > 20)
+					if ((a[i] + a[N - i - 1]) > 20)
 					{
 						++k;
 					}
@@ -998,9 +978,9 @@ namespace ege
 
 			void ege18573()
 			{
-				// how can I do medium arifmetic without tu
+				// how can I do medium arifmetic without tyne float or double
 			}
-		} // 
+		} //  I don`t know how to do questions with shestnatsatirichnaya sistem
 		namespace ege255 //1000 strings)
 		{
 			void ege9706()
@@ -1069,6 +1049,33 @@ namespace ege
 				cout << m;
 			}
 
+			void ege5373()
+			{
+				#define N 20
+				int a[N];
+				int i, j, min;
+				for (i = 0; i < N; i++)
+				{
+					cin >> a[i];
+				}
+				min = 1001;
+				for (i = 0; i < N; ++i)
+				{
+					if (a[i] % 3 == 0 && a[i] < min)
+					{
+						min = a[i];
+					}
+				}
+				if (min != 1001)
+				{
+					cout << min;
+				}
+				else
+				{
+					cout << "не найдено";
+				}
+			}
+
 			void ege11281()
 			{
 				#define N 70
@@ -1093,6 +1100,37 @@ namespace ege
 				}
 				cout << m;
 			}
+
+			void ege18805()
+			{
+				const int n = 2019;
+				int a[n];
+				int i, j, k;
+				for (i = 0; i < n; ++i)
+				{
+					cin >> a[i];
+				}
+				k = 0;
+				for (i = 0; i < n; ++i)
+				{
+					if (a[i] % 4 == 0 && a[i] < k)
+					{
+						k = a[i];
+					}
+				}
+				for (i = 0; i < n; ++i)
+				{
+					if (a[i] % 4 == 0)
+					{
+						a[i] = k;
+					}
+				}
+				for (i = 0; i < n; ++i)
+				{
+					cout << a[i];
+				}
+			}
 		}
 	}
+	//end of ege25 namespace
 }

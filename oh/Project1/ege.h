@@ -76,7 +76,25 @@ namespace ege
 
 		namespace ege254
 		{
+			void ege();
 
+			void ege();
+
+			void ege();
+
+			void ege();
+
+			void ege();
+
+			void ege();
+
+			void ege();
+
+			void ege();
+
+			void ege();
+
+			void ege();
 		}
 		// end of namespace ege254
 
