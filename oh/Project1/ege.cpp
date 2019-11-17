@@ -1,4 +1,5 @@
 #include <iostream>
+#include "ege.h"
 
 using namespace std;
 
@@ -190,6 +191,8 @@ namespace ege
 
 			
 		}
+		// end of ege251 namespace
+
 		namespace ege252
 		{
 			void ege9209()
@@ -515,6 +518,8 @@ namespace ege
 				// I need to know shestnadzatirichnost' well
 			}
 		}
+		// end of ege252 namespace
+
 		namespace ege253
 		{
 			void ege7936()
@@ -713,11 +718,79 @@ namespace ege
 				// - || -
 			}
 		}
+		// end of ege253 namespace
+
 		namespace ege254
 		{
 			void ege2918()
 			{
+				int a[10][10];
+				for (int i = 0; i < 10; ++i)
+				{
+					for (int j = 0; i < 10; ++j)
+					{
+						cin >> a[i][j];
+					}
+				}
 
+				int rows[10];
+				for (int row = 0; row < 10; ++row)
+				{
+					int s = 0;
+					for (int col = 0; col < 10; ++col)
+					{
+						s += a[row][col];
+					}
+					rows[row] = s;
+				}
+
+				int cols[10];
+				for (int col = 0; col < 10; ++col)
+				{
+					int s = 0;
+					for (int row = 0; row < 10; ++row)
+					{
+						s += a[row][col];
+					}
+					cols[col] = s;
+				}
+
+				int diagMain = 0;
+				int diagSecondary = 0;
+				for (int i = 0; i < 10; ++i)
+				{
+					diagMain += a[i][i];
+					diagSecondary += a[i][10 - i - 1];
+				}
+				if (diagMain != diagSecondary)
+				{
+					cout << "NO";
+					return;
+				}
+				for (int i = 0; i < 9; ++i)
+				{
+					if (rows[i] != rows[i + 1])
+					{
+						cout << "NO";
+						return;
+					}
+				}
+				for (int i = 0; i < 9; ++i)
+				{
+					if (cols[i] != cols[i + 1])
+					{
+						cout << "NO";
+						return;
+					}
+				}
+				if (rows[0] == cols[0] && rows[0] == diagMain)
+				{
+					cout << "YES";
+				}
+				else
+				{
+					cout << "NO";
+				}
 			}
 
 			void ege2932()
@@ -981,6 +1054,8 @@ namespace ege
 				// how can I do medium arifmetic without tyne float or double
 			}
 		} //  I don`t know how to do questions with shestnatsatirichnaya sistem
+		// end of ege254 namespace
+
 		namespace ege255 //1000 strings)
 		{
 			void ege9706()
@@ -1131,6 +1206,51 @@ namespace ege
 				}
 			}
 		}
+		// end of ege255 namespace
 	}
 	//end of ege25 namespace
+
+	namespace ege27
+	{
+		namespace ege274
+		{
+			void ege11363()
+			{
+				int n = 0;
+				cin >> n;
+				int a = 0;
+				int b = 0;
+				int minSubtractNotDividedBy3 = 10001;
+				int sumOfMax = 0;
+				for (int i = 0; i < n; ++i)
+				{
+					cin >> a >> b;
+					a > b ? sumOfMax += a : sumOfMax += b; // тринарный оператор
+					int min = abs(a - b);
+					if (min < minSubtractNotDividedBy3 && min % 3 != 0)
+					{
+						minSubtractNotDividedBy3 = min;
+					}
+				}
+				if (sumOfMax % 3 != 0)
+				{
+					cout << sumOfMax;
+				}
+				else
+				{
+					if (minSubtractNotDividedBy3 == 10001)
+					{
+						cout << 0;
+					}
+					else
+					{
+						cout << sumOfMax - minSubtractNotDividedBy3;
+					}
+				}
+			}
+		}
+		// end of ege274 namespace
+	}
+	// end of ege27 namespace
 }
+// end of ege namespace

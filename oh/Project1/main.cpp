@@ -16,5 +16,5 @@ using namespace std;
 
 int main()
 {
-	ege::ege25::ege252::ege3622();
+	ege::ege27::ege274::ege11363();
 }

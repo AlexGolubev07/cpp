@@ -86,13 +86,13 @@
     <ClCompile Include="taskWithArrays.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ege251.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="olympic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="plane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ege.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
