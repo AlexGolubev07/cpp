@@ -1248,6 +1248,175 @@ namespace ege
 					}
 				}
 			}
+
+			void ege13423()
+			{
+				int n = 0;
+				cin >> n;
+				int a[28];
+				for (int i = 0; i < 28; ++i)
+				{
+					a[i] = 0;
+				}
+				int number = 0;
+				for (int i = 0; i < n; ++i)
+				{
+					cin >> number;
+					int sum = number % 10 + (number / 10) % 10 + ((number / 10) / 10) % 10;
+					++a[sum];
+				}
+				int result = 0;
+				int sumOfDigit = 0;
+				for (int i = 0; i < 28; ++i)
+				{
+					if (a[i] > result)
+					{
+						result = a[i];
+						sumOfDigit = i;
+					}
+				}
+				cout << sumOfDigit;
+			}
+
+			void ege13503()
+			{
+				int n = 0;
+				cin >> n;
+				int a[10];
+				for (int i = 0; i < 10; ++i)
+				{
+					a[i] = 0;
+				}
+				int number = 0;
+				for (int i = 0; i < n; ++i)
+				{
+					cin >> number;
+					while (number < 10)
+					{
+						++a[number % 10];
+						number /= 10;
+					}
+					++a[number];
+				}
+				int digitFrequency = 0;
+				for (int i = 0; i < 10; ++i)
+				{
+					if (a[i] >= digitFrequency)
+					{
+						digitFrequency = a[i];
+					}
+				}
+				for (int i = 10; i = 0; i--)
+				{
+					if (a[i] = digitFrequency)
+					{
+						cout << i;
+					}
+				}
+			}
+
+			void ege13557()
+			{
+				int n = 0;
+				cin >> n;
+				int number = 0;
+				int sum = 0;
+				int min = INT_MAX;
+				bool flag = true;
+				for (int i = 0; i < n; ++i)
+				{
+					cin >> number;
+					sum += number;
+					if (number < min && number % 6 != 0)
+					{
+						min = number;
+						flag = false;
+					}
+				}
+				if (sum % 6 != 0)
+				{
+					cout << n << " " << sum;
+				}
+				else
+				{
+					if (flag)
+					{
+						cout << 0 << " " << 0;
+					}
+					else
+					{
+						cout << n - 1 << " " << sum - min;
+					}
+				}
+			}
+
+			void ege13611()
+			{
+				int n = 0;
+				cin >> n;
+				int a[10];
+				for (int i = 0; i < 10; ++i)
+				{
+					a[i] = 0;
+				}
+				int number = 0;
+				for (int i = 0; i < n; ++i)
+				{
+					cin >> number;
+					int length = 0;
+					while (number != 0)
+					{
+						++length;
+						number /= 10;
+					}
+					++a[length];
+				}
+				int lengthFrequency = 0;
+				for (int i = 0; i < 10; ++i)
+				{
+					if (a[i] >= lengthFrequency)
+					{
+						lengthFrequency = a[i];
+					}
+				}
+				for (int i = 9; i >= 0; --i)
+				{
+					if (a[i] == lengthFrequency)
+					{
+						cout << i << " " << lengthFrequency;
+						return;
+					}
+				}
+			}
+
+			void ege13754()
+			{
+				int n = 0;
+				cin >> n;
+				int number = 0;
+				int n2 = 0;
+				int n13 = 0;
+				int n26 = 0;
+				for (int i = 0; i < n; ++i)
+				{
+					cin >> number;
+					if (number % 2 == 0 && number % 13 != 0)
+					{
+						++n2;
+					}
+					if (number % 2 != 0 && number % 13 == 0)
+					{
+						++n13;
+					}
+					if (number % 2 == 0 && number % 13 == 0)
+					{
+						++n26;
+					}
+				}
+				int result = 0;
+				result = n2 * n13 + n26 * (n - n26) + (n26 * (n26 - 1)) / 2;
+				cout << result;
+			}
 		}
 		// end of ege274 namespace
 	}

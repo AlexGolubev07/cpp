@@ -111,6 +111,14 @@ namespace ege
 		namespace ege274
 		{
 			void ege11363();
+
+			void ege13423();
+
+			void ege13503();
+
+			void ege13557();
+
+			void ege13611();
 		}
 		// end of ege274 namespace
 	}
