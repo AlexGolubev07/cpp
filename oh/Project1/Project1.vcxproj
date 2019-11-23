@@ -125,7 +125,8 @@
   <ItemGroup>
     <ClInclude Include="algorythmCompare.h" />
     <ClInclude Include="ege.h" />
-    <ClInclude Include="Header.h" />
+    <ClInclude Include="games.h" />
+    <ClInclude Include="Header1.h" />
     <ClInclude Include="integerNumbers.h" />
     <ClInclude Include="myArray.h" />
     <ClInclude Include="myMath.h" />

@@ -43,8 +43,9 @@ namespace games
 					}
 					else
 					{
-					cout << "enter right form";
-					continue;
+						cout << "enter right form";
+						oralAccount;
+					}
 				}
 			}
 		}
@@ -65,61 +66,73 @@ namespace games
 			cin >> sameAnswer;
 			if (sameAnswer == rightAnswer)
 			{
-				cout << i << " right";
+				cout << " right" << endl;
 				++answersRight;
 			}
 			else
 			{
-				cout << i << " wrong";
+				cout << " wrong" << endl;
 			}
 		}
 		if (answersRight == n && n == 10)
 		{
-			cout << "How did you do it?";
+			cout << endl << answersRight << endl <<"How did you do it?";
 		}
 		if (answersRight > 7 && n == 10)
 		{
-			cout << "You are good!";
+			cout << endl << answersRight << endl << "You are good!";
 		}
 		if (answersRight >= 5 && n == 10)
 		{
-			cout << "So, it`s OK!";
+			cout << endl << answersRight << endl << "So, it`s OK!";
 		}
 		if (answersRight == 4 && n == 10)
 		{
-			cout << "Practice more!";
+			cout << endl << answersRight << endl << "Practice more!";
 		}
 		if (answersRight < 3 && n == 10)
 		{
-			cout << "Try again with easily level!";
+			cout << endl << answersRight << endl << "Try again with easily level!";
 		}
 		if (answersRight == n && n == 7)
 		{
-			cout << "You are good!";
+			cout << endl << answersRight << endl << "You are good!";
 		}
 		if (answersRight >= 4 && n == 7)
 		{
-			cout << "So, it`s OK!";
+			cout << endl << answersRight << endl << "So, it`s OK!";
 		}
 		if (answersRight < 4 && n == 7)
 		{
-			cout << "Try again with easily level!";
+			cout << endl << answersRight << endl << "Try again with easily level!";
 		}
 		if (answersRight >= 4 && n == 5)
 		{
-			cout << "So, it`s OK!";
+			cout << endl << answersRight << endl << "So, it`s OK!";
 		}
 		if (answersRight <= 3 && n == 5 && answersRight > 1 )
 		{
-			cout << "Practice more!";
+			cout << endl << answersRight << endl << "Practice more!";
 		}
 		if (answersRight == 1 && n == 5)
 		{
-			cout << "Practice more!";
+			cout << endl << answersRight << endl << "Practice more!";
 		}
-		if (answersRight == 2 && n == 3)
+		if (answersRight == 3 && n == 3)
 		{
-			cout << "Math isn`t your";
+			cout << endl << answersRight << endl << "So, it`s OK";
 		}
+		if (answersRight <= 2 && n == 3)
+		{
+			cout << endl << answersRight << endl << "Math isn`t your";
+		}
+		cout << endl << "retry?";
+		string retry;
+		cin >> retry;
+		if (retry == "yes")
+		{
+			oralAccount;
+		}
+		//end of code for first game
 	}
 }

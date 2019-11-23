@@ -11,10 +11,11 @@
 #include "olympic.h"
 #include "ege.h"
 #include "plane.h"
+#include "games.h"
 
 using namespace std;
 
 int main()
 {
-	ege::ege27::ege274::ege13611();
+	games::oralAccount();
 }
