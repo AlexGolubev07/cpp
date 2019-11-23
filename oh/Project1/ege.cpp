@@ -1417,6 +1417,16 @@ namespace ege
 				result = n2 * n13 + n26 * (n - n26) + (n26 * (n26 - 1)) / 2;
 				cout << result;
 			}
+
+			void ege15995()
+			{
+				//I neen array
+			}
+
+			void ege18729()
+			{
+
+			}
 		}
 		// end of ege274 namespace
 	}

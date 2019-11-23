@@ -150,6 +150,7 @@
     <ClCompile Include="plane.cpp" />
     <ClCompile Include="sequences.cpp" />
     <ClCompile Include="sort.cpp" />
+    <ClCompile Include="singeGames.cpp" />
     <ClCompile Include="taskWithArrays.cpp" />
   </ItemGroup>
   <ItemGroup>
