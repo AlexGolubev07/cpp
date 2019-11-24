@@ -17,5 +17,5 @@ using namespace std;
 
 int main()
 {
-	games::oralAccount();
+	ege::ege27::ege274::ege18729();
 }

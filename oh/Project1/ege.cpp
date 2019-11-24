@@ -1420,12 +1420,113 @@ namespace ege
 
 			void ege15995()
 			{
-				//I neen array
+				//I need array
 			}
 
 			void ege18729()
 			{
+				int n = 0;
+				cin >> n;
+				int a[117];
+				int max2 = 0;
+				a[0] = 0;
+				for (int i = 1; i < 117; ++i)
+				{
+					a[i] = 0;
+				}
+				for (int i = 0; i < n; ++i)
+				{
+					int number = 0;
+					cin >> number;
+					if (number % 117 != 0)
+					{
+						if (number > a[number % 117])
+						{
+							a[number % 117] = number;
+						}
+					}
+					else
+					{
+						if (number > max2 && number <= a[0])
+						{
+							max2 = number;
+						}
+						if (number > a[0])
+						{
+							max2 = a[0];
+							a[0] = number;
+						}
+					}
+				}
+				int maxSum = 0;
+				int index = 0;
+				for (int i = 1; i < 117; ++i)
+				{
+					if (((a[i] + a[117 - i]) % 117 == 0) && (a[i] + a[117 - i] > maxSum))
+					{
+						maxSum = a[i] + a[117 - i];
+						index = i;
+					}
+				}
+				if (a[0] + max2 > maxSum)
+				{
+					maxSum = a[0] + max2;
+					cout << a[0] << " " << max2;
+					return;
+				}
+				if (maxSum != 0)
+				{
+					cout << a[index] << " " << a[117 - index];
+				}
+				else
+				{
+					cout << "NO";
+				}
+			}
 
+			void ege14286()
+			{
+				int n = 0;
+				cin >> n;
+				int a[19];
+				for (int i = 0; i < 19; ++i)
+				{
+					a[i] = 0;
+				}
+				for (int i = 0; i < n; ++i)
+				{
+					int number = 0;
+					cin >> number;
+					++a[(number % 100) % 10 + ((number % 100) - (number % 100) % 10) / 10];
+				}
+				int rerealest = n;
+				for (int i = 0; i < 19; ++i)
+				{
+					if (a[i] != 0 && a[i] < rerealest)
+					{
+						rerealest = a[i];
+					}
+				}
+				cout << rerealest;
+			}
+
+			void ege15964()
+			{
+				int n = 0;
+				cin >> n;
+				int max = 0;
+				int secondMax = 0;
+				for (int i = 0; i < n; ++i)
+				{
+					int number = 0;
+					cin >> number;
+					if (number > max && (number % 2) != (max % 2) && number % 5 == 0 || max % 5 == 0)
+					{
+						secondMax = max;
+						max = number;
+					}
+				}
+				cout << max * secondMax;
 			}
 		}
 		// end of ege274 namespace

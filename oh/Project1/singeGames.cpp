@@ -1,6 +1,6 @@
 #include <iostream>
 #include < cstdlib > 
-
+#include <ctime>
 
 using namespace std;
 
@@ -12,7 +12,7 @@ namespace games
 		int range = 0;
 		string complexity;
 		bool notInsane = true;
-		cout << "enter: easy, medium or hard";
+		cout << "enter: easy, medium, hard or insane";
 		cin >> complexity;
 		if (complexity == "easy")
 		{
@@ -38,13 +38,13 @@ namespace games
 					if (complexity == "insane")
 					{
 						n = 10;
-						bool notInsane = false;
+						notInsane = false;
 						range = 100;
 					}
 					else
 					{
 						cout << "enter right form";
-						oralAccount;
+						oralAccount();
 					}
 				}
 			}
@@ -52,6 +52,7 @@ namespace games
 		int answersRight = 0;
 		for (int i = 0; i < n; ++i)
 		{
+			srand(time(0));
 			int number1 = rand() % range;
 			int number2 = rand() % range;
 			int rightAnswer = number1 * number2;
@@ -131,7 +132,7 @@ namespace games
 		cin >> retry;
 		if (retry == "yes")
 		{
-			oralAccount;
+			oralAccount();
 		}
 		//end of code for first game
 	}
