@@ -8,5 +8,5 @@ namespace games
 
 	void reverter();
 
-	void cesar();
+	string cesar(string const word, int const shift);
 }

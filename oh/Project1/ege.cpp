@@ -1212,6 +1212,45 @@ namespace ege
 
 	namespace ege27
 	{
+		namespace ege273
+		{
+			void ege9777()
+			{
+				int n = 0;
+				cin >> n;
+				int maxx = 0;
+				int maxy = 0;
+				int x = 0;
+				int y = 0;
+				for (int i = 0; i < n; ++i)
+				{
+					cin >> x >> y;
+					if (x == 0 && y != 0 && abs(y) > maxy)
+					{
+						maxy = abs(y);
+						continue;
+					}
+					if (x != 0 && y == 0 && abs(x) > maxx)
+					{
+						maxx = abs(x);
+						continue;
+					}
+				}
+				if (maxx != 0 && maxy != 0)
+				{
+					cout << maxx * maxy * 0.5;
+				}
+				else
+				{
+					cout << "NO";
+				}
+
+			}
+
+
+		}
+		//end of ege273 namespace
+
 		namespace ege274
 		{
 			void ege11363()
@@ -1420,7 +1459,41 @@ namespace ege
 
 			void ege15995()
 			{
-				//I need array
+				int count = 0;
+				int const n = 5;
+				int a[n];
+				int number = 0;
+				cin >> count;
+				int multiple = 0;
+				int unMultiple = 0;
+				int result = 0;
+				
+				for (int j = 0; j < n; ++j)
+				{
+					cin >> number;
+					a[j] = number;
+				}
+				for (int j = n; j < count; ++j)
+				{
+					cin >> number;
+					if (a[j % n] % 13 == 0)
+					{
+						++multiple;
+					}
+					else
+					{
+						++unMultiple;
+					}
+					if (number % 13 == 0)
+					{
+						result += multiple + unMultiple;
+					}
+					else
+					{
+						result += multiple;
+					}
+				}
+				cout << result;
 			}
 
 			void ege18729()

@@ -159,56 +159,32 @@ namespace games
 	void reverter()
 	{
 		string input = "";
-		cout << "Enter word to rewert..." << endl;
+		cout << "Enter word to revert..." << endl;
 		cin >> input;
 		string output = "";
-		input = " " + input;
-		for (int i = 1; i < input.length(); ++i)
+		for (int i = 1; i <= input.length(); ++i)
 		{
 			output += input[input.length() - i];
 		}
-		if (input != output)
-		{
-			cout << output << endl;
-			reverter();
-		}
-		else
-		{
-			cout << "I don`t know how to revert this!Enter normal words..." << endl;
-			reverter();
-		}
+		cout << output;
 	}
 
-	void cesar()
+	string cesar(string const word, int const shift)
 	{
-		string alphbet1 = "abcdefghijklmnopqrstuvwxyz ";
-		string alphbet2 = "abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz";
-		string input = "";
-		string zero = " ";
-		int n = 0;
-		cin >> n >> input;
-		int a[100];
-		int k = 0;
-		for (int i = 0; i < input.length(); ++i)
+		string alphabet = "abcdefghijklmnopqrstuvwxyz";
+		string result = "";
+		for (int i = 0; i < word.length(); ++i)
 		{
-			for (int j = 0; j < alphbet1.length(); ++i)
+			char letter = word[i];
+			if (letter == ' ')
 			{
-				if (input[i] == alphbet1[j] && input[i] != zero[0])
-				{
-					a[k] = j;
-					++k;
-				}
-				if (input[i] == zero[0])
-				{
-					a[k] = j - (n % 26);
-					++k;
-				}
+				result += ' ';
+				continue;
 			}
-		}
-		for (int i = 0; i < k; ++i)
-		{
-			cout << alphbet2[a[i] + (n % 26)];
+			int position = alphabet.find(letter) + shift;
+			result += alphabet[position % 26];
 		}
 
+		return result;
 	}
 }
