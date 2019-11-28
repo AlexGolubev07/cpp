@@ -17,5 +17,5 @@ using namespace std;
 
 int main()
 {
-	ege::ege27::ege273::ege9777();
+	games::calc();
 }

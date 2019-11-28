@@ -9,4 +9,6 @@ namespace games
 	void reverter();
 
 	string cesar(string const word, int const shift);
+
+	int calc();
 }

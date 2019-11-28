@@ -78,7 +78,7 @@ namespace games
 		}
 		if (answersRight == n && n == 10)
 		{
-			cout << endl << answersRight << endl <<"How did you do it?";
+			cout << endl << answersRight << endl << "How did you do it?";
 		}
 		if (answersRight > 7 && n == 10)
 		{
@@ -112,7 +112,7 @@ namespace games
 		{
 			cout << endl << answersRight << endl << "So, it`s OK!";
 		}
-		if (answersRight <= 3 && n == 5 && answersRight > 1 )
+		if (answersRight <= 3 && n == 5 && answersRight > 1)
 		{
 			cout << endl << answersRight << endl << "Practice more!";
 		}
@@ -185,6 +185,313 @@ namespace games
 			result += alphabet[position % 26];
 		}
 
+		return result;
+	}
+
+	int calc()
+	{
+		string input = "";
+		cin >> input;
+		int a[100];
+		int result = 0;
+		int k = 0;
+		char zero = ' ';
+		for (int i = 0; i < 100; ++i)
+		{
+			a[i] = 0;
+		}
+		for (int i = 0; i < input.length(); ++i)
+		{
+			if (input[i] == 0 ||
+				input[i] == 1 ||
+				input[i] == 2 ||
+				input[i] == 3 ||
+				input[i] == 4 ||
+				input[i] == 5 ||
+				input[i] == 6 ||
+				input[i] == 7 ||
+				input[i] == 8 ||
+				input[i] == 9)
+			{
+				while (input[i] != zero)
+				{
+					if (input[i] == 0)
+					{
+						a[k] = a[k] * 10;
+					}
+					if (input[i] == 1)
+					{
+						a[k] = a[k] * 10 + 1;
+					}
+					if (input[i] == 2)
+					{
+						a[k] = a[k] * 10 + 2;
+					}
+					if (input[i] == 3)
+					{
+						a[k] = a[k] * 10 + 3;
+					}
+					if (input[i] == 4)
+					{
+						a[k] = a[k] * 10 + 4;
+					}
+					if (input[i] == 5)
+					{
+						a[k] = a[k] * 10 + 5;
+					}
+					if (input[i] == 5)
+					{
+						a[k] = a[k] * 10 + 5;
+					}
+					if (input[i] == 6)
+					{
+						a[k] = a[k] * 10 + 6;
+					}
+					if (input[i] == 7)
+					{
+						a[k] = a[k] * 10 + 7;
+					}
+					if (input[i] == 8)
+					{
+						a[k] = a[k] * 10 + 8;
+					}
+					if (input[i] == 9)
+					{
+						a[k] = a[k] * 10 + 9;
+					}
+					++i;
+				}
+				result += a[k];
+				++k;
+			}
+
+			if (input[i] == '+')
+			{
+				++i;
+				while (input[i] != zero)
+				{
+					if (input[i] == 0)
+					{
+						a[k] = a[k] * 10;
+					}
+					if (input[i] == 1)
+					{
+						a[k] = a[k] * 10 + 1;
+					}
+					if (input[i] == 2)
+					{
+						a[k] = a[k] * 10 + 2;
+					}
+					if (input[i] == 3)
+					{
+						a[k] = a[k] * 10 + 3;
+					}
+					if (input[i] == 4)
+					{
+						a[k] = a[k] * 10 + 4;
+					}
+					if (input[i] == 5)
+					{
+						a[k] = a[k] * 10 + 5;
+					}
+					if (input[i] == 5)
+					{
+						a[k] = a[k] * 10 + 5;
+					}
+					if (input[i] == 6)
+					{
+						a[k] = a[k] * 10 + 6;
+					}
+					if (input[i] == 7)
+					{
+						a[k] = a[k] * 10 + 7;
+					}
+					if (input[i] == 8)
+					{
+						a[k] = a[k] * 10 + 8;
+					}
+					if (input[i] == 9)
+					{
+						a[k] = a[k] * 10 + 9;
+					}
+					++i;
+				}
+				if (input[i + 1] != '*')
+				{
+					result += a[k];
+				}
+				else
+				{
+					++k;
+					++i;
+					while (input[i] != zero)
+					{
+						if (input[i] == 0)
+						{
+							a[k] = a[k] * 10;
+						}
+						if (input[i] == 1)
+						{
+							a[k] = a[k] * 10 + 1;
+						}
+						if (input[i] == 2)
+						{
+							a[k] = a[k] * 10 + 2;
+						}
+						if (input[i] == 3)
+						{
+							a[k] = a[k] * 10 + 3;
+						}
+						if (input[i] == 4)
+						{
+							a[k] = a[k] * 10 + 4;
+						}
+						if (input[i] == 5)
+						{
+							a[k] = a[k] * 10 + 5;
+						}
+						if (input[i] == 5)
+						{
+							a[k] = a[k] * 10 + 5;
+						}
+						if (input[i] == 6)
+						{
+							a[k] = a[k] * 10 + 6;
+						}
+						if (input[i] == 7)
+						{
+							a[k] = a[k] * 10 + 7;
+						}
+						if (input[i] == 8)
+						{
+							a[k] = a[k] * 10 + 8;
+						}
+						if (input[i] == 9)
+						{
+							a[k] = a[k] * 10 + 9;
+						}
+						++i;
+					}
+					a[k - 1] *= a[k];
+					result += a[k];
+				}
+			}
+			//sum
+
+			if (input[i] == '-')
+			{
+				++i;
+				while (input[i] != zero)
+				{
+					if (input[i] == 0)
+					{
+						a[k] = a[k] * 10;
+					}
+					if (input[i] == 1)
+					{
+						a[k] = a[k] * 10 + 1;
+					}
+					if (input[i] == 2)
+					{
+						a[k] = a[k] * 10 + 2;
+					}
+					if (input[i] == 3)
+					{
+						a[k] = a[k] * 10 + 3;
+					}
+					if (input[i] == 4)
+					{
+						a[k] = a[k] * 10 + 4;
+					}
+					if (input[i] == 5)
+					{
+						a[k] = a[k] * 10 + 5;
+					}
+					if (input[i] == 5)
+					{
+						a[k] = a[k] * 10 + 5;
+					}
+					if (input[i] == 6)
+					{
+						a[k] = a[k] * 10 + 6;
+					}
+					if (input[i] == 7)
+					{
+						a[k] = a[k] * 10 + 7;
+					}
+					if (input[i] == 8)
+					{
+						a[k] = a[k] * 10 + 8;
+					}
+					if (input[i] == 9)
+					{
+						a[k] = a[k] * 10 + 9;
+					}
+					++i;
+				}
+				if (input[i = 1] != '*')
+				{
+					result -= a[k];
+				}
+				else
+				{
+					++k;
+					++i;
+					while (input[i] != zero)
+					{
+						if (input[i] == 0)
+						{
+							a[k] = a[k] * 10;
+						}
+						if (input[i] == 1)
+						{
+							a[k] = a[k] * 10 + 1;
+						}
+						if (input[i] == 2)
+						{
+							a[k] = a[k] * 10 + 2;
+						}
+						if (input[i] == 3)
+						{
+							a[k] = a[k] * 10 + 3;
+						}
+						if (input[i] == 4)
+						{
+							a[k] = a[k] * 10 + 4;
+						}
+						if (input[i] == 5)
+						{
+							a[k] = a[k] * 10 + 5;
+						}
+						if (input[i] == 5)
+						{
+							a[k] = a[k] * 10 + 5;
+						}
+						if (input[i] == 6)
+						{
+							a[k] = a[k] * 10 + 6;
+						}
+						if (input[i] == 7)
+						{
+							a[k] = a[k] * 10 + 7;
+						}
+						if (input[i] == 8)
+						{
+							a[k] = a[k] * 10 + 8;
+						}
+						if (input[i] == 9)
+						{
+							a[k] = a[k] * 10 + 9;
+						}
+						++i;
+					}
+					a[k - 1] *= a[k];
+					result += a[k];
+				}
+				//sub
+			}
+		}
+		cout << result;
 		return result;
 	}
 }
