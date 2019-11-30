@@ -1254,7 +1254,7 @@ namespace ege
 				int a[5];
 				int x = 0;
 				int y = 0;
-				int ax = INT_MAX , ay = INT_MAX;
+				int ax = 10000, ay = 10000;
 				int r = INT_MAX;
 				for (int i = 0; i < 5; ++i)
 				{
@@ -1266,10 +1266,10 @@ namespace ege
 					if (x > 0 && y < 0)
 					{
 						++a[4];
-						if ((x + abs(y)) <= (ax + ay))
+						if ((x + abs(y)) < (ax + ay))
 						{
 							ax = x;
-							ay = abs(y);
+							ay = y;
 							if (abs(ax) < r)
 							{
 								r = ax;
@@ -1283,10 +1283,10 @@ namespace ege
 					if (x < 0 && y < 0)
 					{
 						++a[3];
-						if ((abs(x) + abs(y)) <= (ax + ay))
+						if ((abs(x) + abs(y)) < (ax + ay))
 						{
-							ax = abs(x);
-							ay = abs(y);
+							ax = x;
+							ay = y;
 							if (abs(ax) < r)
 							{
 								r = ax;
@@ -1300,9 +1300,9 @@ namespace ege
 					if (x < 0 && y > 0)
 					{
 						++a[2];
-						if ((abs(x) + y) <= (ax + ay))
+						if ((abs(x) + y) < (ax + ay))
 						{
-							ax = abs(x);
+							ax = x;
 							ay = y;
 							if (abs(ax) < r)
 							{
@@ -1317,7 +1317,7 @@ namespace ege
 					if (x > 0 && y > 0)
 					{
 						++a[1];
-						if ((x + y) <= (ax + ay))
+						if ((x + y) < (ax + ay))
 						{
 							ax = x;
 							ay = y;
