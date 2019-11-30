@@ -108,9 +108,13 @@ namespace ege
 
 	namespace ege27
 	{
-		namespace ege273
+		namespace ege272
 		{
 			void ege9777();
+
+			void ege5258();
+
+			void ege5258byVit();
 		}
 		//end of ege 273 namespace
 

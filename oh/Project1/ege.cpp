@@ -1212,7 +1212,7 @@ namespace ege
 
 	namespace ege27
 	{
-		namespace ege273
+		namespace ege272
 		{
 			void ege9777()
 			{
@@ -1247,9 +1247,229 @@ namespace ege
 
 			}
 
+			void ege5258()
+			{
+				int n = 0;
+				cin >> n;
+				int a[5];
+				int x = 0;
+				int y = 0;
+				int ax = INT_MAX , ay = INT_MAX;
+				int r = INT_MAX;
+				for (int i = 0; i < 5; ++i)
+				{
+					a[i] = 0;
+				}
+				for (int i = 0; i < n; ++i)
+				{
+					cin >> x >> y;
+					if (x > 0 && y < 0)
+					{
+						++a[4];
+						if ((x + abs(y)) <= (ax + ay))
+						{
+							ax = x;
+							ay = abs(y);
+							if (abs(ax) < r)
+							{
+								r = ax;
+							}
+							if (abs(ay) < r)
+							{
+								r = ay;
+							}
+						}
+					}
+					if (x < 0 && y < 0)
+					{
+						++a[3];
+						if ((abs(x) + abs(y)) <= (ax + ay))
+						{
+							ax = abs(x);
+							ay = abs(y);
+							if (abs(ax) < r)
+							{
+								r = ax;
+							}
+							if (abs(ay) < r)
+							{
+								r = ay;
+							}
+						}
+					}
+					if (x < 0 && y > 0)
+					{
+						++a[2];
+						if ((abs(x) + y) <= (ax + ay))
+						{
+							ax = abs(x);
+							ay = y;
+							if (abs(ax) < r)
+							{
+								r = ax;
+							}
+							if (abs(ay) < r)
+							{
+								r = ay;
+							}
+						}
+					}
+					if (x > 0 && y > 0)
+					{
+						++a[1];
+						if ((x + y) <= (ax + ay))
+						{
+							ax = x;
+							ay = y;
+							if (abs(ax) < r)
+							{
+								r = ax;
+							}
+							if (abs(ay) < r)
+							{
+								r = ay;
+							}
+						}
+					}
+				}
+				if (a[1] >= a[3] && a[1] >= a[2] && a[1] >= a[4])
+				{
+					cout << "K = 1" << endl << "M = " << a[4] << endl << "A = (" << ax << ", " << ay << ")" << endl << "R = " << r;
+					return;
+				}
+				if (a[2] >= a[3] && a[2] >= a[4] && a[2] >= a[1])
+				{
+					cout << "K = 2" << endl << "M = " << a[4] << endl << "A = (" << ax << ", " << ay << ")" << endl << "R = " << r;
+					return;
+				}
+				if (a[3] >= a[4] && a[3] >= a[2] && a[3] >= a[1])
+				{
+					cout << "K = 3" << endl << "M = " << a[4] << endl << "A = (" << ax << ", " << ay << ")" << endl << "R = " << r;
+					return;
+				}
+				if (a[4] >= a[3] && a[4] >= a[2] && a[4] >= a[1])
+				{
+					cout << "K = 4" << endl << "M = " << a[4] << endl << "A = (" << ax << ", " << ay << ")" << endl << "R = " << r;
+					return;
+				}
+			}
 
+			#pragma region ege5258
+			struct Point
+			{
+				Point(int x = 0, int y = 0)
+				{
+					this->x = x;
+					this->y = y;
+				}
+				void print()
+				{
+					cout << "(" << x << "; " << y << ")";
+				}
+				int x;
+				int y;
+			};
+
+			int minABS(Point p)
+			{
+				if (abs(p.x) < abs(p.y))
+				{
+					return abs(p.x);
+				}
+				else
+				{
+					return abs(p.y);
+				}
+			}
+
+			int quaterNumber(Point p)
+			{
+				if (p.x > 0 && p.y > 0)
+				{
+					return 1;
+				}
+				if (p.x < 0 && p.y > 0)
+				{
+					return 2;
+				}
+				if (p.x < 0 && p.y < 0)
+				{
+					return 3;
+				}
+				if (p.x > 0 && p.y < 0)
+				{
+					return 4;
+				}
+				return -1;
+			}
+
+			void ege5258byVit()
+			{
+				Point pMinInQuaters[5];
+				int maxQuaterAmount = 0;
+				int maxQuaterNumber = 5;
+				int minDistanceInQuaters[5];
+				minDistanceInQuaters[0] = -1;
+				for (int i = 1; i < 5; ++i)
+				{
+					minDistanceInQuaters[i] = INT_MAX;
+				}
+
+				int quaterAmounts[5];
+				quaterAmounts[0] = -1;
+				for (int i = 1; i < 5; ++i)
+				{
+					quaterAmounts[i] = 0;
+				}
+
+				int n = 0;
+				cin >> n;
+				for (int i = 0; i < n; ++i)
+				{
+					int x = 0;
+					int y = 0;
+					cin >> x >> y;
+					Point currentPoint(x, y);
+					
+					int currentQuaterNumber = quaterNumber(currentPoint);
+					++quaterAmounts[currentQuaterNumber];
+
+					int currentQuaterAmount = quaterAmounts[currentQuaterNumber];
+					int currentDistance = minABS(currentPoint);
+					if (currentDistance < minDistanceInQuaters[currentQuaterNumber])
+					{
+						minDistanceInQuaters[currentQuaterNumber] = currentDistance;
+						pMinInQuaters[currentQuaterNumber] = currentPoint;
+					}
+					if (currentQuaterAmount > maxQuaterAmount)
+					{	
+						maxQuaterNumber = currentQuaterNumber;
+						maxQuaterAmount = currentQuaterAmount;
+						continue;
+					}
+					if (currentQuaterAmount == maxQuaterAmount)
+					{
+						if (minDistanceInQuaters[currentQuaterNumber] < minDistanceInQuaters[maxQuaterNumber])
+						{
+							maxQuaterNumber = currentQuaterNumber;
+							maxQuaterAmount = currentQuaterAmount;
+						}
+						if (minDistanceInQuaters[currentQuaterNumber] == minDistanceInQuaters[maxQuaterNumber] && currentQuaterNumber < maxQuaterNumber)
+						{
+							maxQuaterNumber = currentQuaterNumber;
+							maxQuaterAmount = currentQuaterAmount;
+						}
+					}
+				}
+
+				pMinInQuaters[maxQuaterNumber].print();
+				cout << endl << maxQuaterNumber;
+				cout << endl << maxQuaterAmount;
+				cout << endl << minDistanceInQuaters[maxQuaterNumber];
+			}
+			#pragma endregion
 		}
-		//end of ege273 namespace
+		//end of ege272 namespace
 
 		namespace ege274
 		{
