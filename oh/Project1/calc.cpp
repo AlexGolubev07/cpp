@@ -7,27 +7,30 @@ using namespace std;
 
 namespace calc
 {
-	int breaks(string const input);
+	int breaks(string const input, int const k1, int const number1, int const y1);
 
 	int mainBody()
 	{
 		string input = "";
 		cin >> input;
-		//breaks(input);
+		int k = 0;
+		int number = 0;
+		int y = 0;
+		breaks(input, k, number, y);
 		return 0;
 	}
 
-	int breaks(string const input)
+	int breaks(string const input, int const k1, int const number1, int const y1)
 	{
 		string a[100][100];
 		int b[100];
-		int k = 0;
+		int k = k1;
 		int x = 0;
-		int number = 0;
+		int number = number1;
 		bool BreaksRight = false;
 		bool Breaks = false;
 		int j = 0;
-		int y = 0;
+		int y = y1;
 		for (int i = 0; i < 100; ++i)
 		{
 			b[i]= 0;
@@ -92,7 +95,7 @@ namespace calc
 				if (Breaks == true)
 				{
 					++number;
-					breaks(a[k][number - 1]);
+					breaks(a[k][number - 1], k, number, y);
 				}
 				else 
 				{
@@ -100,6 +103,7 @@ namespace calc
 					{
 						for (int i = 0; i < a[k][number].length(); ++i) // breckets
 						{
+
 							if (a[k][number][i] == '*') // multiplication begin
 							{
 								i -= 2;
@@ -145,8 +149,18 @@ namespace calc
 									{
 										b[y] = b[y] * 10;
 									}
+									if (a[k][number][i] == '-' && a[k][number][i - 1] != ' ')
+									{
+										cout << "error";
+										return;
+									}
+									else
+									{
+										b[y] -= 2 * b[y];
+									}
 									--i;
 								}
+								int first = i;
 								++y;
 								while (a[k][number][i] != '*')
 								{
@@ -195,9 +209,22 @@ namespace calc
 									{
 										b[y] = b[y] * 10;
 									}
+									if (a[k][number][i] == '-' && a[k][number][i - 1] != ' ')
+									{
+										cout << "error";
+										return;
+									}
+									else
+									{
+										b[y] -= 2 * b[y];
+									}
 									++i;
 								}
+								int last = i;
 								b[y - 1] *= b[y];
+								a[k][number].erase(first, last);
+								//a[k][number].insert(to_string(b[y - 1]), first, (first + (to_string(b[y - 1])).length());
+								b[y] = 0;
 							}
 							// multiplication end
 
@@ -246,8 +273,18 @@ namespace calc
 									{
 										b[y] = b[y] * 10;
 									}
+									if (a[k][number][i] == '-' && a[k][number][i + 1] != ' ')
+									{
+										cout << "error";
+										return;
+									}
+									else
+									{
+										b[y] -= 2 * b[y];
+									}
 									--i;
 								}
+								int first = i;
 								++y;
 								while (a[k][number][i] != '*')
 								{
@@ -296,13 +333,26 @@ namespace calc
 									{
 										b[y] = b[y] * 10;
 									}
+									if (a[k][number][i] == '-' && a[k][number][i - 1] != ' ')
+									{
+										cout << "error";
+										return;
+									}
+									else
+									{
+										b[y] -= 2 * b[y];
+									}
 									++i;
 								}
+								int last = i;
 								b[y - 1] /= b[y];
+								a[k][number].erase(first, last);
+								//a[k][number].insert(to_string(b[y - 1]), first, (first + (to_string(b[y - 1])).length());
+								b[y] = 0;
 							}
 							// division end
 
-							if (a[k][number][i] == '*') // remainder of division begin
+							if (a[k][number][i] == '%') // remainder of division begin
 							{
 								i -= 2;
 								while (a[k][number][i] != ' ')
@@ -347,8 +397,18 @@ namespace calc
 									{
 										b[y] = b[y] * 10;
 									}
+									if (a[k][number][i] == '-' && a[k][number][i - 1] != ' ')
+									{
+										cout << "error";
+										return;
+									}
+									else
+									{
+										b[y] -= 2 * b[y];
+									}
 									--i;
 								}
+								int first = i;
 								++y;
 								while (a[k][number][i] != '%')
 								{
@@ -397,12 +457,278 @@ namespace calc
 									{
 										b[y] = b[y] * 10;
 									}
+									if (a[k][number][i] == '-' && a[k][number][i - 1] != ' ')
+									{
+										cout << "error";
+										return;
+									}
+									else
+									{
+										b[y] -= 2 * b[y];
+									}
 									++i;
 								}
+								int last = 1;
+								a[k][number].erase(first, last);
+								//a[k][number].insert(to_string(b[y - 1]), first, (first + (to_string(b[y - 1])).length());
 								b[y - 1] %= b[y];
+								b[y] = 0;
 							}
 							//remainder of division end
 
+							if (a[k][number][i] == '|' && a[k][number][i + 1] == '|')
+							{
+								int length = 1;
+								i -= 2;
+								while (a[k][number][i] != ' ')
+								{
+									if (a[k][number][i] == '1')
+									{
+										b[y] = b[y] * 10 + 1;
+									}
+									if (a[k][number][i] == '2')
+									{
+										b[y] = b[y] * 10 + 2;
+									}
+									if (a[k][number][i] == '3')
+									{
+										b[y] = b[y] * 10 + 3;
+									}
+									if (a[k][number][i] == '4')
+									{
+										b[y] = b[y] * 10 + 4;
+									}
+									if (a[k][number][i] == '5')
+									{
+										b[y] = b[y] * 10 + 5;
+									}
+									if (a[k][number][i] == '6')
+									{
+										b[y] = b[y] * 10 + 6;
+									}
+									if (a[k][number][i] == '7')
+									{
+										b[y] = b[y] * 10 + 7;
+									}
+									if (a[k][number][i] == '8')
+									{
+										b[y] = b[y] * 10 + 8;
+									}
+									if (a[k][number][i] == '9')
+									{
+										b[y] = b[y] * 10 + 9;
+									}
+									if (a[k][number][i] == '0' && a[k][number][i] != ' ')
+									{
+										b[y] = b[y] * 10;
+									}
+									if (a[k][number][i] == '-' && a[k][number][i - 1] != ' ')
+									{
+										cout << "error";
+										return;
+									}
+									else
+									{
+										b[y] -= 2 * b[y];
+									}
+									--i;
+								}
+								int first = i;
+								++y;
+								while (a[k][number][i] != '|')
+								{
+									++i;
+								}
+								i += 3;
+								while (a[k][number][i] != ' ')
+								{
+									if (a[k][number][i] == '1')
+									{
+										b[y] = b[y] * 10 + 1;
+										length *= 10;
+									}
+									if (a[k][number][i] == '2')
+									{
+										b[y] = b[y] * 10 + 2;
+										length *= 10;
+									}
+									if (a[k][number][i] == '3')
+									{
+										b[y] = b[y] * 10 + 3;
+										length *= 10;
+									}
+									if (a[k][number][i] == '4')
+									{
+										b[y] = b[y] * 10 + 4;
+										length *= 10;
+									}
+									if (a[k][number][i] == '5')
+									{
+										b[y] = b[y] * 10 + 5;
+										length *= 10;
+									}
+									if (a[k][number][i] == '6')
+									{
+										b[y] = b[y] * 10 + 6;
+										length *= 10;
+									}
+									if (a[k][number][i] == '7')
+									{
+										b[y] = b[y] * 10 + 7;
+										length *= 10;
+									}
+									if (a[k][number][i] == '8')
+									{
+										b[y] = b[y] * 10 + 8;
+										length *= 10;
+									}
+									if (a[k][number][i] == '9')
+									{
+										b[y] = b[y] * 10 + 9;
+										length *= 10;
+									}
+									if (a[k][number][i] == '0' && a[k][number][i] != ' ')
+									{
+										b[y] = b[y] * 10;
+										length *= 10;
+									}
+									if (a[k][number][i] == '-')
+									{
+										cout << "error";
+										return;
+									}
+									++i;
+								}
+								int last = i;
+								b[y - 1] = b[y - 1] * length + b[y];
+								a[k][number].erase(first, last);
+								//a[k][number].insert(to_string(b[y - 1]), first, (first + (to_string(b[y - 1])).length());
+								b[y] = 0;
+							}
+
+							if (a[k][number][i] == '^')//degree begin
+							{
+								i -= 2;
+								while (a[k][number][i] != ' ')
+								{
+									if (a[k][number][i] == '1')
+									{
+										b[y] = b[y] * 10 + 1;
+									}
+									if (a[k][number][i] == '2')
+									{
+										b[y] = b[y] * 10 + 2;
+									}
+									if (a[k][number][i] == '3')
+									{
+										b[y] = b[y] * 10 + 3;
+									}
+									if (a[k][number][i] == '4')
+									{
+										b[y] = b[y] * 10 + 4;
+									}
+									if (a[k][number][i] == '5')
+									{
+										b[y] = b[y] * 10 + 5;
+									}
+									if (a[k][number][i] == '6')
+									{
+										b[y] = b[y] * 10 + 6;
+									}
+									if (a[k][number][i] == '7')
+									{
+										b[y] = b[y] * 10 + 7;
+									}
+									if (a[k][number][i] == '8')
+									{
+										b[y] = b[y] * 10 + 8;
+									}
+									if (a[k][number][i] == '9')
+									{
+										b[y] = b[y] * 10 + 9;
+									}
+									if (a[k][number][i] == '0' && a[k][number][i] != ' ')
+									{
+										b[y] = b[y] * 10;
+									}
+									if (a[k][number][i] == '-' && a[k][number][i] != ' ')
+									{
+										cout << "error";
+										return;
+									}
+									else
+									{
+										b[y] -= 2 * b[y];
+									}
+									--i;
+								}
+								int first = i;
+								++y;
+								while (a[k][number][i] != '^')
+								{
+									++i;
+								}
+								i += 2;
+								while (a[k][number][i] != ' ')
+								{
+									if (a[k][number][i] == '1')
+									{
+										b[y] = b[y] * 10 + 1;
+									}
+									if (a[k][number][i] == '2')
+									{
+										b[y] = b[y] * 10 + 2;
+									}
+									if (a[k][number][i] == '3')
+									{
+										b[y] = b[y] * 10 + 3;
+									}
+									if (a[k][number][i] == '4')
+									{
+										b[y] = b[y] * 10 + 4;
+									}
+									if (a[k][number][i] == '5')
+									{
+										b[y] = b[y] * 10 + 5;
+									}
+									if (a[k][number][i] == '6')
+									{
+										b[y] = b[y] * 10 + 6;
+									}
+									if (a[k][number][i] == '7')
+									{
+										b[y] = b[y] * 10 + 7;
+									}
+									if (a[k][number][i] == '8')
+									{
+										b[y] = b[y] * 10 + 8;
+									}
+									if (a[k][number][i] == '9')
+									{
+										b[y] = b[y] * 10 + 9;
+									}
+									if (a[k][number][i] == '0' && a[k][number][i] != ' ')
+									{
+										b[y] = b[y] * 10;
+									}
+									if (a[k][number][i] == '-')
+									{
+										cout << "error";
+										return;
+									}
+									++i;
+								}
+								int last = i;
+								int number2 = b[y - 1];
+								for (int replays = 0; replays < b[y]; ++replays)
+								{
+									b[y - 1] *= number2;
+								}
+								a[k][number].erase(first, last);
+								//a[k][number].insert(to_string(b[y - 1), first, (first + (to_string(b[y - 1])).length());
+								b[y] = 0;
+							}
+							//degree end
 						}
 					}
 				}
