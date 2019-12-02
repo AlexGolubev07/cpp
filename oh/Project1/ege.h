@@ -115,6 +115,12 @@ namespace ege
 			void ege5258();
 
 			void ege5258byVit();
+
+			void ege5375();
+
+			void ege5471();
+
+			void ege5613();
 		}
 		//end of ege 273 namespace
 

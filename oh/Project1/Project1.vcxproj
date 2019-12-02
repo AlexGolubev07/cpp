@@ -152,7 +152,6 @@
     <ClCompile Include="sequences.cpp" />
     <ClCompile Include="sort.cpp" />
     <ClCompile Include="singeGames.cpp" />
-    <ClCompile Include="calc.cpp" />
     <ClCompile Include="taskWithArrays.cpp" />
   </ItemGroup>
   <ItemGroup>

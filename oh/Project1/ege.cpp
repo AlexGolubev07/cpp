@@ -1468,6 +1468,156 @@ namespace ege
 				cout << endl << minDistanceInQuaters[maxQuaterNumber];
 			}
 			#pragma endregion
+
+			void ege5375()
+			{
+				int n = 0;
+				cin >> n;
+				if (n < 3)
+				{
+					return;
+				}
+				int minus = 0;
+				int zero = 0;
+				bool minus1 = false;
+				bool even = true;
+				int min = INT_MIN;
+				int k = 0;
+				int l = 0;
+				for (int i = 1; i <= n; ++i)
+				{
+					int number = 0;
+					cin >> number;
+					if (number == 0)
+					{
+						k = i;
+					}
+					if (number < 0)
+					{
+						if (number > min)
+						{
+							min = number;
+							l = i;
+						}
+						if (even == true)
+						{
+							even = false;
+						}
+						else
+						{
+							even = true;
+						}
+					}
+					
+				}
+				if (even == true)
+				{
+					for (int i = 0;i <= n; ++i)
+					{
+						if (i != k)
+						{
+							cout << i << " ";
+						}
+					}
+				}
+				else
+				{
+					for (int i = 1; i <= n; ++i)
+					{
+						if (i != k && i != l)
+						{
+							cout << i << " ";
+						}
+					}
+				}
+			}
+
+			void ege5471()
+			{
+				int n;
+				cin >> n;
+				if (n < 3)
+				{
+					return;
+				}
+				int zeroIndex = 0;
+				int oddAmount = 0;
+				int minOdd = INT_MAX;
+				int minOddIndex = -1;
+				for (int i = 1; i <= n; ++i)
+				{
+					int number = 0;
+					cin >> number;
+					if (number == 0)
+					{
+						zeroIndex = i;
+					}
+					if (number % 2 == 1)
+					{
+						++oddAmount;
+						if (number < minOdd)
+						{
+							minOdd = number;
+							minOddIndex = i;
+						}
+					}
+				}
+				if (oddAmount % 2 == 1)
+				{
+					for (int i = 1; i <= n; ++i)
+					{
+						if (i != zeroIndex)
+						{
+							cout << i << " ";
+						}
+					}
+				}
+				else
+				{
+					for (int i = 1; i <= n; ++i)
+					{
+						if (i != zeroIndex && i != minOddIndex)
+						{
+							cout << i << " ";
+						}
+					}
+				}
+			}
+
+			void ege5613()
+			{
+				int n = 0;
+				cin >> n;
+				float number;
+				bool notOnlyOne = false;
+				float max = 0;
+				int maxIndex;
+				for (int i = 1; i <= n; ++i)
+				{
+					cin >> number;
+					if (number > 1.0 && notOnlyOne != true)
+					{
+						notOnlyOne = true;
+						continue;
+					}
+					if (number > 1.0 && notOnlyOne == true)
+					{
+						cout << i << " ";
+					}
+					if (number <= 1.0)
+					{
+						if (number > max)
+						{
+							max = number;
+							maxIndex = i;
+						}
+					}
+				}
+				if (notOnlyOne != true)
+				{
+					cout << maxIndex;
+				}
+			}
 		}
 		//end of ege272 namespace
 

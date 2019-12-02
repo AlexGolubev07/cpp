@@ -101,9 +101,6 @@
     <ClCompile Include="singeGames.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="calc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="hw101019.txt" />
