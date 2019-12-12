@@ -121,7 +121,6 @@ namespace ege
 
 			void ege6936()
 			{
-
 				#define N 2014
 
 				float a[N];
@@ -1584,7 +1583,7 @@ namespace ege
 				}
 			}
 
-			void ege5613()
+			void ege5631()
 			{
 				int n = 0;
 				cin >> n;
@@ -1617,6 +1616,52 @@ namespace ege
 				{
 					cout << maxIndex;
 				}
+			}
+
+			void ege6279()
+			{
+				int n = 0;
+				cin >> n;
+				int x = 0;
+				int y = 0;
+				int minx = INT_MAX;
+				int miny = INT_MAX;
+				int maxx = INT_MIN;
+				int maxy = INT_MIN;
+				int k1 = 0;
+				int k2 = 0;
+				int k3 = 0;
+				int k4 = 0;
+				for (int i = 0; i < n; ++i)
+				{
+					cin >> x >> y;
+					if (x == 0 && y > maxy && y >= 0)
+					{
+						maxy = y;
+						++k1;
+					}
+					if (x == 0 && y < miny && y <= 0)
+					{
+						miny = y;
+						++k2;
+					}
+					if (x > maxx && x >= 0)
+					{
+						maxx = x;
+						++k3;
+					}
+					if (x < minx && x <= 0)
+					{
+						minx = x;
+						++k4;
+					}
+				}
+				if (k1 * k2 * k3 * k4 == 0)
+				{
+					cout << 0;
+					return;
+				} 
+				cout << 0.5 * ((maxy + abs(miny)) * (maxx + abs(minx)));
 			}
 		}
 		//end of ege272 namespace

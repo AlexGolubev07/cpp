@@ -12,10 +12,12 @@
 #include "ege.h"
 #include "plane.h"
 #include "games.h"
+#include "numeralSystem.h"
 
 using namespace std;
 
 int main()
 {
-	ege::ege27::ege272::ege5471();
+	cout << numeralSystem::positional::standard::sum(65, 56, 7);
+	return 0;
 }

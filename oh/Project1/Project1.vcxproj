@@ -130,6 +130,7 @@
     <ClInclude Include="integerNumbers.h" />
     <ClInclude Include="myArray.h" />
     <ClInclude Include="myMath.h" />
+    <ClInclude Include="numeralSystem.h" />
     <ClInclude Include="oge.h" />
     <ClInclude Include="olympic.h" />
     <ClInclude Include="olympicHelp.h" />
@@ -146,6 +147,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="myArray.cpp" />
     <ClCompile Include="myMath.cpp" />
+    <ClCompile Include="numeralSystem.cpp" />
     <ClCompile Include="oge.cpp" />
     <ClCompile Include="olympic.cpp" />
     <ClCompile Include="plane.cpp" />
@@ -159,6 +161,7 @@
     <Text Include="hw101119.txt" />
     <Text Include="hw241019.txt" />
     <Text Include="hw311019.txt" />
+    <Text Include="spiral.txt" />
     <Text Include="Text.txt" />
   </ItemGroup>
   <ItemGroup>
