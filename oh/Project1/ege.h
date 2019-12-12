@@ -121,6 +121,8 @@ namespace ege
 			void ege5471();
 
 			void ege5613();
+
+			//void ege
 		}
 		//end of ege 273 namespace
 

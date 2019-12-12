@@ -57,6 +57,9 @@
     <ClInclude Include="games.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="numeralSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="algorythmCompare.cpp">
@@ -101,6 +104,9 @@
     <ClCompile Include="singeGames.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="numeralSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="hw101019.txt" />
@@ -110,6 +116,7 @@
     </Text>
     <Text Include="hw311019.txt" />
     <Text Include="hw101119.txt" />
+    <Text Include="spiral.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="181008.pdf" />
