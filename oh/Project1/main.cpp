@@ -18,6 +18,11 @@ using namespace std;
 
 int main()
 {
-	cout << numeralSystem::positional::standard::sum(65, 56, 7);
+	long long n = 4096;
+	for (int i = 0; i < 51; ++i)
+	{
+		cout << n * 2 << " " << i + 14 << endl;
+		n *= 2;
+	}
 	return 0;
 }

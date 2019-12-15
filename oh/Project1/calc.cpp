@@ -27,6 +27,7 @@ namespace calc
 		int b[100];
 		int k = k1;
 		int x = 0;
+		bool laast = false;
 		int number = number1;
 		bool BreaksRight = false;
 		bool Breaks = false;
@@ -88,10 +89,16 @@ namespace calc
 						x += 1;
 						Breaks = true;
 						sqrt = true;
+						int first1 = w;
 					}
 					if (input[w] == ')' && x != 1 && sqrt != true)
 					{
 						x -= 1;
+						if (laast == false)
+						{
+							int last1 = w;
+							laast = true;
+						}
 					}
 					++w;
 					a[k][number] += input[w];
@@ -150,7 +157,11 @@ namespace calc
 								plus();
 							}
 						}
+
 					}
+					a[k][number - 1].erase(first1, last1);
+					//a[k][number - 1].insert(to_string(b[y - 1]), first1, (first + (to_string(b[y - 1])).length()));
+					--number;
 				}
 				++k;
 			}
@@ -164,6 +175,51 @@ namespace calc
 				break;
 			}
 		}
+		//for (int i = 0; i < a[k][number].length(); ++i) // sqrt & multiplication & division & reminder of divivsion & degree
+		//{
+
+		//	if (a[k][number][i] == '*')
+		//	{
+		//		multiplication();
+		//	}
+
+		//	if (a[k][number][i] == '/')
+		//	{
+		//		division();
+		//	}
+
+		//	if (a[k][number][i] == '%')
+		//	{
+		//		reminderOfDivision();
+		//	}
+
+		//	if (a[k][number][i] == '|' && a[k][number][i + 1] == '|')
+		//	{
+		//		coompilation();
+		//	}
+
+		//	if (a[k][number][i] == '^')
+		//	{
+		//		degree();
+		//	}
+
+		//	if (a[k][number][i] == 't' && a[k][number][i - 1] == 'r' && a[k][number][i - 2] == 'q' && a[k][number][i - 3] == 's')
+		//	{
+		//		sqrt1();
+		//	}
+		//}
+		//for (int i = 0; i < a[k][number].length(); ++i) // plus & minus
+		//{
+		//	if (a[k][number][i] == '-')
+		//	{
+		//		minus();
+		//	}
+
+		//	if (a[k][number][i] == '+')
+		//	{
+		//		plus();
+		//	}
+		//}
 	}
 
 	int multiplication()

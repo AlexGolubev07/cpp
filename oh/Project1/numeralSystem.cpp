@@ -14,11 +14,14 @@ namespace numeralSystem
 		{
 			int toTen(int const number, int const from)
 			{
-
+				//ğ
+				return 0;
 			}
+
 			string toTen(string const number, int const from)
 			{
-
+				//p
+				return "";
 			}
 			int sum(int const number1, int const number2, int const base)
 			{
