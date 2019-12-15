@@ -1,6 +1,5 @@
 #include "numeralSystem.h"
 #include "myMath.h"
-#include <string>
 
 using namespace std;
 
@@ -42,7 +41,7 @@ namespace numeralSystem
 					}
 					else
 					{
-						res += sum;
+						res += sum * ten;
 						ed = 0;
 					}
 					ten *= 10;
@@ -56,9 +55,45 @@ namespace numeralSystem
 				return res;
 			}
 
-			string sum(string const number1, string const number2)
+			string sum(string const number1, string const number2, int const base)
 			{
-				return "";
+				string n1 = "";
+				string n2 = "";
+				string alph = "0123456789ABCDEF";
+				if (number1.length() > number2.length())
+				{
+					n1 = number1;
+					n2 = number2;
+				}
+				else
+				{
+					n2 = number1;
+					n1 = number2;
+				}
+				int ed = 0;
+				n2 = string(number1.length() - number2.length(), '0') + n2;
+				string res = "";
+				for (int i = n1.length() - 1; i >= 0; --i)
+				{
+					int d1 = alph.find(n1[i]);
+					int d2 = alph.find(n2[i]);
+					int sum = d1 + d2 + ed;
+					if (sum >= base)
+					{
+						res = alph[sum - base] + res;
+						ed = 1;
+					}
+					else
+					{
+						res = alph[sum] + res;
+						ed = 0;
+					}
+				}
+				if (ed == 1)
+				{
+					res = "1" + res;
+				}
+				return res;
 			}
 
 			int min(int const number1, int const number2, int const base)
@@ -103,13 +138,57 @@ namespace numeralSystem
 
 	namespace nonPositional
 	{
-
+		namespace factorial
+		{
+			std::string sum(std::string const number1, std::string const number2)
+			{
+				string n1 = "";
+				string n2 = "";
+				string alph = "0123456789ABCDEF";
+				if (number1.length() > number2.length())
+				{
+					n1 = number1;
+					n2 = number2;
+				}
+				else
+				{
+					n2 = number1;
+					n1 = number2;
+				}
+				int ed = 0;
+				int maxDigit = 2;
+				n2 = string(number1.length() - number2.length(), '0') + n2;
+				string res = "";
+				for (int i = n1.length() - 1; i >= 0; --i)
+				{
+					int d1 = alph.find(n1[i]);
+					int d2 = alph.find(n2[i]);
+					int sum = d1 + d2 + ed;
+					if (sum >= maxDigit)
+					{
+						res = alph[sum - maxDigit] + res;
+						ed = 1;
+					}
+					else
+					{
+						res = alph[sum] + res;
+						ed = 0;
+					}
+					++maxDigit;
+				}
+				if (ed == 1)
+				{
+					res = "1" + res;
+				}
+				return res;
+			}
+		}
 	}
 	// end of namespace nonPositional
 
 	namespace mixed
 	{
-
+		
 	}
 	// end of namespace mixed
 }

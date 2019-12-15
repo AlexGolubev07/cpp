@@ -13,16 +13,12 @@
 #include "plane.h"
 #include "games.h"
 #include "numeralSystem.h"
+#include <string>;
 
 using namespace std;
 
 int main()
 {
-	long long n = 4096;
-	for (int i = 0; i < 51; ++i)
-	{
-		cout << n * 2 << " " << i + 14 << endl;
-		n *= 2;
-	}
+	cout << numeralSystem::nonPositional::factorial::sum("21", "21");
 	return 0;
 }
