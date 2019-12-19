@@ -1663,6 +1663,106 @@ namespace ege
 				} 
 				cout << 0.5 * ((maxy + abs(miny)) * (maxx + abs(minx)));
 			}
+
+			void ege10303()
+			{
+				int n = 0;
+				cin >> n;
+				int x = 0;
+				int y = 0;
+				int max1 = INT_MIN;
+				int max2 = INT_MIN;
+				bool a[2];
+				for (int i = 0; i < 2; ++i)
+				{
+					a[i] = false;
+				}
+				for (int i = 0; i < n; ++i)
+				{
+					cin >> x >> y;
+					if (x == y)
+					{
+						if (abs(x) > max1)
+						{
+							max1 = abs(x);
+							a[0] = true;
+						}
+					}
+					if (y == -x)
+					{
+						if (abs(x) > max2)
+						{
+							max2 = abs(x);
+							a[1] = true;
+						}
+					}
+				}
+				for (int i = 0; i <= 1; ++i)
+				{
+					if (a[i] == false)
+					{
+						cout << 0;
+						return;
+					}
+				}
+				cout << max1 * max2;
+				return;
+			}
+
+			void ege10428()
+			{
+				int n = 0;
+				cin >> n;
+				int x = 0;
+				int y = 0;
+				int quater[5];
+				for (int i = 1; i <= 4; ++i)
+				{
+					quater[i] = 0;
+				}
+				for (int i = 0; i < n; ++i)
+				{
+					cin >> x >> y;
+					if (x > 0 && y > 0)
+					{
+						++quater[1];
+					}
+					if (x < 0 && y > 0)
+					{
+						++quater[2];
+					}
+					if (x < 0 && y < 0)
+					{
+						++quater[3];
+					}
+					if (x > 0 && y < 0)
+					{
+						++quater[4];
+					}
+				}
+				cout << quater[1] * quater[3] + quater[2] * quater[4];
+			}
+
+			void ege10490()
+			{
+				int const s = 15;
+				int n = 0;
+				cin >> n;
+				int minodd = INT_MIN;
+				int mineven = INT_MIN;
+				int number = 0;
+				int a[s];
+				for (int i = 0; i < s; ++i)
+				{
+					cin >> number;
+					a[i] = number;
+				}
+				for (int i = s; i < n; ++i)
+				{
+					cin >> number;
+					if 
+				}
+			}
 		}
 		//end of ege272 namespace
 

@@ -18,11 +18,5 @@ using namespace std;
 
 int main()
 {
-	long long n = 4096;
-	for (int i = 0; i < 51; ++i)
-	{
-		cout << n * 2 << " " << i + 14 << endl;
-		n *= 2;
-	}
-	return 0;
+	ege::ege27::ege272::ege10428();
 }
