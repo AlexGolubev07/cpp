@@ -1860,7 +1860,7 @@ namespace ege
 						digitFrequency = a[i];
 					}
 				}
-				for (int i = 10; i = 0; i--)
+				for (int i = 10; i >= 0; i--)
 				{
 					if (a[i] = digitFrequency)
 					{

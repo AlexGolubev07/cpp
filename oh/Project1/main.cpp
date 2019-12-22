@@ -13,10 +13,11 @@
 #include "plane.h"
 #include "games.h"
 #include "numeralSystem.h"
+#include <string>;
 
 using namespace std;
 
 int main()
 {
-	ege::ege27::ege272::ege10428();
+	return 0;
 }

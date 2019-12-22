@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 namespace numeralSystem
 {
@@ -7,6 +8,8 @@ namespace numeralSystem
 		namespace standard
 		{
 			int sum(int const number1, int const number2, int const base);
+
+			std::string sum(std::string const number1, std::string const number2, int const base);
 
 			int min(int const number1, int const number2, int const base);
 
@@ -24,7 +27,10 @@ namespace numeralSystem
 	
 	namespace nonPositional
 	{
-
+		namespace factorial
+		{
+			std::string sum(std::string const number1, std::string const number2);
+		}
 	}
 	// end of namespace nonPositional
 
