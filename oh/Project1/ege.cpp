@@ -1,5 +1,6 @@
 #include <iostream>
 #include "ege.h"
+#include "myArray.h"
 
 using namespace std;
 
@@ -1748,19 +1749,146 @@ namespace ege
 				int const s = 15;
 				int n = 0;
 				cin >> n;
-				int minodd = INT_MIN;
-				int mineven = INT_MIN;
+				int minOdd = 1001;
+				int minEven = 1001;
 				int number = 0;
 				int a[s];
+				int min = INT_MAX;
+				bool flag = false;
 				for (int i = 0; i < s; ++i)
 				{
 					cin >> number;
 					a[i] = number;
 				}
+				myArray::arrayOut(a, s);
 				for (int i = s; i < n; ++i)
 				{
 					cin >> number;
-					if 
+					if (a[0] < minOdd && a[0] % 2 == 1)
+					{
+						minOdd = a[0];
+					}
+					if (a[0] < minEven && a[0] % 2 == 0)
+					{
+						minEven = a[0];
+					}
+					for (int j = 0; j < 14; ++j)
+					{
+						a[j] = a[j + 1];
+					}
+					a[14] = number;
+					if (number % 2 == 0)
+					{
+						if (number * minOdd < min)
+						{
+							min = number * minOdd;
+							flag = true;
+						}
+						if (number * minEven < min)
+						{
+							min = number * minEven;
+							flag = true;
+						}
+					}
+					else
+					{
+						if (number * minEven < min)
+						{
+							min = number * minEven;
+							flag = true;
+						}
+					}
+					cout << "iteration: " << i << endl;
+					myArray::arrayOut(a, s);
+					cout << "minEven = " << minEven << endl << "minOdd = " << minOdd;
+					cout << endl << "min = " << min << endl;
+				}
+				if (flag)
+				{ 
+					cout << min;
+				}
+				else
+				{
+					cout << -1;
+				}
+			}
+
+			void ege11256()
+			{
+				int n = 0;
+				cin >> n;
+				int quater[4] = {0, 0, 0, 0};
+				bool flag[4] = { false, false, false, false };
+				int x = 0;
+				int y = 0;
+				for (int i = 0; i < n; ++i)
+				{
+					cin >> x >> y;
+					if (x > 0 && y > 0)
+					{
+						++quater[0];
+					}
+					if (x < 0 && y > 0)
+					{
+						++quater[1];
+					}
+					if (x < 0 && y < 0)
+					{
+						++quater[2];
+					}
+					if (x > 0 && y < 0)
+					{
+						++quater[3];
+					}
+				}
+				cout << quater[0] * quater[1] * (quater[0] + quater[1] - 2)/ 2 + quater[2] * quater[3] * (quater[2] + quater[3] - 2) / 2;
+			}
+
+			void ege11323()
+			{
+
+			}
+		}
+		//end of ege272 namespace
+
+		namespace ege273
+		{
+			void ege4862()
+			{
+				int n = 0;
+				cin >> n;
+				int x = 0;
+				int y = 0;
+				int a[4] = { INT_MAX, INT_MIN, INT_MAX, INT_MIN };
+				for (int i = 0; i < n; ++i)
+				{
+					cin >> x >> y;
+					if (x == 0)
+					{
+						if (y > 0)
+						{
+							if (y > a[1])
+							{
+								a[1] = y;
+							}
+							if (y < a[0])
+							{
+								a[0] = y;
+							}
+						}
+						if (y < 0)
+						{
+							if (y > a[3])
+							{
+								a[3] = y;
+							}
+							if (y < a[2])
+							{
+								a[2] = y;
+							}
+						}
+					}
+
 				}
 			}
 		}
