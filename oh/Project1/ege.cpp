@@ -1846,7 +1846,66 @@ namespace ege
 
 			void ege11323()
 			{
+				int n = 0;
+				cin >> n;
+				int a = 0;
+				int b = 0;
+				int minSubtractNotDividedBy6 = 10001;
+				int sumOfMin = 0;
+				for (int i = 0; i < n; ++i)
+				{
+					cin >> a >> b;
+					a < b ? sumOfMin += a : sumOfMin += b; // тринарный оператор
+					int currentSubtract = abs(a - b);
+					if (currentSubtract < minSubtractNotDividedBy6 && currentSubtract % 6 != 0)
+					{
+						minSubtractNotDividedBy6 = currentSubtract;
+					}
+				}
+				if (sumOfMin % 3 != 0)
+				{
+					cout << sumOfMin;
+					return;
+				}
+				if (minSubtractNotDividedBy6 == 10001)
+				{
+					cout << 0;
+					return;
+				}
+				cout << sumOfMin + minSubtractNotDividedBy6;
+			}
 
+			void ege11336()
+			{
+				int const s = 6;
+				int n = 0;
+				cin >> n;
+				int number = 0;
+				int a[s];
+				int min = 1000;
+				int minMultip = INT_MAX;
+				for (int i = 0; i < s; ++i)
+				{
+					cin >> a[i];
+				}
+				for (int i = s; i < n; ++i)
+				{
+					cin >> number;
+					if (a[0] < min)
+					{
+						min = a[0];
+					}
+					for (int j = 0; j < 5; ++j)
+					{
+						a[j] = a[j + 1];
+					}
+					a[5] = number;
+					if (min * number < minMultip)
+					{
+						minMultip = min * number;
+					}
+				}
+				cout << minMultip;
 			}
 		}
 		//end of ege272 namespace
@@ -1859,7 +1918,7 @@ namespace ege
 				cin >> n;
 				int x = 0;
 				int y = 0;
-				int a[4] = { INT_MAX, INT_MIN, INT_MAX, INT_MIN };
+				int a[6] = { 1000, -1000, 1000, -1000, 0, 0};
 				for (int i = 0; i < n; ++i)
 				{
 					cin >> x >> y;
@@ -1888,11 +1947,74 @@ namespace ege
 							}
 						}
 					}
+					if (y > 0)
+					{
+						if (abs(x) > a[4])
+						{
+							a[4] = abs(x);
+						}
+					}
+					if (y < 0)
+					{
+						if (abs(x) > a[5])
+						{
+							a[5] = abs(x);
+						}
+					}
+				}
+				if ((abs(a[1]) - abs(a[0])) * a[4] > (abs(a[3]) - abs(a[2])) * a[5])
+				{
+					cout << (a[1] - a[0]) * a[4] * 0.5;
+				}
+				else
+				{
+					cout << (abs(a[3]) - abs(a[2])) * a[5] * 0.5;
+				}
+			}
 
+			void ege6436()
+			{
+				int a[16];
+				int number = 0;
+				int n = 0;
+				cin >> n;
+				for (int i = 0; i < 16; ++i)
+				{
+					a[i] = 0;
+				}
+				for (int i = 0; i < n; ++i)
+				{
+					cin >> number;
+					++a[number - 1];
+				}
+				int t = 0;
+				for (int i = 0; i < 16; ++i)
+				{
+					if (a[i] != 0)
+					{
+						++t;
+					}
+				}
+				int max = 0;
+				int index = 0;
+				for (int i = 0; i < t; ++i)
+				{
+					for (int j = i; j < 16; ++j)
+					{
+						if (a[j] > max)
+						{
+							max = a[j];
+							index = j;
+						}
+					}
+					cout << index + 1 << " " << max << endl;
+					a[index] = a[i];
+					a[i] = max;
+					max = 0;
 				}
 			}
 		}
-		//end of ege272 namespace
+		//end of ege273 namespace
 
 		namespace ege274
 		{
