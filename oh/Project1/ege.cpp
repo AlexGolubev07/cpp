@@ -1012,7 +1012,6 @@ namespace ege
 				}
 			}
 
-
 			void ege17343()
 			{
 				const int n = 2019;
@@ -1053,7 +1052,7 @@ namespace ege
 			{
 				// how can I do medium arifmetic without tyne float or double
 			}
-		} //  I don`t know how to do questions with shestnatsatirichnaya sistem
+		}
 		// end of ege254 namespace
 
 		namespace ege255 //1000 strings)
@@ -1212,6 +1211,118 @@ namespace ege
 
 	namespace ege27
 	{
+		namespace ege271
+		{
+			void ege7694()
+			{
+				int n = 0;
+				cin >> n;
+				int maxOdd = 0;
+				int maxEven = 0;
+				int R = 0;
+				int number = 0;
+				bool right1 = false;
+				bool right2 = false;
+				for (int i = 0; i < n; ++i)
+				{
+					cin >> number;
+					if (number % 2 == 0 && number > maxEven)
+					{
+						maxEven = number;
+						right1 = true;
+					}
+					if (number % 2 == 1 && number > maxOdd)
+					{
+						maxOdd = number;
+						right2 = true;
+					}
+				}
+				R = maxOdd + maxEven;
+				int control = 0;
+				cin >> control;
+				if (right1 && right2 && R == control)
+				{
+					cout << R;
+				}
+				else
+				{
+					cout << -1;
+				}
+			}
+
+			void ege7772()
+			{
+				int const s = 8;
+				int a[s];
+				int n = 0;
+				cin >> n;
+				int max = -1;
+				int m = -1;
+				int number = 0;
+				bool right = false;
+				for (int i = 0; i < s; ++i)
+				{
+					cin >> a[i];
+				}
+				for (int i = s; i < n; ++i)
+				{
+					cin >> number;
+					if (a[0] > max)
+					{
+						max = a[0];
+					}
+					for (int j = 0; j < s - 1; ++j)
+					{
+						a[j] = a[j + 1];
+					}
+					a[7] = number;
+					if (max * number > m)
+					{
+						m = max * number;
+						right = true;
+					}
+				}
+				if (right)
+				{
+					cout << m;
+				}
+			}
+
+			void ege3628()
+			{
+				int number = 1;
+				int t = 0;
+				int result;
+				int lastNumber = INT_MAX;
+				int first = 0;
+				int last = 0;
+				bool isUp = false;
+				while (number != 0)
+				{
+					cin >> number;
+					if (number > lastNumber)
+					{
+						if (!isUp)
+						{
+							first = lastNumber;
+						}
+						isUp = true;
+					}
+					else
+					{
+						last = lastNumber;
+						if (last - first > result)
+						{
+							result = last - first;
+						}
+						isUp = false;
+					}
+				}
+				cout << result;
+			}
+		}
+		//end of ege271 namespace
+
 		namespace ege272
 		{
 			void ege9777()
@@ -2011,6 +2122,71 @@ namespace ege
 					a[index] = a[i];
 					a[i] = max;
 					max = 0;
+				}
+			}
+
+			void ege7321()
+			{
+				int n = 0;
+				cin >> n;
+				int m = 0;
+				cin >> m;
+				int a = 0;
+				int b = 0;
+				int x = 0;
+				int y = 0;
+				int y1 = 0;
+				int y2 = 0;
+				for (int i = 0; i < n;++i)
+				{
+					cin >> a >> b;
+					x = x + a;
+					y1 = y + b;
+					y2 = x + m;
+					if (y1 < y2)
+					{
+						y = y1;
+					}
+					else
+					{
+						y = y2;
+					}
+				}
+				x > y ? cout << y : cout << x;
+			}
+
+			void ege3130()
+			{
+				int a[100];
+				int n = 0;
+				cin >> n;
+				int number;
+				int negative = 0;
+				int positive = 0;
+				for (int i = 0; i < n; ++i)
+				{
+					a[i] = 0;
+				}
+				for (int i = 0; i < n; ++i)
+				{
+					cin >> number;
+					if (number < 0)
+					{
+						a[negative] = number;
+						++negative;
+					}
+					if (number > 0)
+					{
+						a[n - positive] = number;
+						++positive;
+					}
+				}
+				for (int i = 0; i < n; ++i)
+				{
+					if (a[i] != 0)
+					{
+						cout << a[i];
+					}
 				}
 			}
 		}

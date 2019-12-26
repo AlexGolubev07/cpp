@@ -76,25 +76,37 @@ namespace ege
 
 		namespace ege254
 		{
-			/*void ege();
+			void ege2918();
 
-			void ege();
+			void ege2932()
+			{
 
-			void ege();
+			};
 
-			void ege();
+			void ege6349();
 
-			void ege();
+			void ege4957();
 
-			void ege();
+			void ege5068();
 
-			void ege();
+			void ege6790();
 
-			void ege();
+			void ege7426();
 
-			void ege();
+			void ege6969();
 
-			void ege();*/
+			void ege13752();
+
+			void ege15810();
+
+			void ege16400();
+
+			void ege17343();
+
+			void ege18573()
+			{
+				// how can I do medium arifmetic without tyne float or double
+			};
 		}
 		// end of namespace ege254
 
@@ -108,6 +120,16 @@ namespace ege
 
 	namespace ege27
 	{
+		namespace ege271
+		{
+			void ege7694();
+
+			void ege7772();
+
+			void ege3628();
+		}
+		//end of ege271 namespace
+
 		namespace ege272
 		{
 			void ege9777();
@@ -139,7 +161,13 @@ namespace ege
 			void ege4862();
 
 			void ege6436();
+
+			void ege7321();
+
+			void ege3130();
 		}
+		//end of ege273 namespace
+
 		namespace ege274
 		{
 			void ege11363();
