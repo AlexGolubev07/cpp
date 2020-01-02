@@ -60,6 +60,9 @@
     <ClInclude Include="numeralSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="work291219.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="algorythmCompare.cpp">

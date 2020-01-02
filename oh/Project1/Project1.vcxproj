@@ -138,6 +138,7 @@
     <ClInclude Include="sort.h" />
     <ClInclude Include="taskWithArrays.h" />
     <ClInclude Include="test.h" />
+    <ClInclude Include="work291219.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="algorythmCompare.cpp" />

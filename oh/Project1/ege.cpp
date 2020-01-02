@@ -793,10 +793,50 @@ namespace ege
 				}
 			}
 
-			void ege2932()
+			/*void ege2932()
 			{
-
-			}
+				int x = 0;
+				int y = 0;
+				cin >> x >> y;
+				for (int i = 1; i < 9; ++i)
+				{
+					for (int j = 1; j < 9; ++j)
+					{
+						if (i == x + 2 && j == y + 1)
+						{
+							cout << i << " " << j;
+						}
+						if (i == x + 2 && j == y - 1)
+						{
+							cout << i << " " << j;
+						}
+						if (i == x - 2 && j == y + 1)
+						{
+							cout << i << " " << j;
+						}
+						if (i == x - 2 && j == y - 1)
+						{
+							cout << i << " " << j;
+						}
+						if (j == y + 2 && i == x + 1)
+						{
+							cout << i << " " << j;
+						}
+						if (j == y + 2 && i == x - 1)
+						{
+							cout << i << " " << j;
+						}
+						if (j == y - 2 && i == x + 1)
+						{
+							cout << i << " " << j;
+						}
+						if (j == y - 2 && i == x - 1)
+						{
+							cout << i << " " << j;
+						}
+					}
+				}
+			}*/
 
 			void ege6349()
 			{
@@ -1048,10 +1088,46 @@ namespace ege
 				}
 			}
 
-			void ege18573()
+			/*void ege18573()
 			{
-				// how can I do medium arifmetic without tyne float or double
-			}
+				int const n = 2019;
+				int a[n];
+				int i, m, k;
+				m = -1;
+				k = 15001;
+				for (i = 0; i < n; ++i)
+				{
+					cin >> a[i];
+					if (a[i] > m)
+					{
+						m = a[i];
+					}
+					if (a[i] < k)
+					{
+						k = a[i];
+					}
+				}
+				if (k == 15001)
+				{
+					k = 0;
+				}
+				if (m == -1)
+				{
+					m = 0;
+				}
+				m = (m + k) / 2;
+				for (i = 0; i < n; ++i)
+				{
+					if (a[i] > m)
+					{
+						a[i] -= m;
+					}
+				}
+				for (i = 0; i < n; ++i)
+				{
+					cout << a[i];
+				}
+			}*/
 		}
 		// end of ege254 namespace
 
@@ -1292,7 +1368,7 @@ namespace ege
 			{
 				int number = 1;
 				int t = 0;
-				int result;
+				int result = 0;
 				int lastNumber = INT_MAX;
 				int first = 0;
 				int last = 0;
@@ -2152,7 +2228,7 @@ namespace ege
 						y = y2;
 					}
 				}
-				x > y ? cout << y : cout << x;
+				x >= y ? cout << y : cout << x;
 			}
 
 			void ege3130()

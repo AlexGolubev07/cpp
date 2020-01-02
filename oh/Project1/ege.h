@@ -78,10 +78,7 @@ namespace ege
 		{
 			void ege2918();
 
-			void ege2932()
-			{
-
-			};
+			void ege2932();
 
 			void ege6349();
 
@@ -103,16 +100,23 @@ namespace ege
 
 			void ege17343();
 
-			void ege18573()
-			{
-				// how can I do medium arifmetic without tyne float or double
-			};
+			void ege18573();
 		}
 		// end of namespace ege254
 
 		namespace ege255
 		{
+			void ege9706();
 
+			void ege3602();
+
+			void ege4703();
+
+			void ege5373();
+
+			void ege11281();
+
+			void ege18805();
 		}
 		// end of namespace ege255
 	}

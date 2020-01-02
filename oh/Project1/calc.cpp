@@ -70,7 +70,7 @@ namespace calc
 						input[w + 2] == '7' ||
 						input[w + 2] == '8' ||
 						input[w + 2] == '9' ||
-						input[w + 2] == '(' &&
+						input[w + 2] == ')' &&
 						input[w - 2] == '1' ||
 						input[w - 2] == '2' ||
 						input[w - 2] == '3' ||
@@ -80,7 +80,7 @@ namespace calc
 						input[w - 2] == '7' ||
 						input[w - 2] == '8' ||
 						input[w - 2] == '9' ||
-						input[w - 2] == ')')
+						input[w - 2] == '(')
 					{
 						BreaksRight = true;
 					}
