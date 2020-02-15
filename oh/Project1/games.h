@@ -11,4 +11,6 @@ namespace games
 	string cesar(string const word, int const shift);
 
 	int calc();
+
+	int ttfe();
 }
