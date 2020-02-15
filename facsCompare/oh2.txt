@@ -1,0 +1,91 @@
+int facIter(int const n)
+{
+	int f = 1;
+	for (int i = 2; i <= n; ++i)
+	{
+		f *= i;
+	}
+	return f;
+}
+
+int facRec(int n)
+{
+	if (n == 1)
+	{
+		return 1;
+	}
+	return n * facRec(n - 1);
+}
+
+int sumFac1(int n)
+{
+	int s = 0;
+	for (int i = 1; i <= n; ++i)
+	{
+		s += facIter(i);
+	}
+	return s;
+}
+
+int sumFac2(int n)
+{
+	int s = 0;
+	for (int i = 1; i <= n; ++i)
+	{
+		s += facRec(i);
+	}
+	return s;
+}
+
+int sumFac3(int n)
+{
+	int s = 0;
+	int f = 1;
+	for (int i = 1; i <= n; ++i)
+	{
+		f *= i;
+		s += f;
+	}
+	return s;
+}
+
+/*
+1! + 2! + 3! + 4! + 5! = 1! + 1*2 + 1*2*3 + 1*2*3*4 + 1*2*3*4*5 =
+= 1 + 2*(1 + 3*(1 + 4*(1 + 5)))
+s = 1
+s = 1 + 5*s
+s = 1 + 4*s
+s = 1 + 3*s
+s = 1 + 2*s
+*/
+int sumFac4(int n)
+{
+	int s = 1;
+	for (int i = n; i >= 2; --i)
+	{
+		s = 1 + i * s;
+	}
+	return s;
+}
+
+int sumfac5(int n)
+{
+	if (n != 1)
+	{
+		return n * sumfac5(n - 1) + 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	cout << sumFac4(4) << " = " << sumfac5(4);
+	return 0;
+}
