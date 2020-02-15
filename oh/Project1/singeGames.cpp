@@ -2070,7 +2070,7 @@ namespace games
 			{
 				for (int j = 0; j < 10; ++j)
 				{
-					cout << a[i][j] << " ";
+					cout << a[j][i] << " ";
 				}
 				cout << endl;
 			}
