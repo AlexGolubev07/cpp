@@ -13,4 +13,6 @@ namespace games
 	int calc();
 
 	int ttfe();
+
+	int ttfetr();
 }
