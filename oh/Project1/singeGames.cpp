@@ -890,7 +890,7 @@ namespace games
 		{
 			for (int j = 0; j < 10; ++j)
 			{
-				a[i][j] = 0;
+				a[j][i] = 0;
 			}
 		}
 		int in = 0;
@@ -1472,7 +1472,7 @@ namespace games
 			{
 				for (int j = 0; j < 10; ++j)
 				{
-					cout << a[i][j] << " ";
+					cout << a[j][i] << " ";
 				}
 				cout << endl;
 			}
@@ -1499,7 +1499,7 @@ namespace games
 		{
 			for (int j = 0; j < 5; ++j)
 			{
-				cout << a[i][j] << " ";
+				cout << a[j][1] << " ";
 			}
 			cout << endl;
 		}
@@ -1509,11 +1509,12 @@ namespace games
 
 			n = 1;
 			number = rand() % 6;
-			for (int i = 0; i < number; ++i)
+			for (int i = 0; i < number + 1; ++i)
 			{
 				n *= 2;
 			}
 			cout << n;
+			cout << endl;
 			cin >> in;
 			i = 0;
 			if (in == 1)
@@ -2066,11 +2067,11 @@ namespace games
 					in = -1;
 				}
 			}
-			for (int i = 0; i < 5; ++i)
+			for (int i = 0; i < 10; ++i)
 			{
-				for (int j = 0; j < 10; ++j)
+				for (int j = 0; j < 5; ++j)
 				{
-					cout << a[j][i] << " ";
+					cout << a[i][j] << " ";
 				}
 				cout << endl;
 			}
