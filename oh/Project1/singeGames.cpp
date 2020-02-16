@@ -2071,7 +2071,19 @@ namespace games
 			{
 				for (int j = 0; j < 5; ++j)
 				{
-					cout << a[i][j] << " ";
+					if (a[i][j] < 10)
+					{
+						cout << "   ";
+					}
+					if (a[i][j] > 9 && a[i][j] < 100)
+					{
+						cout << "  ";
+					}
+					if (a[i][j] > 99 && a[i][j] < 1000)
+					{
+						cout << " ";
+					}
+					cout << a[i][j] << "  ";
 				}
 				cout << endl;
 			}
