@@ -2091,22 +2091,58 @@ namespace games
 		return 0;
 	}
 
-	int snake()
+	int Josef()
 	{
-	
-	}
 
-	int tetris()
-	{
-		int a[20][10];
-		for (int i = 0; i < 20; ++i)
+		int b = 10;
+		cin >> b;
+		int a[41];
+		for (int i = 0; i < b; ++i)
 		{
-			for (int j = 0; j < 10; ++j)
+			a[i] = i + 1;
+		}
+		int k = b - 1;
+		int i = 0;
+		a[i] = 0;
+		int d = 0;
+		while (k != 1)
+		{
+			d = 0;
+			if (a[(i + 1) % b] == 0 && a[(i + 2) % b] == 0 && a[(i + 3) % b] == 0)
 			{
-				a[i][j] = 0;
-				cout << a[i][j] << " ";
+				while (a[i % b] == 0)
+				{
+					++i;
+				}
 			}
-			cout << endl;
+			else
+			{
+				if (a[(i + 3) % b == 0])
+				{
+					if (a[(i + 1) % b] == 0)
+					{
+						++d;
+					}
+					if (a[(i + 2) % b] == 0)
+					{
+						++d;
+					}
+				}
+				i += 3 + d;
+			}
+			while (a[i % b] == 0)
+			{
+				++i;
+			}
+			a[i % b] = 0;
+			k--;
+		}
+		for (i = 0; i < b; ++i)
+		{
+			if (a[i] != 0)
+			{
+				cout << a[i];
+			}
 		}
 	}
 }
