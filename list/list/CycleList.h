@@ -1,24 +1,35 @@
-//#pragma once
-//
-//struct CycleList
-//{
-//	void cycle(int length)
-//	{
-//		this->length = length;
-//		cycl = 1;
-//		if (head == nullptr)
-//		{
-//			head = new Node(0);
-//		}
-//		Node* temp = head;
-//		for (int i = 0; i < length; ++i)
-//		{
-//			add(0);
-//		}
-//		while (temp->next != nullptr)
-//		{
-//			temp = temp->next;
-//		}
-//		temp->next = head;
-//	}
-//};
+#pragma once
+#include <iostream>
+
+namespace CycleLists
+{
+	class Node
+	{
+	public:
+		Node* next;
+		int data;
+
+		Node(int data);
+	};
+
+	class CycleList
+	{
+	public:
+		// fields
+		Node* head;
+		int length;
+
+		// constructors, destructor, output 
+		CycleList();
+		~CycleList();
+
+		// output
+		friend std::ostream& operator<< (std::ostream& out, CycleList const& c);
+
+		// others
+		void add(int const data);
+		void removeId(int const id);
+		// int& operator[](int const index);
+	};
+}
+

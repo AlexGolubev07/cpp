@@ -1,5 +1,6 @@
 #include "List.h"
 #include <iostream>
+#include <cassert>
 
 using namespace std;
 
@@ -67,14 +68,31 @@ bool operator==(List const& l1, List const& l2)
 		return false;
 	}
 	Node* temp1 = l1.head;
-	Node
+	Node* temp2 = l2.head;
+	while (temp1->next != nullptr)
+	{
+		if (temp1->data != temp2->data)
+		{
+			return false;
+		}
+		temp1 = temp1->next;
+		temp2 = temp2->next;
+	}
+	return true;
 }
 
-int& List::operator[](int const i)
+int& List::operator[](int const j)
 {
-	Node* remp = head;
+	assert(j <= length);
 
-	return head->data;
+	Node* temp = head;
+
+	for (int i = 0; i < j - 1; ++i)
+	{
+		temp = temp->next;
+	}
+
+	return temp->data;
 }
 
 void List::index(int index, int data)
