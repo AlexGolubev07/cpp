@@ -1,4 +1,5 @@
 #include <iostream>
+#include "List.h"
 
 using namespace std;
 
@@ -132,71 +133,6 @@ struct List
 
 int main()
 {
-	List l;
-	int b = 10;
-	cin >> b;
-	int a[41];
-	for (int i = 0; i < b; ++i)
-	{
-		a[i] = i + 1;
-	}
-	int k = b - 1;
-	int i = 0;
-	a[i] = 0;
-	int d = 0;
-	while (k != 1)
-	{
-		d = 0;
-		if (a[(i + 1) % b] == 0 && a[(i + 2) % b] == 0 && a[(i + 3) % b] == 0)
-		{
-			while (a[i % b] == 0)
-			{
-				++i;
-			}
-		}
-		else
-		{
-			if (a[(i + 3) % b == 0])
-			{
-				if (a[(i + 1) % b] == 0)
-				{
-					++d;
-				}
-				if (a[(i + 2) % b] == 0)
-				{
-					++d;
-				}
-			}
-			i += 3 + d;
-		}
-		while (a[i % b] == 0)
-		{
-			++i;
-		}
-		a[i % b] = 0;
-		k--;
-	}
-	for (i = 0; i < b; ++i)
-	{
-		if (a[i] != 0)
-		{
-			cout << a[i];
-		}
-	}
-	int n = 0;
-	cin >> n;
-	l.cycle(n);
-	for (int i = 0; i < n; ++i)
-	{
-		l.index(i, i + 1);
-	}
-	//int i = 3;
-	l.removeId(i);
-	while (l.length != 1)
-	{
-		i += 2;
-		l.removeId(i % n);
-		l.print();
-	}
+	
 	return 0;
 }
