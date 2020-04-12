@@ -124,14 +124,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CycleList.cpp" />
-    <ClCompile Include="List.cpp" />
+    <ClCompile Include="LinearList.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Node.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CycleList.h" />
-    <ClInclude Include="List.h" />
-    <ClInclude Include="Node.h" />
+    <ClInclude Include="LinearList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

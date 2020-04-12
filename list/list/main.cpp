@@ -1,18 +1,21 @@
 #include <iostream>
-#include "List.h"
 #include <cassert>
 #include "CycleList.h"
 
 using namespace std;
-using namespace CycleLists;
+using namespace CycleList;
 
 int main()
 {
-	CycleList l;
+	List c;
 	for (int i = 0; i < 10; ++i)
 	{
-		l.add(i + 1);
+		c.add(i + 1);
 	}
-	cout << l;
+
+	cout << c << endl;
+	c.removeId(5);
+	cout << c;
+
 	return 0;
 }
