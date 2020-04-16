@@ -22,7 +22,7 @@ namespace CycleList
 
 		// constructors, destructor, output 
 		List();
-		//~List();
+		~List();
 
 		// output
 		friend std::ostream& operator<< (std::ostream& out, List const& c);
@@ -30,8 +30,9 @@ namespace CycleList
 		//friend std::ostream& operator[] (std::ostream& out, List const& c);
 		// others
 		void add(int const data);
-		void removeId(int const id);
-		// int& operator[](int const index);
+		void removeId(int id);
+		Node* pointerId(int id);
+		int Joseph(int n);
 	};
 }
 

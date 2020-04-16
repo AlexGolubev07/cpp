@@ -8,14 +8,12 @@ using namespace CycleList;
 int main()
 {
 	List c;
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 41; ++i)
 	{
 		c.add(i + 1);
 	}
 
-	cout << c << endl;
-	c.removeId(5);
-	cout << c;
+	cout << c.Joseph(2);
 
 	return 0;
 }

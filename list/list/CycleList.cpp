@@ -84,9 +84,28 @@ namespace CycleList
 		return;
 	}
 
-	void List::removeId(int const id)
+	void List::removeId(int id)
 	{
-		assert(id - 2 <= length);
+		assert(id >= 1);
+
+		if (id > length)
+		{
+			id = id % length;
+		}
+		
+		if (id == 1)
+		{
+			Node* newHead = head->next;
+			Node* tail = head->previous;
+			delete head;
+			head = newHead;
+			head->previous = tail;
+			tail->next = head;
+			--length;
+
+			return;
+		}
+
 		int i = 0;
 		Node* temp = head;
 		while (i + 2 < id)
@@ -94,14 +113,55 @@ namespace CycleList
 			++i;
 			temp = temp->next;
 		}
-		temp = temp->next->next;
-		delete temp->next;
+		Node* toDelete = temp->next;
+		temp->next = temp->next->next;
+		temp->next->previous = temp;
+		delete toDelete;
 		--length;
-		return;
 	}
 
-	/*int& List::operator[](int const index)
+	Node* List::pointerId(int id)
 	{
+		assert(id >= 1);
+		if (id > length)
+		{
+			id = id % length;
+		}
+		int i = 0;
+		Node* temp = head;
+		while (i != id)
+		{
+			++i;
+			temp = temp->next;
+		}
+		return temp->previous;
+	}
 
-	}*/
+	int List::Joseph(int n)
+	{
+		assert(n >= 1);
+		Node* temp = head;
+		while (length != 1)
+		{
+			if (n > length)
+			{
+				n = n % length;
+			}
+			
+			removeId(n);
+			head = pointerId(n);
+		}
+		return head->data;
+	}
+	
+	List::~List()
+	{
+		Node* temp = head->previous;
+		while (temp != head)
+		{
+			temp = temp->previous;
+			delete temp->next;
+		}
+		delete head;
+	}
 }
