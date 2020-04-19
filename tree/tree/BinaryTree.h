@@ -9,6 +9,8 @@ namespace Tree
 		Node* rightChild;
 		Node* parent;
 
+		Node(int const data);
+
 		int height();
 	};
 
@@ -17,10 +19,7 @@ namespace Tree
 	public:
 		Node* root;
 
-		int height()
-		{
-			return root->height();
-		}
+		int height();
 	};
 }
 
