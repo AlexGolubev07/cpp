@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+
 namespace Tree
 {
 	class Node
@@ -12,6 +14,10 @@ namespace Tree
 		Node(int const data);
 
 		int height();
+
+		bool balanced();
+
+		friend std::ostream& operator<< (std::ostream& out, BinaryTree const& t);
 	};
 
 	class BinaryTree
@@ -20,6 +26,11 @@ namespace Tree
 		Node* root;
 
 		int height();
+
+		bool balanced()
+		{
+			return root->balanced();
+		}
 	};
 }
 

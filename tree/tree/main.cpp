@@ -12,6 +12,7 @@ int main()
 	t.root->rightChild = new Node(3);
 	t.root->leftChild->leftChild = new Node(4);
 	t.root->leftChild->rightChild = new Node(5);
-	cout << t.height();
+	//t.root->rightChild->leftChild = new Node(6);
+	cout << t.balanced();
 	return 0;
 }
