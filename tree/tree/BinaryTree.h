@@ -17,7 +17,9 @@ namespace Tree
 
 		bool balanced();
 
-		friend std::ostream& operator<< (std::ostream& out, BinaryTree const& t);
+		int amountOfValue(int const value);
+		
+		bool full();
 	};
 
 	class BinaryTree
@@ -27,10 +29,11 @@ namespace Tree
 
 		int height();
 
-		bool balanced()
-		{
-			return root->balanced();
-		}
+		bool balanced();
+
+		int amountOfValue(int const value);
+
+		bool full();
 	};
 }
 

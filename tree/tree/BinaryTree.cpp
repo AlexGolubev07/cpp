@@ -2,6 +2,7 @@
 
 namespace Tree
 {
+	#pragma region Node
 	Node::Node(int const data)
 	{
 		this->data = data;
@@ -16,26 +17,21 @@ namespace Tree
 		{
 			return 1;
 		}
-		
+
 		if (this->leftChild == nullptr)
 		{
 			return  this->rightChild->height() + 1;
 		}
-		
+
 		if (this->rightChild == nullptr)
 		{
 			return this->leftChild->height() + 1;
 		}
-		
+
 		int l = this->leftChild->height();
 		int r = this->rightChild->height();
-		
-		return l >= r ? l + 1 : r + 1;
-	}
 
-	int BinaryTree::height()
-	{
-		return this->root->height();
+		return l >= r ? l + 1 : r + 1;
 	}
 
 	bool Node::balanced()
@@ -58,35 +54,83 @@ namespace Tree
 		return this->leftChild->balanced() && this->rightChild->balanced() && this->leftChild->height() == this->rightChild->height();
 	}
 
-	std::ostream& operator<< (std::ostream& out, BinaryTree const& t)
+	int Node::amountOfValue(int const value)
 	{
-		int cycle = 0;
-		for (int i = 0; i < t.root->height * 2; ++i)
+		int currenNode = 0;
+
+		if (this->data == value)
 		{
-			std::cout << " ";
+			++currenNode;
 		}
-		std::cout << t.root->data;
-		while (cycle != t.root->height)
+
+		if (this->leftChild == nullptr && this->rightChild == nullptr)
 		{
-			int c = 1;
-			for (int s = 0; s < cycle - 1;++s)
-			{
-				c *= 2;
-			}
-			for (int s = 0; s < t.root->height * 2 - c; ++s)
-			{
-				std::cout << " ";
-			}
-			std::cout << "/ \'";
-			for (int colvo = 0; colvo < c; ++colvo)
-			{
-				for (int s = 0; s < c; ++s)
-				{
-					std::cout << " ";
-				}
-				cout
-			}
+			return currenNode;
 		}
-		return out;
+
+		if (this->leftChild == nullptr)
+		{
+			return currenNode + this->rightChild->amountOfValue(value);
+		}
+
+		if (this->rightChild == nullptr)
+		{
+			return currenNode + this->leftChild->amountOfValue(value);
+		}
+
+		return currenNode + this->leftChild->amountOfValue(value) + this->rightChild->amountOfValue(value);
 	}
+
+	bool Node::full()
+	{
+		if (this->leftChild == nullptr && this->rightChild == nullptr)
+		{
+			return true;
+		}
+
+		if (this->leftChild == nullptr)
+		{
+			return false;
+		}
+
+		if (this->rightChild == nullptr)
+		{
+			return false;
+		}
+
+		return this->leftChild->full() && this->rightChild->full() && this->leftChild->height() == this->rightChild->height();
+	}
+	#pragma endregion
+
+	#pragma region BinaryTree
+	int BinaryTree::height()
+	{
+		return this->root->height();
+	}
+
+	bool BinaryTree::balanced()
+	{
+		return this->root->balanced();
+	}
+
+	int BinaryTree::amountOfValue(int const value)
+	{
+		if (this->root == nullptr)
+		{
+			return 0;
+		}
+
+		return this->root->amountOfValue(value);
+	}
+
+	bool BinaryTree::full()
+	{
+		if (this->root == nullptr)
+		{
+			return true;
+		}
+
+		return this->root->full();
+	}
+	#pragma endregion
 }
