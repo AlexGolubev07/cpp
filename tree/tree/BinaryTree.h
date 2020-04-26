@@ -20,6 +20,12 @@ namespace Tree
 		int amountOfValue(int const value);
 		
 		bool full();
+
+		bool strict();
+
+		int amountOfIgor();
+
+		int shortestBranchLength();
 	};
 
 	class BinaryTree
@@ -34,6 +40,12 @@ namespace Tree
 		int amountOfValue(int const value);
 
 		bool full();
+		
+		bool strict();
+
+		int amountOfIgor();
+
+		int shortestBranchLength();
 	};
 }
 

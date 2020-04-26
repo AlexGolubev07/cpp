@@ -100,6 +100,71 @@ namespace Tree
 
 		return this->leftChild->full() && this->rightChild->full() && this->leftChild->height() == this->rightChild->height();
 	}
+
+	bool Node::strict()
+	{
+		if ((this->leftChild == nullptr && this->rightChild != nullptr) || (this->leftChild != nullptr && this->rightChild == nullptr))
+		{
+			return false;
+		}
+
+		if (this->leftChild == nullptr && this->rightChild == nullptr)
+		{
+			return true;
+		}
+
+		return this->leftChild->strict() && this->rightChild->strict();
+	}
+
+	int Node::amountOfIgor()
+	{
+		if (this->leftChild == nullptr && this->rightChild == nullptr)
+		{
+			return 1;
+		}
+
+		if (this->leftChild != nullptr && this->rightChild == nullptr)
+		{
+			return this->leftChild->amountOfIgor();
+		}
+
+		if (this->leftChild == nullptr && this->rightChild != nullptr)
+		{
+			return this->rightChild->amountOfIgor();
+		}
+
+		return this->leftChild->amountOfIgor() + this->rightChild->amountOfIgor();
+		
+	}
+
+	int min(int x, int y)
+	{
+		if (x < y)
+		{
+			return x;
+		}
+		return y;
+	}
+
+	int Node::shortestBranchLength()
+	{
+		if (this->leftChild == nullptr && this->rightChild == nullptr)
+		{
+			return 1;
+		}
+
+		if (this->leftChild != nullptr && this->rightChild == nullptr)
+		{
+			return 1 + this->leftChild->shortestBranchLength();
+		}
+
+		if (this->leftChild == nullptr && this->rightChild != nullptr)
+		{
+			return 1 + this->rightChild->shortestBranchLength();
+		}
+
+		return 1 + min(this->leftChild->shortestBranchLength(), this->rightChild->shortestBranchLength());
+	}
 	#pragma endregion
 
 	#pragma region BinaryTree
@@ -131,6 +196,35 @@ namespace Tree
 		}
 
 		return this->root->full();
+	}
+
+	bool BinaryTree::strict()
+	{
+		if (this->root == nullptr)
+		{
+			return true;
+		}
+		return this->root->strict();
+	}
+
+	int BinaryTree::amountOfIgor()
+	{
+		if (this->root == nullptr)
+		{
+			return 0;
+		}
+
+		return this->root->amountOfIgor();
+	}
+
+	int BinaryTree::shortestBranchLength()
+	{
+		if (this->root == nullptr)
+		{
+			return 0;
+		}
+
+		return root->shortestBranchLength();
 	}
 	#pragma endregion
 }
