@@ -1,4 +1,5 @@
 #include "BinaryTree.h"
+#include <string>
 
 namespace Tree
 {
@@ -165,6 +166,39 @@ namespace Tree
 
 		return 1 + min(this->leftChild->shortestBranchLength(), this->rightChild->shortestBranchLength());
 	}
+
+	Node* Node::shortestBranchLastNode(int const currentLevel, int const shortestBranchLength)
+	{
+		if (currentLevel > shortestBranchLength)
+		{
+			return nullptr;
+		}
+
+		if (this->leftChild == nullptr && this->rightChild == nullptr && currentLevel == shortestBranchLength)
+		{
+			return this;
+		}
+
+		if (this->leftChild != nullptr && this->rightChild == nullptr)
+		{
+			return this->leftChild->shortestBranchLastNode(currentLevel + 1, shortestBranchLength);
+		}
+
+		if (this->leftChild == nullptr && this->rightChild != nullptr)
+		{
+			return this->rightChild->shortestBranchLastNode(currentLevel + 1, shortestBranchLength);
+		}
+		
+		Node* l = this->leftChild->shortestBranchLastNode(currentLevel + 1, shortestBranchLength);
+		if (l != nullptr)
+		{
+			return l;
+		}
+		else
+		{
+			return this->rightChild->shortestBranchLastNode(currentLevel + 1, shortestBranchLength);
+		}
+	}
 	#pragma endregion
 
 	#pragma region BinaryTree
@@ -225,6 +259,28 @@ namespace Tree
 		}
 
 		return root->shortestBranchLength();
+	}
+
+	Node* BinaryTree::shortestBranchLastNode()
+	{
+		if (this == nullptr)
+		{
+			return this->root;
+		}
+		return this->root->shortestBranchLastNode(1, this->shortestBranchLength());
+	}
+
+	std::string BinaryTree::shortestBranch()
+	{
+		Node* l = this->shortestBranchLastNode();
+		std::string shortestBranch = "";
+		while (l != this->root)
+		{
+			shortestBranch = std::to_string(l->data) + " " + shortestBranch;
+			l = l->parent;
+		}
+		shortestBranch = std::to_string(this->root->data) + " " + shortestBranch;
+		return shortestBranch;
 	}
 	#pragma endregion
 }

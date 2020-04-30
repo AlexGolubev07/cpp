@@ -26,6 +26,8 @@ namespace Tree
 		int amountOfIgor();
 
 		int shortestBranchLength();
+
+		Node* shortestBranchLastNode(int const currentLevel, int const shortestBranchLength);
 	};
 
 	class BinaryTree
@@ -46,6 +48,10 @@ namespace Tree
 		int amountOfIgor();
 
 		int shortestBranchLength();
+
+		Node* shortestBranchLastNode();
+
+		std::string shortestBranch();
 	};
 }
 
