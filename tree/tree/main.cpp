@@ -8,14 +8,29 @@ int main()
 {
 	BinaryTree t;
 	t.root = new Node(1);
-	t.root->leftChild = new Node(2);
-	t.root->leftChild->parent = t.root;
-	t.root->rightChild = new Node(3);
-	t.root->rightChild->parent = t.root;
-	t.root->leftChild->leftChild = new Node(4);
-	t.root->leftChild->leftChild->parent = t.root->leftChild;
-	t.root->leftChild->rightChild = new Node(5);
-	t.root->leftChild->rightChild->parent = t.root->leftChild;
-	cout << t.shortestBranch();
+	t.add(2, 1, 2);
+	t.add(2, 2, 3);
+	t.add(3, 1, 4);
+	t.add(3, 2, 5);
+	t.add(3, 3, 6);
+	t.add(3, 4, 7);
+
+	Node* temp = t.root;
+	cout << temp->data << " " << temp->level << " " << temp->position << endl;
+
+	temp = t.root->leftChild;
+	cout << temp->data << " " << temp->level << " " << temp->position << endl;
+	temp = t.root->rightChild;
+	cout << temp->data << " " << temp->level << " " << temp->position << endl;
+
+	temp = t.root->leftChild->leftChild;
+	cout << temp->data << " " << temp->level << " " << temp->position << endl;
+	temp = t.root->leftChild->rightChild;
+	cout << temp->data << " " << temp->level << " " << temp->position << endl;
+	
+	temp = t.root->rightChild->leftChild;
+	cout << temp->data << " " << temp->level << " " << temp->position << endl;
+	temp = t.root->rightChild->rightChild;
+	cout << temp->data << " " << temp->level << " " << temp->position << endl;
 	return 0;
 }

@@ -199,9 +199,94 @@ namespace Tree
 			return this->rightChild->shortestBranchLastNode(currentLevel + 1, shortestBranchLength);
 		}
 	}
+
+	void Node::getLevel(int level, Node** a)
+	{
+		if (this->level > level)
+		{
+			return;
+		}
+
+		if (this->level == level)
+		{
+			int index = -1;
+			if (this->parent->leftChild == this)
+			{
+				index = 2 * this->parent->position;
+			}
+			else
+			{
+				index = 2 * this->parent->position + 1;
+			}
+			a[index] = this;
+			return;
+		}
+
+		if (this->leftChild != nullptr && this->rightChild != nullptr)
+		{
+			this->leftChild->getLevel(level, a);
+			this->rightChild->getLevel(level, a);
+		}
+
+		if (this->leftChild != nullptr && this->rightChild == nullptr)
+		{
+			this->leftChild->getLevel(level, a);
+		}
+
+		if (this->leftChild == nullptr && this->rightChild != nullptr)
+		{
+			this->rightChild->getLevel(level, a);
+		}
+
+		return;
+	}
 	#pragma endregion
 
 	#pragma region BinaryTree
+	void BinaryTree::add(int level, int position, int const data)
+	{
+		Node* t = this->root;
+		while (t->level != level && t->position != position)
+		{
+			if (pow(2, level - 2) >= position)
+			{
+				if (t->leftChild != nullptr)
+				{
+					t = t->leftChild;
+				}
+				else
+				{
+					t->leftChild = new Node(data);
+					t->leftChild->leftChild = nullptr;
+					t->leftChild->rightChild = nullptr;
+					t->leftChild->parent = t;
+					t->leftChild->level = level;
+					t->leftChild->position = position;
+					return;
+				}
+			}
+			else
+			{
+				if (t->rightChild)
+				{
+					t = t->rightChild;
+				}
+				else
+				{
+					t->rightChild = new Node(data);
+					t->rightChild->leftChild = nullptr;
+					t->rightChild->rightChild = nullptr;
+					t->rightChild->parent = t;
+					t->rightChild->level = level;
+					t->rightChild->position = position;
+					return;
+				}
+				position -= pow(2, level - 2);
+			}
+			++level;
+		}
+	}
+
 	int BinaryTree::height()
 	{
 		return this->root->height();
@@ -281,6 +366,47 @@ namespace Tree
 		}
 		shortestBranch = std::to_string(this->root->data) + " " + shortestBranch;
 		return shortestBranch;
+	}
+
+	Node** BinaryTree::getLevel(int level)
+	{
+		int size = int(pow(2, level - 1));
+		Node** a = new Node*[size];
+		for (int i = 0; i < size; ++i)
+		{
+			a[i] = nullptr;
+		}
+		this->root->getLevel(level, a);
+		return a;
+	}
+
+	Node*** BinaryTree::arrayOfLevels()
+	{
+		Node*** a = new Node **[this->height()];
+		a[0] = new Node*[1];
+		a[0][0] = root;
+		for (int i = 1; i < this->height(); ++i)
+		{
+			a[i] = this->getLevel(i);
+		}
+		return a;
+	}
+
+	void BinaryTree::printLevel(int level)
+	{
+		int size = int(pow(2, level - 1));
+		Node** a = this->getLevel(level);
+		for (int i = 0; i < size; ++i)
+		{
+			if (a[i] == nullptr)
+			{
+				std::cout << "null" << " ";
+			}
+			else
+			{
+				std::cout << a[i]->data << " ";
+			}
+		}
 	}
 	#pragma endregion
 }
