@@ -31,6 +31,8 @@ namespace Tree
 
 		Node* shortestBranchLastNode(int const currentLevel, int const shortestBranchLength);
 
+		Node* parentToAdd(int const level, int const position, int const helpLevel);
+
 		void getLevel(int level, Node** a);
 	};
 
@@ -39,7 +41,11 @@ namespace Tree
 	public:
 		Node* root;
 
+		Node* parentToAdd(int const level, int const position);
+
 		void add(int level, int position, int const data);
+
+		void addd(int level, int position, int const data);
 
 		int height();
 

@@ -3,7 +3,7 @@
 
 namespace Tree
 {
-	#pragma region Node
+#pragma region Node
 	Node::Node(int const data)
 	{
 		this->data = data;
@@ -135,7 +135,7 @@ namespace Tree
 		}
 
 		return this->leftChild->amountOfIgor() + this->rightChild->amountOfIgor();
-		
+
 	}
 
 	int min(int x, int y)
@@ -188,7 +188,7 @@ namespace Tree
 		{
 			return this->rightChild->shortestBranchLastNode(currentLevel + 1, shortestBranchLength);
 		}
-		
+
 		Node* l = this->leftChild->shortestBranchLastNode(currentLevel + 1, shortestBranchLength);
 		if (l != nullptr)
 		{
@@ -240,15 +240,72 @@ namespace Tree
 
 		return;
 	}
-	#pragma endregion
 
-	#pragma region BinaryTree
+	Node* Node::parentToAdd(int const level, int position, int amount)
+	{
+		if (this->level == level - 1)
+		{
+			return this;
+		}
+
+		if (position <= amount / 2)  // error
+		{
+			amount /= 2;
+			this->leftChild->parentToAdd(level, position, amount);
+		}
+		else
+		{
+			position -= amount / 2;
+			amount /= 2;
+			this->rightChild->parentToAdd(level, position, amount);
+		}
+	}
+#pragma endregion
+
+#pragma region BinaryTree
+	Node* BinaryTree::parentToAdd(int const level, int const position)
+	{
+		int amount = pow(2, level - 1);
+		if (level != 2)
+		{
+			return this->root->parentToAdd(level, position, amount);
+		}
+		else
+		{
+			return this->root;
+		}
+	}
+
 	void BinaryTree::add(int level, int position, int const data)
 	{
-		Node* t = this->root;
-		while (t->level != level && t->position != position)
+		Node* t = this->parentToAdd(level, position);
+		if (position % 2 == 1)
 		{
-			if (pow(2, level - 2) >= position)
+			t->leftChild = new Node(data);
+			t->leftChild->parent = t;
+			t->leftChild->leftChild = nullptr;
+			t->leftChild->rightChild = nullptr;
+			t->leftChild->level = level;
+			t->leftChild->position = position;
+		}
+		else
+		{
+			t->rightChild = new Node(data);
+			t->rightChild->parent = t;
+			t->rightChild->leftChild = nullptr;
+			t->rightChild->rightChild = nullptr;
+			t->rightChild->level = level;
+			t->rightChild->position = position;
+		}
+	}
+
+	void BinaryTree::addd(int level, int position, int const data)
+	{
+		Node* t = this->root;
+		int helpLevel = level;
+		while (t->level != helpLevel && t->position != position)
+		{
+			if (pow(2, helpLevel - 2) >= position)
 			{
 				if (t->leftChild != nullptr)
 				{
@@ -258,7 +315,7 @@ namespace Tree
 				{
 					t->leftChild = new Node(data);
 					t->leftChild->leftChild = nullptr;
-					t->leftChild->rightChild = nullptr;
+					t->leftChild->leftChild = nullptr;
 					t->leftChild->parent = t;
 					t->leftChild->level = level;
 					t->leftChild->position = position;
@@ -267,14 +324,14 @@ namespace Tree
 			}
 			else
 			{
-				if (t->rightChild)
+				if (t->rightChild != nullptr)
 				{
 					t = t->rightChild;
 				}
 				else
 				{
 					t->rightChild = new Node(data);
-					t->rightChild->leftChild = nullptr;
+					t->rightChild->rightChild = nullptr;
 					t->rightChild->rightChild = nullptr;
 					t->rightChild->parent = t;
 					t->rightChild->level = level;
@@ -283,7 +340,7 @@ namespace Tree
 				}
 				position -= pow(2, level - 2);
 			}
-			++level;
+			++helpLevel;
 		}
 	}
 
@@ -371,7 +428,7 @@ namespace Tree
 	Node** BinaryTree::getLevel(int level)
 	{
 		int size = int(pow(2, level - 1));
-		Node** a = new Node*[size];
+		Node** a = new Node * [size];
 		for (int i = 0; i < size; ++i)
 		{
 			a[i] = nullptr;
@@ -382,8 +439,8 @@ namespace Tree
 
 	Node*** BinaryTree::arrayOfLevels()
 	{
-		Node*** a = new Node **[this->height()];
-		a[0] = new Node*[1];
+		Node*** a = new Node * *[this->height()];
+		a[0] = new Node * [1];
 		a[0][0] = root;
 		for (int i = 1; i < this->height(); ++i)
 		{
@@ -408,5 +465,5 @@ namespace Tree
 			}
 		}
 	}
-	#pragma endregion
+#pragma endregion
 }
