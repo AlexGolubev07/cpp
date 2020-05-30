@@ -30,10 +30,20 @@ Node* Tree::getNode(int level, int position)
 	{
 		if (position <= dvoika / 2)
 		{
+			if (t->left == nullptr)
+			{
+				return nullptr;
+			}
+
 			t = t->left;
 		}
 		else
 		{
+			if (t->right == nullptr)
+			{
+				return nullptr;
+			}
+
 			t = t->right;
 			position -= dvoika / 2;
 		}
@@ -68,6 +78,11 @@ void Tree::add(int const level, int const position, int const data)
 	else
 	{
 		parent = this->root;
+	}
+
+	if (parent == nullptr)
+	{
+		return;
 	}
 
 	if (position % 2 == 0)
@@ -108,9 +123,37 @@ void Tree::printLevel(int const level)
 
 	int positions = pow(2, level - 1);
 
+	int zero = 5 - level;
+
+	zero <= 0 ? zero = 1 : zero += 0;
+
+	if (level >= 4)
+	{
+		std::cout << " ";
+	}
+
 	for (int i = 0; i < positions; ++i)
 	{
-		std::cout << a[i]->data << " ";
+		if (a[i] != nullptr)
+		{
+			std::cout << a[i]->data;
+			for (int j = 0; j < zero; ++j)
+			{
+				std::cout << " ";
+			}
+		}
+		else
+		{
+			std::cout << "n";
+			for (int j = 0; j < zero; ++j)
+			{
+				std::cout << " ";
+			}
+		}
+		if (i == positions / 2 - 1 && positions > 2 && level < 4)
+		{
+			std::cout << " ";
+		}
 	}
 
 	std::cout << std::endl;
@@ -119,9 +162,20 @@ void Tree::printLevel(int const level)
 void Tree::printTree()
 {
 	int height = this->height() + 1;
-	
+	int zero = pow(2, this->height());
+
 	for (int i = 1; i < height; ++i)
 	{
+		zero -= i;
+		if (i >= 4)
+		{
+			++zero;
+		}
+
+		for (int j = 0; j < zero; ++j)
+		{
+			std::cout << " ";
+		}
 		this->printLevel(i);
 	}
 }
