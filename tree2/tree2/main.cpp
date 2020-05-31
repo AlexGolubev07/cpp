@@ -1,13 +1,14 @@
 #include "Node.h"
 #include "Tree.h"
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 int main()
 {
 	Tree t;
-	t.root = new Node(1);
+	t.root = new Node(10);
 	t.add(2, 1, 2);
 	t.add(2, 2, 3);
 	t.add(3, 1, 4);
@@ -23,7 +24,7 @@ int main()
 	t.add(4, 7, 5);
 	t.add(4, 8, 6);
 
-	t.printTree();
+	cout << t;
 
 	return 0;
 }

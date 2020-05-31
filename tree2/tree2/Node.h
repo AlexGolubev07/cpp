@@ -12,5 +12,7 @@ public:
 	int height();
 
 	Node* getNode(int data);
+
+	int elementMaxSize();
 };
 

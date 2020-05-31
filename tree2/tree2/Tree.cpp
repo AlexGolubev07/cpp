@@ -1,7 +1,10 @@
 #include "Tree.h"
 #include <iostream>
+#include <string>
 
-int Tree::height()
+using namespace std;
+
+int Tree::height() const
 {
 	if (this->root == nullptr)
 	{
@@ -11,7 +14,7 @@ int Tree::height()
 	return this->root->height();
 }
 
-Node* Tree::getNode(int level, int position)
+Node* Tree::getNode(int level, int position) const
 {
 	Node* t = this->root;
 
@@ -95,7 +98,7 @@ void Tree::add(int const level, int const position, int const data)
 	}
 }
 
-Node** Tree::getLevel(int const level)
+Node ** Tree::getLevel(int const level) const
 {
 	int positions = pow(2, level - 1);
 
@@ -178,4 +181,64 @@ void Tree::printTree()
 		}
 		this->printLevel(i);
 	}
+}
+
+int Tree::elementMaxSize() const
+{
+	return this->root->elementMaxSize();
+}
+
+std::string Tree::levelToString(int const level, int const amountOfSpacesBefore, int const amountOfSpacesInside,
+	int const amountOfElements, int const elementMaxSize) const
+{
+	string s = "";
+	Node ** currentLevel = this->getLevel(level);
+	int const levelSize = pow(2, level - 1);
+
+	string spacesBefore = string(amountOfSpacesBefore * elementMaxSize, ' ');
+	s += spacesBefore;
+	
+	string element = to_string(this->getLevel(level)[0]->data);
+	element = string(elementMaxSize - element.length(), ' ') + element;
+	s += element;
+
+	string spacesInside = string(amountOfSpacesInside * elementMaxSize, ' ');
+	for (int i = 1; i < levelSize; ++i)
+	{
+		string element = to_string(this->getLevel(level)[i]->data);
+		element = string(elementMaxSize - element.length(), ' ') + element;
+		s += spacesInside + element;
+	}
+	s += spacesBefore;
+
+	return s;
+}
+
+std::string Tree::toString() const
+{
+	string s = "";
+	int const h = this->height();
+	int dvoika = pow(2, h);
+	int amountOfElements = 1;
+	int const elementMaxSize = this->elementMaxSize();
+
+	for (int level = 1; level <= h; ++level)
+	{
+		int const amountOfSpacesBefore = dvoika / 2 - 1;
+		int const amountOfSpacesInside = dvoika - 1;
+		
+		s += this->levelToString(level, amountOfSpacesBefore, amountOfSpacesInside, amountOfElements, elementMaxSize) + "\n";
+
+		amountOfElements *= 2;
+		dvoika /= 2;
+	}
+
+	return s;
+}
+
+std::ostream& operator<<(std::ostream& out, Tree const& tree)
+{
+	out << tree.toString();
+
+	return out;
 }

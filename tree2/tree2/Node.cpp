@@ -1,4 +1,8 @@
 #include "Node.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
 
 Node::Node(int data)
 {
@@ -57,4 +61,26 @@ Node* Node::getNode(int const data)
 	}
 
 	return nullptr;
+}
+
+int Node::elementMaxSize()
+{
+	if (this->left != nullptr && this->right != nullptr )
+	{
+		int left = this->left->elementMaxSize();
+		int right = this->right->elementMaxSize();
+		return left > right ? left : right;
+	}
+
+	if (this->left != nullptr && this->right == nullptr)
+	{
+		return this->left->elementMaxSize();
+	}
+
+	if (this->left == nullptr && this->right != nullptr)
+	{
+		return this->right->elementMaxSize();
+	}
+
+	return to_string(this->data).length();
 }
