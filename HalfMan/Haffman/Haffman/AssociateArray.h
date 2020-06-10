@@ -153,6 +153,22 @@ public:
 		}
 	}
 
+	void operator=(AssociateArray a2)
+	{
+		Node* temp = this->head;
+		Node* aTemp = a2.head;
+		int length = a2.length();
+		for (int i = 0; i < length; ++i)
+		{
+			temp->key = aTemp->key;
+			temp->value = aTemp->value;
+			temp->next = aTemp->next;
+			temp->parent = aTemp->parent;
+			temp = temp->next;
+			aTemp = aTemp->next;
+		}
+	}
+
 	bool keyExists(char const key)
 	{
 		Node* temp = this->head;
