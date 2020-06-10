@@ -165,7 +165,7 @@ void Tree::printLevel(int const level)
 void Tree::printTree()
 {
 	int height = this->height() + 1;
-	int zero = pow(2, this->height());
+	int zero = pow(2, height - 1);
 
 	for (int i = 1; i < height; ++i)
 	{

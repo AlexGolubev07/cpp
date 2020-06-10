@@ -65,22 +65,27 @@ Node* Node::getNode(int const data)
 
 int Node::elementMaxSize()
 {
+	int currentSize = to_string(this->data).length();
+
 	if (this->left != nullptr && this->right != nullptr )
 	{
 		int left = this->left->elementMaxSize();
 		int right = this->right->elementMaxSize();
-		return left > right ? left : right;
+		int maxLR = left > right ? left : right;
+		return maxLR > currentSize ? maxLR : currentSize;
 	}
 
 	if (this->left != nullptr && this->right == nullptr)
 	{
-		return this->left->elementMaxSize();
+		int left = this->left->elementMaxSize();
+		return left > currentSize ? left : currentSize;
 	}
 
 	if (this->left == nullptr && this->right != nullptr)
 	{
-		return this->right->elementMaxSize();
+		int right = this->right->elementMaxSize();
+		return right > currentSize ? right: currentSize;
 	}
 
-	return to_string(this->data).length();
+	return currentSize;
 }
