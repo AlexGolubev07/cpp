@@ -13,6 +13,23 @@ public:
 		this->head = nullptr;
 	}
 
+	/*AssociateArray(string line)
+	{
+		AssociateArray a;
+		for (int i = 0; i < line.length(); ++i)
+		{
+			if (a.keyExists(line[i]) == true)
+			{
+				++a[line[i]];
+			}
+			else
+			{
+				a.add(line[i], 1);
+			}
+		}
+		a.sort();
+	}*/
+
 	void usualAdd(char const key, int const value)
 	{
 		assert(this->keyExists(key) == false);
@@ -153,7 +170,7 @@ public:
 		}
 	}
 
-	void operator=(AssociateArray a2)
+	AssociateArray operator=(AssociateArray a2)
 	{
 		Node* temp = this->head;
 		Node* aTemp = a2.head;
@@ -167,6 +184,9 @@ public:
 			temp = temp->next;
 			aTemp = aTemp->next;
 		}
+		AssociateArray res;
+		res.head = this->head;
+		return res;
 	}
 
 	bool keyExists(char const key)
