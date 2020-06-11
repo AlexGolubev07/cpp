@@ -8,11 +8,12 @@ int main()
 	AssociateArray a;
 	// cin >> a;
 	a.add('a', 2);
+	cout << a;
 	a.add('b', 1);
+	cout << a;
 	a.add('c', 3);
+	cout << a;
 	a.add('d', 5);
 	cout << a;
-	AssociateArray b = a; // (b == a) = true
-	cout << b;
 	return 0; // error with second, "b"
 }
