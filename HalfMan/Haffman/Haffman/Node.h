@@ -7,7 +7,7 @@ public:
 	Node* parent;
 	Node* next;
 
-	Node(char const key, int const value)
+	Node(char const key = '\0', int const value = 0)
 	{
 		this->key = key;
 		this->value = value;

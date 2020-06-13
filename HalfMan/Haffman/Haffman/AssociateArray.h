@@ -51,7 +51,7 @@ public:
 		temp->next->parent = temp;
 	}
 
-	void add(char const key, int const value)
+	void ArabianAdd(char const key, int const value)
 	{
 		assert(this->keyExists(key) == false);
 
@@ -89,6 +89,44 @@ public:
 		temp->next->next = next;
 	}
 
+	void add(char const key, int const value)
+	{
+		assert(this->keyExists(key) == false);
+
+		Node* temp = this->head;
+
+		if (temp == nullptr)
+		{
+			this->head = new Node(key, value);
+			return;
+		}
+
+		if (value < temp->value)
+		{
+			this->head = new Node(key, value);
+			this->head->next = temp;
+			this->head->next->parent = this->head;
+			return;
+		}
+
+		while (temp->value < value)
+		{
+			if (temp->next == nullptr)
+			{
+				temp->next = new Node(key, value);
+				temp->next->parent = temp;
+				return;
+			}
+			temp = temp->next;
+		}
+
+		Node* next = temp->next;
+		temp = temp->parent;
+		temp->next = new Node(key, value);
+		temp->next->parent = temp;
+		temp->next->next = next;
+	}
+
 	int& operator[](char const key)
 	{
 		assert(this->keyExists(key) == true);
@@ -107,13 +145,30 @@ public:
 		return temp->value;
 	}
 
-	bool sorted()
+	bool arabianSorted()
 	{
 		Node* temp = this->head;
 
 		while(temp->next != nullptr)
 		{
 			if (temp->value < temp->next->value)
+			{
+				return false;
+			}
+
+			temp = temp->next;
+		}
+
+		return true;
+	}
+
+	bool sorted()
+	{
+		Node* temp = this->head;
+
+		while (temp->next != nullptr)
+		{
+			if (temp->value > temp->next->value)
 			{
 				return false;
 			}
@@ -161,7 +216,7 @@ public:
 			}
 			if (key == '0')
 			{
-				associateArray.sort();
+				//associateArray.sort();
 				return is;
 			}
 			std::cin >> value;
@@ -227,7 +282,7 @@ public:
 		return length;
 	}
 
-	void sort()
+	void sortArabian()
 	{
 		Node* temp = this->head;
 		Node* current = nullptr;
@@ -267,6 +322,47 @@ public:
 			--t;
 		}
 
+	}
+
+	void sort()
+	{
+		Node* temp = this->head;
+		Node* current = nullptr;
+		Node* minNodeValue = nullptr;
+		int min = INT_MAX;
+		int length = this->length();
+		int t = length;
+		for (int i = 0; i < length - 1; ++i)
+		{
+			temp = this->head;
+			min = INT_MAX;
+
+			for (int j = 0; j < (length - t); ++j)
+			{
+				temp = temp->next;
+			}
+
+			current = temp;
+			minNodeValue = temp;
+
+			for (int j = 0; j < t; ++j)
+			{
+				if (temp->value < min)
+				{
+					min = temp->value;
+					minNodeValue = temp;
+				}
+				temp = temp->next;
+			}
+
+			char key = current->key;
+			int value = current->value;
+			current->key = minNodeValue->key;
+			current->value = minNodeValue->value;
+			minNodeValue->key = key;
+			minNodeValue->value = value;
+			--t;
+		}
 	}
 
 	~AssociateArray()

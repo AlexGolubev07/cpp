@@ -145,6 +145,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssociateArray.h" />
+    <ClInclude Include="EncodingTable.h" />
+    <ClInclude Include="FrequencyTable.h" />
+    <ClInclude Include="Haffman.h" />
+    <ClInclude Include="HaffManTree.h" />
+    <ClInclude Include="MyList.h" />
     <ClInclude Include="Node.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

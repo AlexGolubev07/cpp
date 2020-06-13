@@ -1,4 +1,5 @@
 #include "AssociateArray.h"
+#include "HaffManTree.h"
 #include <iostream>
 
 using namespace std;
@@ -15,5 +16,7 @@ int main()
 	cout << a;
 	a.add('d', 5);
 	cout << a;
-	return 0; // error with second, "b"
+	HaffmanTree tree;
+	tree.aaToTree(a);
+	return 0;
 }
