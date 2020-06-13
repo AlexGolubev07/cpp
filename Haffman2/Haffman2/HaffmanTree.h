@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <cassert>
 
 class HaffmanTree
 {
@@ -15,11 +16,15 @@ private:
 
 		Node(char const letter = '\0', int const frequency = 0)
 		{
-			// type your code here
+			this->letter = letter;
+			this->frequency = frequency;
+			this->left = nullptr;
+			this->right = nullptr;
+			this->parent = nullptr;
 		}
 	};
 
-	class List
+	class SortedList
 	{
 	private:
 		class Node
@@ -27,29 +32,94 @@ private:
 			Node* next;
 			Node* previous;
 			HaffmanTree::Node node;
+
+			Node(HaffmanTree::Node node)
+			{
+				this->next = nullptr;
+				this->previous = nullptr;
+				this->node.letter = node.letter;
+				this->node.frequency = node.frequency;
+			}
 		};
 
 		Node* head;
 
 	public:
-		List()
+
+		SortedList()
 		{
-			// type your code here
+			this->head = nullptr;
 		}
 
-		~List()
+		~SortedList()
 		{
-			// type your code here
+			Node* temp = this->head;
+			assert(temp != nullptr);
+
+			while (temp->next != nullptr)
+			{
+				temp = temp->next;
+			}
+
+			while (temp != this->head)
+			{
+				temp = temp->previous;
+				delete temp->next;
+			}
+			delete temp;
 		}
 
-		void sortedAdd(HaffmanTree::Node node)
+		void add(HaffmanTree::Node node)
 		{
-			// type your code here
+			Node* temp = this->head;
+			if (temp == nullptr)
+			{
+				temp = new HaffmanTree::SortedList::Node(node);
+				temp.frequency = node.frequency;
+				temp.letter = node.letter;
+				return;
+			}
+			while (temp->node.frequency < node.frequency)
+			{
+				if (temp->next != nullptr)
+				{
+					temp = temp->next;
+				}
+				else
+				{
+					temp->next = new HaffmanTree::SortedList::Node(node);
+					temp->next->previous = temp;
+					temp->next.frequency = node.frequency;
+					temp->next.letter = node.letter;
+					return;
+				}
+			}
+			temp = temp->previous;
+			HaffmanTree::SortedList::Node* next = temp->next;
+			temp->next = new HaffmanTree::SortedList::Node(node);
+			temp->next->next = next;
+			temp->next->previous = temp;
+			temp->next.frequency = node.frequency;
+			temp->next.letter = node.letter;
 		}
 
 		int length()
 		{
-			// type your code here
+			HaffmanTree::SortedList::Node* temp = this->head;
+			int length = 0;
+
+			if (temp == nullptr)
+			{
+				return length;
+			}
+
+			while (temp->next != nullptr)
+			{
+				temp = temp->next;
+				++length;
+			}
+
+			return length;
 		}
 	};
 
