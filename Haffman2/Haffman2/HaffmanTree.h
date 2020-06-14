@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <cassert>
+#include <iostream>
 
 class HaffmanTree
 {
@@ -29,6 +30,7 @@ private:
 	private:
 		class Node
 		{
+		public:
 			Node* next;
 			Node* previous;
 			HaffmanTree::Node node;
@@ -75,8 +77,8 @@ private:
 			if (temp == nullptr)
 			{
 				temp = new HaffmanTree::SortedList::Node(node);
-				temp.frequency = node.frequency;
-				temp.letter = node.letter;
+				temp->node.frequency = node.frequency;
+				temp->node.letter = node.letter;
 				return;
 			}
 			while (temp->node.frequency < node.frequency)
@@ -89,8 +91,8 @@ private:
 				{
 					temp->next = new HaffmanTree::SortedList::Node(node);
 					temp->next->previous = temp;
-					temp->next.frequency = node.frequency;
-					temp->next.letter = node.letter;
+					temp->next->node.frequency = node.frequency;
+					temp->next->node.letter = node.letter;
 					return;
 				}
 			}
@@ -99,8 +101,8 @@ private:
 			temp->next = new HaffmanTree::SortedList::Node(node);
 			temp->next->next = next;
 			temp->next->previous = temp;
-			temp->next.frequency = node.frequency;
-			temp->next.letter = node.letter;
+			temp->next->node.frequency = node.frequency;
+			temp->next->node.letter = node.letter;
 		}
 
 		int length()
@@ -138,7 +140,10 @@ private:
 
 			Node(char const letter = '\0', int const frequency = 0)
 			{
-				// type your code here
+				this->letter = letter;
+				this->frequency = frequency;
+				this->next = nullptr;
+				this->previous = nullptr;
 			}
 		};
 
@@ -147,22 +152,69 @@ private:
 
 		FrequencyTable()
 		{
-			// type your code here
+			this->head = nullptr;
 		}
 
 		~FrequencyTable()
 		{
-			// type your code here
+			Node* temp = this->head;
+
+			assert(temp != nullptr);
+
+			while (temp->next != nullptr)
+			{
+				temp = temp->next;
+			}
+
+			while (temp != this->head)
+			{
+				temp = temp->previous;
+				delete temp->next;
+			}
+			delete temp;
 		}
 
 		void add(char const letter, int const frequency = 0)
 		{
-			// add without sorting
+			Node* temp = this->head;
+
+			if (temp == nullptr)
+			{
+				temp = new Node(letter, frequency);
+				return;
+			}
+
+			while (temp->next != nullptr)
+			{
+				temp = temp->next;
+			}
+
+			temp->next = new Node(letter, frequency);
 		}
 
 		int& operator[](char const letter)
 		{
-			// read or edit frequency by letter
+			Node* temp = this->head;
+			if (temp == nullptr)
+			{
+				std::cout << "Key doesn't exists" << std::endl;
+				return;
+			}
+
+			while (temp->letter != letter)
+			{
+				if (temp->next != nullptr)
+				{
+					temp = temp->next;
+				}
+				else
+				{
+					std::cout << "Key doesn't exists" << std::endl;
+					return;
+				}
+			}
+
+			return temp->frequency;
 		}
 	};
 
@@ -179,31 +231,158 @@ private:
 
 			Node(char const letter, std::string const code)
 			{
-				// type your code here
+				this->code = code;
+				this->letter = letter;
+				this->next = nullptr;
+				this->previous = nullptr;
 			}
 		};
 
-		Node* root;
+		Node* head;
+
+		Node* addHelp(Node* temp, std::string code)
+		{
+			int length = code.length();
+			for (int i = 0; i < length; ++i)
+			{
+				if (code[i] == '0' && temp->code[i] == '1')
+				{
+					return temp->previous;
+				}
+
+				if (code[i] == '1' && temp->code[i] == '0')
+				{
+					return temp;
+				}
+
+				temp = temp->next;
+			}
+
+			return temp->previous;
+		}
 
 	public:
 		EncodingTable()
 		{
-			// type your code here
+			this->head = nullptr;
 		}
 
 		~EncodingTable()
 		{
-			// type your code here
+			Node* temp = this->head;
+
+			assert(temp != nullptr);
+
+			while (temp->next != nullptr)
+			{
+				temp = temp->next;
+			}
+
+			while (temp != this->head)
+			{
+				temp = temp->previous;
+				delete temp->next;
+			}
+			delete temp;
 		}
 
 		void add(char const letter, std::string const code)
 		{
-			// type your code here
+			Node* temp = this->head;
+			if (temp == nullptr)
+			{
+				temp = new Node(letter, code);
+				return;
+			}
+
+			if (temp->next == nullptr)
+			{
+				if (code.length() > this->head->code.length())
+				{
+					this->head->next = new Node(letter, code);
+					this->head->next->previous = this->head;
+					return;
+				}
+
+				if (code.length() < this->head->code.length())
+				{
+					Node* next = this->head;
+					this->head = new Node(letter, code);
+					this->head->next = next;
+					this->head->next->previous = this->head;
+					return;
+				}
+
+				int length = this->head->code.length();
+				for (int i = 0; i < length; ++i)
+				{
+					if (this->head->code[i] == '1' && code[i] == '0')
+					{
+						Node* next = this->head;
+						this->head = new Node(letter, code);
+						this->head->next = next;
+						this->head->next->previous = this->head;
+						return;
+					}
+
+					if (this->head->code[i] == '0' && code[i] == '1')
+					{
+						this->head->next = new Node(letter, code);
+						this->head->next->previous = this->head;
+						return;
+					}
+				}
+				this->head = new Node(letter, code);
+			}
+
+			while (true)
+			{
+				if (temp->code.length() == code.length())
+				{
+					temp = addHelp(temp, code);
+					Node* next = temp->next;
+					temp->next = new Node(letter, code);
+					temp->next->previous = temp;
+					temp->next->next = next;
+					return;
+				}
+
+				if (temp->next != nullptr)
+				{
+					temp = temp->next;
+				}
+				else
+				{
+					temp->next = new Node(letter, code);
+					temp->next->previous = temp;
+					return;
+				}
+			}
 		}
 
-		std::string& operator[](char const code)
+		std::string& operator[](char const letter)
 		{
-			// type your code here
+			Node* temp = this->head;
+
+			if (temp == nullptr)
+			{
+				std::cout << "Code doesn't exists" << std::endl;
+				return;
+			}
+
+			while (temp->letter != letter)
+			{
+				if (temp->next != nullptr)
+				{
+					temp = temp->next;
+				}
+				else
+				{
+					std::cout << "Code doesn't exists" << std::endl;
+					return;
+				}
+			}
+			return temp->code;
 		}
 	};
 
