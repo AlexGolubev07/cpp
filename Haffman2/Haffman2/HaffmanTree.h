@@ -23,24 +23,131 @@ private:
 			this->right = nullptr;
 			this->parent = nullptr;
 		}
+
+		int height()
+		{
+			if (this->left != nullptr && this->right != nullptr)
+			{
+				int left = this->left->height();
+				int right = this->right->height();
+				return left > right ? left + 1 : right + 1;
+			}
+
+			if (this->left != nullptr && this->right == nullptr)
+			{
+				return this->left->height() + 1;
+			}
+
+			if (this->left == nullptr && this->right != nullptr)
+			{
+				return this->right->height() + 1;
+			}
+
+			return 1;
+		}
+
+		int elementMaxSize()
+		{
+			int currentSize = std::to_string(this->frequency).length();
+
+			if (this->left != nullptr && this->right != nullptr)
+			{
+				int left = this->left->elementMaxSize();
+				int right = this->right->elementMaxSize();
+				int maxLR = left > right ? left : right;
+				return maxLR > currentSize ? maxLR : currentSize;
+			}
+
+			if (this->left != nullptr && this->right == nullptr)
+			{
+				int left = this->left->elementMaxSize();
+				return left > currentSize ? left : currentSize;
+			}
+
+			if (this->left == nullptr && this->right != nullptr)
+			{
+				int right = this->right->elementMaxSize();
+				return right > currentSize ? right : currentSize;
+			}
+
+			return currentSize;
+		}
+
+		void printFrequencyTable()
+		{
+			if (this->left == nullptr && this->right == nullptr)
+			{
+				if (this->frequency <= 10)
+				{
+					std::cout << this->letter << ": " << this->frequency << " ";
+				}
+				else
+				{
+					std::cout << this->letter << ": " << this->frequency << " ";
+				}
+				return;
+			}
+			this->left->printFrequencyTable();
+			this->right->printFrequencyTable();
+		}
+
+		void helpPrintEncodingTable(std::string code)
+		{
+			if (this->left == nullptr && this->right == nullptr)
+			{
+				std::cout << this->letter << ": " << code << std::endl;
+				return;
+			}
+
+			this->left->helpPrintEncodingTable(code + "0");
+			this->right->helpPrintEncodingTable(code + "1");
+		}
+
+		Node* getNode(int const frequency)
+		{
+			if (this->frequency == frequency)
+			{
+				return this;
+			}
+
+			if (this->left != nullptr && this->right != nullptr)
+			{
+				if (this->left->getNode(frequency) == nullptr)
+				{
+					return this->right->getNode(frequency);
+				}
+				return this->left->getNode(frequency);
+			}
+
+			if (this->left == nullptr && this->right != nullptr)
+			{
+				return this->right->getNode(frequency);
+			}
+
+			if (this->left != nullptr && this->right == nullptr)
+			{
+				return this->right->getNode(frequency);
+			}
+
+			return nullptr;
+		}
 	};
 
 	class SortedList
 	{
-	private:
+	public:
 		class Node
 		{
 		public:
 			Node* next;
 			Node* previous;
-			HaffmanTree::Node node;
+			HaffmanTree::Node* node;
 
-			Node(HaffmanTree::Node node)
+			Node(HaffmanTree::Node* node)
 			{
 				this->next = nullptr;
 				this->previous = nullptr;
-				this->node.letter = node.letter;
-				this->node.frequency = node.frequency;
+				this->node = node;
 			}
 		};
 
@@ -71,17 +178,17 @@ private:
 			delete temp;
 		}
 
-		void add(HaffmanTree::Node node)
+		void add(HaffmanTree::Node* node)
 		{
 			Node* temp = this->head;
 			if (temp == nullptr)
 			{
-				temp = new HaffmanTree::SortedList::Node(node);
-				temp->node.frequency = node.frequency;
-				temp->node.letter = node.letter;
+				this->head = new HaffmanTree::SortedList::Node(node);
+				this->head->node->frequency = node->frequency;
+				this->head->node->letter = node->letter;
 				return;
 			}
-			while (temp->node.frequency < node.frequency)
+			while (temp->node->frequency < node->frequency)
 			{
 				if (temp->next != nullptr)
 				{
@@ -91,23 +198,33 @@ private:
 				{
 					temp->next = new HaffmanTree::SortedList::Node(node);
 					temp->next->previous = temp;
-					temp->next->node.frequency = node.frequency;
-					temp->next->node.letter = node.letter;
+					temp->next->node->frequency = node->frequency;
+					temp->next->node->letter = node->letter;
 					return;
 				}
+			}
+
+			if (temp == this->head)
+			{
+				Node* next = this->head;
+				this->head = new HaffmanTree::SortedList::Node(node);
+				this->head->next = next;
+				this->head->next->previous = this->head;
+				return;
 			}
 			temp = temp->previous;
 			HaffmanTree::SortedList::Node* next = temp->next;
 			temp->next = new HaffmanTree::SortedList::Node(node);
 			temp->next->next = next;
+			temp->next->next->previous = temp->next;
 			temp->next->previous = temp;
-			temp->next->node.frequency = node.frequency;
-			temp->next->node.letter = node.letter;
+			temp->next->node->frequency = node->frequency;
+			temp->next->node->letter = node->letter;
 		}
 
 		int length()
 		{
-			HaffmanTree::SortedList::Node* temp = this->head;
+			Node* temp = this->head;
 			int length = 0;
 
 			if (temp == nullptr)
@@ -121,7 +238,23 @@ private:
 				++length;
 			}
 
-			return length;
+			return length + 1;
+		}
+
+		HaffmanTree::Node* executioner()
+		{
+			if (this->length() == 1)
+			{
+				Node* head = this->head;
+				this->head = nullptr;
+				return head->node;
+			}
+			Node* next = this->head->next;
+			Node* head = this->head;
+			this->head = next;
+			this->head->previous = nullptr;
+
+			return head->node;
 		}
 	};
 
@@ -129,7 +262,7 @@ private:
 
 	class FrequencyTable
 	{
-	private:
+	public:
 		class Node
 		{
 		public:
@@ -174,13 +307,13 @@ private:
 			delete temp;
 		}
 
-		void add(char const letter, int const frequency = 0)
+		void add(char const letter, int const frequency = 1)
 		{
 			Node* temp = this->head;
 
 			if (temp == nullptr)
 			{
-				temp = new Node(letter, frequency);
+				this->head = new Node(letter, frequency);
 				return;
 			}
 
@@ -190,6 +323,31 @@ private:
 			}
 
 			temp->next = new Node(letter, frequency);
+			temp->next->previous = temp;
+		}
+
+		bool letterExists(char const letter)
+		{
+			Node* temp = this->head;
+			
+			if (temp == nullptr)
+			{
+				return false;
+			}
+
+			while (temp->letter != letter)
+			{
+				if (temp->next != nullptr)
+				{
+					temp = temp->next;
+				}
+				else
+				{
+					return false;
+				}
+			}
+
+			return true;
 		}
 
 		int& operator[](char const letter)
@@ -198,7 +356,7 @@ private:
 			if (temp == nullptr)
 			{
 				std::cout << "Key doesn't exists" << std::endl;
-				return;
+				assert(0 == 1);
 			}
 
 			while (temp->letter != letter)
@@ -210,11 +368,53 @@ private:
 				else
 				{
 					std::cout << "Key doesn't exists" << std::endl;
-					return;
+					assert(0 == 1);
 				}
 			}
 
 			return temp->frequency;
+		}
+
+		friend std::ostream& operator<<(std::ostream out, FrequencyTable const& frequencyTable)
+		{
+			Node* temp = frequencyTable.head;
+
+			if (temp == nullptr)
+			{
+				out << "Table is empty";
+				return out;
+			}
+
+			while (temp->next != nullptr)
+			{
+				out << temp->letter << ": " << temp->frequency;
+				temp = temp->next;
+			}
+			out << temp->letter << ": " << temp->frequency;
+
+			return out;
+		}
+
+		std::string toString()
+		{
+			std::string s = "";
+
+			Node* temp = this->head;
+
+			if (temp == nullptr)
+			{
+				s += "Table is empty";
+				return s;
+			}
+
+			while (temp->next != nullptr)
+			{
+				s += std::to_string(temp->letter) + ": " + std::to_string(temp->frequency) + " ";
+				temp = temp->next;
+			}
+			s += std::to_string(temp->letter) + ": " + std::to_string(temp->frequency) + " ";
+
+			return s;
 		}
 	};
 
@@ -367,7 +567,7 @@ private:
 			if (temp == nullptr)
 			{
 				std::cout << "Code doesn't exists" << std::endl;
-				return;
+				assert(0 == 1);
 			}
 
 			while (temp->letter != letter)
@@ -379,27 +579,208 @@ private:
 				else
 				{
 					std::cout << "Code doesn't exists" << std::endl;
-					return;
+					assert(0 == 1);
 				}
 			}
 			return temp->code;
 		}
 	};
 
+	int elementMaxSize() const
+	{
+		return this->root->elementMaxSize();
+	}
+
+	int height() const
+	{
+		if (this->root == nullptr)
+		{
+			return 0;
+		}
+
+		return this->root->height();
+	}
+
+	Node* getNode(int frequency)
+	{
+		return this->root->getNode(frequency);
+	}
+
+	Node* getNode(int level, int position) const
+	{
+		Node* t = this->root;
+
+		if (this->height() == 1)
+		{
+			return t;
+		}
+
+		int dvoika = pow(2, level - 1);
+
+		/*
+		обработка исключений
+		*/
+
+		for (int i = 0; i < level - 1; ++i)
+		{
+			if (position <= dvoika / 2)
+			{
+				if (t->left == nullptr)
+				{
+					return nullptr;
+				}
+
+				t = t->left;
+			}
+			else
+			{
+				if (t->right == nullptr)
+				{
+					return nullptr;
+				}
+
+				t = t->right;
+				position -= dvoika / 2;
+			}
+			dvoika /= 2;
+		}
+
+		return t;
+	}
+
+	Node** getLevel(int const level) const
+	{
+		int positions = pow(2, level - 1);
+
+		Node** a = new Node * [positions];
+
+		if (level == 1)
+		{
+			positions = 1;
+
+			a[0] = this->root;
+			return a;
+		}
+
+		for (int i = 0; i < positions; ++i)
+		{
+			a[i] = this->getNode(level, i + 1);
+		}
+
+		return a;
+	}
+
+	std::string levelToString(int const level, int const amountOfSpacesBefore, int const amountOfSpacesInside,
+		int const amountOfElements, int const elementMaxSize) const
+	{
+		std::string s = "";
+		Node** currentLevel = this->getLevel(level);
+		int const levelSize = pow(2, level - 1);
+
+		std::string spacesBefore = std::string(amountOfSpacesBefore * elementMaxSize, ' ');
+		s += spacesBefore;
+
+		std::string element = std::to_string(this->getLevel(level)[0]->frequency);
+		element = std::string(elementMaxSize - element.length(), ' ') + element;
+		s += element;
+
+		std::string spacesInside = std::string(amountOfSpacesInside * elementMaxSize, ' ');
+		for (int i = 1; i < levelSize; ++i)
+		{
+			std::string element = std::to_string(this->getLevel(level)[i]->frequency);
+			element = std::string(elementMaxSize - element.length(), ' ') + element;
+			s += spacesInside + element;
+		}
+		s += spacesBefore;
+
+		return s;
+	}
+
+	std::string toString() const
+	{
+		std::string s = "";
+		int const h = this->height();
+		int dvoika = pow(2, h);
+		int amountOfElements = 1;
+		int const elementMaxSize = this->elementMaxSize();
+
+		for (int level = 1; level <= h; ++level)
+		{
+			int const amountOfSpacesBefore = dvoika / 2 - 1;
+			int const amountOfSpacesInside = dvoika - 1;
+
+			s += this->levelToString(level, amountOfSpacesBefore, amountOfSpacesInside, amountOfElements, elementMaxSize) + "\n";
+
+			amountOfElements *= 2;
+			dvoika /= 2;
+		}
+
+		return s;
+	}
+
 public:
 	HaffmanTree(std::string const text)
 	{
-		// type your code here
+		FrequencyTable frequencyTable;
+		int length = text.length();
+		// от греха подальше
+		for (int i = 0; i < length; ++i)
+		{
+			if (frequencyTable.letterExists(text[i]))
+			{
+				++frequencyTable[text[i]];
+			}
+			else
+			{
+				frequencyTable.add(text[i]);
+			}
+		}
+		
+		SortedList sortedList;
+		HaffmanTree::FrequencyTable::Node* temp = frequencyTable.head;
+
+		while (temp->next != nullptr)
+		{
+			sortedList.add(new HaffmanTree::Node(temp->letter, temp->frequency));
+			temp = temp->next;
+		}
+		sortedList.add(new HaffmanTree::Node(temp->letter, temp->frequency));
+
+		while (sortedList.length() != 1)
+		{
+			Node* left = sortedList.executioner();
+			Node* right = sortedList.executioner();
+			HaffmanTree::Node* parent = new HaffmanTree::Node('\0', left->frequency + right->frequency);
+			parent->left = left;
+			parent->right = right;
+			left->parent = parent;
+			right->parent = parent;
+			sortedList.add(parent);
+		}
+
+		this->root = sortedList.head->node;
 	}
 
 	void printFrequencyTable()
 	{
-		// type your code here
+		if (this->root == nullptr)
+		{
+			std::cout << "Tree is empty" << std::endl;
+			return;
+		}
+
+		this->root->printFrequencyTable();
 	}
 
 	void printEncodingTable()
 	{
-		// type your code here
+		if (this->root == nullptr)
+		{
+			std::cout << "Tree is empty" << std::endl;
+			return;
+		}
+
+		this->root->helpPrintEncodingTable("");
 	}
 
 	std::string getEncodedText()
@@ -410,5 +791,12 @@ public:
 	std::string getDecodedText(std::string encodedText)
 	{
 		// type your code here
+	}
+
+	friend std::ostream& operator<<(std::ostream& out, HaffmanTree const& tree)
+	{
+		out << tree.toString();
+
+		return out;
 	}
 };
