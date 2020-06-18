@@ -6,6 +6,8 @@
 class HaffmanTree
 {
 private:
+#pragma region Private
+#pragma region classes
 	class Node
 	{
 	public:
@@ -79,11 +81,11 @@ private:
 			{
 				if (this->frequency <= 10)
 				{
-					std::cout << this->letter << ": " << this->frequency << " ";
+					std::cout << this->letter << ": " << this->frequency << std::endl;
 				}
 				else
 				{
-					std::cout << this->letter << ": " << this->frequency << " ";
+					std::cout << this->letter << ":" << this->frequency << std::endl;
 				}
 				return;
 			}
@@ -258,8 +260,6 @@ private:
 		}
 	};
 
-	Node* root;
-
 	class FrequencyTable
 	{
 	public:
@@ -280,7 +280,6 @@ private:
 			}
 		};
 
-	public:
 		Node* head;
 
 		FrequencyTable()
@@ -585,6 +584,8 @@ private:
 			return temp->code;
 		}
 	};
+#pragma endregion classes
+	Node* root;
 
 	int elementMaxSize() const
 	{
@@ -663,14 +664,15 @@ private:
 		}
 
 		for (int i = 0; i < positions; ++i)
-		{
+		{// от греха подальше
 			a[i] = this->getNode(level, i + 1);
 		}
 
 		return a;
 	}
 
-	std::string levelToString(int const level, int const amountOfSpacesBefore, int const amountOfSpacesInside,
+#pragma region out
+	std::string levelToStringFrequency(int const level, int const amountOfSpacesBefore, int const amountOfSpacesInside,
 		int const amountOfElements, int const elementMaxSize) const
 	{
 		std::string s = "";
@@ -680,14 +682,29 @@ private:
 		std::string spacesBefore = std::string(amountOfSpacesBefore * elementMaxSize, ' ');
 		s += spacesBefore;
 
-		std::string element = std::to_string(this->getLevel(level)[0]->frequency);
+		std::string element = "";
+		if (this->getLevel(level)[0] != nullptr)
+		{
+			element += std::to_string(this->getLevel(level)[0]->frequency);
+		}
+		else
+		{
+			element = " ";
+		}
 		element = std::string(elementMaxSize - element.length(), ' ') + element;
 		s += element;
 
 		std::string spacesInside = std::string(amountOfSpacesInside * elementMaxSize, ' ');
 		for (int i = 1; i < levelSize; ++i)
 		{
-			std::string element = std::to_string(this->getLevel(level)[i]->frequency);
+			if (this->getLevel(level)[i] != nullptr)
+			{
+				element = std::to_string(this->getLevel(level)[i]->frequency);
+			}
+			else
+			{
+				element = " ";
+			}
 			element = std::string(elementMaxSize - element.length(), ' ') + element;
 			s += spacesInside + element;
 		}
@@ -696,20 +713,75 @@ private:
 		return s;
 	}
 
-	std::string toString() const
+	std::string levelToStringLetter(int const level, int const amountOfSpacesBefore, int const amountOfSpacesInside,
+		int const amountOfElements, int const elementMaxSize) const
+	{
+		std::string s = "";
+		Node** currentLevel = this->getLevel(level);
+		int const levelSize = pow(2, level - 1);
+
+		std::string spacesBefore = std::string(amountOfSpacesBefore * elementMaxSize, ' ');
+		s += spacesBefore;
+
+		std::string element = "";
+		if (this->getLevel(level)[0] != nullptr)
+		{
+			if (this->getLevel(level)[0]->letter != '\0')
+			{
+				element = std::string(1, this->getLevel(level)[0]->letter);
+			}
+			else
+			{
+				element = std::string(1, '0');
+			}
+		}
+		else
+		{
+			element = " ";
+		}
+		element = std::string(elementMaxSize - element.length(), ' ') + element;
+		s += element;
+
+		std::string spacesInside = std::string(amountOfSpacesInside * elementMaxSize, ' ');
+		for (int i = 1; i < levelSize; ++i)
+		{
+			if (this->getLevel(level)[i] != nullptr)
+			{
+				if (this->getLevel(level)[i]->letter != '\0')
+				{
+					element = std::string(1, this->getLevel(level)[i]->letter);
+				}
+				else
+				{
+					element = std::string(1, '0');
+				}
+			}
+			else
+			{
+				element = " ";
+			}
+			element = std::string(elementMaxSize - element.length(), ' ') + element;
+			s += spacesInside + element;
+		}
+		s += spacesBefore;
+
+		return s;
+	}
+
+	std::string toStringFrequency() const
 	{
 		std::string s = "";
 		int const h = this->height();
 		int dvoika = pow(2, h);
 		int amountOfElements = 1;
-		int const elementMaxSize = this->elementMaxSize();
+		int const elementMaxSize = 1; // this->elementMaxSize();
 
 		for (int level = 1; level <= h; ++level)
 		{
 			int const amountOfSpacesBefore = dvoika / 2 - 1;
 			int const amountOfSpacesInside = dvoika - 1;
 
-			s += this->levelToString(level, amountOfSpacesBefore, amountOfSpacesInside, amountOfElements, elementMaxSize) + "\n";
+			s += this->levelToStringFrequency(level, amountOfSpacesBefore, amountOfSpacesInside, amountOfElements, elementMaxSize) + "\n";
 
 			amountOfElements *= 2;
 			dvoika /= 2;
@@ -718,12 +790,36 @@ private:
 		return s;
 	}
 
+	std::string toStringLetters() const
+	{
+		std::string s = "";
+		int const h = this->height();
+		int dvoika = pow(2, h);
+		int amountOfElements = 1;
+		int const elementMaxSize = 1; // this->elementMaxSize();
+
+		for (int level = 1; level <= h; ++level)
+		{
+			int const amountOfSpacesBefore = dvoika / 2 - 1;
+			int const amountOfSpacesInside = dvoika - 1;
+
+			s += this->levelToStringLetter(level, amountOfSpacesBefore, amountOfSpacesInside, amountOfElements, elementMaxSize) + "\n";
+
+			amountOfElements *= 2;
+			dvoika /= 2;
+		}
+
+		return s;
+	}
+#pragma endregion out
+
+#pragma endregion private
+
 public:
 	HaffmanTree(std::string const text)
 	{
 		FrequencyTable frequencyTable;
 		int length = text.length();
-		// от греха подальше
 		for (int i = 0; i < length; ++i)
 		{
 			if (frequencyTable.letterExists(text[i]))
@@ -770,6 +866,7 @@ public:
 		}
 
 		this->root->printFrequencyTable();
+		std::cout << std::endl << std::endl;
 	}
 
 	void printEncodingTable()
@@ -781,6 +878,7 @@ public:
 		}
 
 		this->root->helpPrintEncodingTable("");
+		std::cout << std::endl << std::endl;
 	}
 
 	std::string getEncodedText()
@@ -795,7 +893,10 @@ public:
 
 	friend std::ostream& operator<<(std::ostream& out, HaffmanTree const& tree)
 	{
-		out << tree.toString();
+		 out << tree.toStringFrequency();
+		 out << std::endl;
+		 out << tree.toStringLetters();
+		 out << std::endl;
 
 		return out;
 	}
