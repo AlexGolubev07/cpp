@@ -7,7 +7,9 @@ int main()
 {
 	HaffmanTree ooh("aaqbqaccc");
 	cout << ooh;
-	ooh.printFrequencyTable();
+	cout << ooh.encodedText << endl << endl << "aaqbqaccc" << endl << endl;
+	cout << ooh.getDecodedText() << endl << endl;
 	ooh.printEncodingTable();
+	ooh.printFrequencyTable();
 	return 0;
 }

@@ -105,6 +105,25 @@ private:
 			this->right->helpPrintEncodingTable(code + "1");
 		}
 
+		std::string getNodeCode(char letter, std::string code)
+		{
+			if (this->letter == letter)
+			{
+				return code;
+			}
+
+			if (this->left != nullptr && this->right != nullptr)
+			{
+				if (this->left->getNodeCode(letter, code + "0") == " ")
+				{
+					return this->right->getNodeCode(letter, code + "1");
+				}
+				return this->left->getNodeCode(letter, code + "0");
+			}
+
+			return " ";
+		}
+
 		Node* getNode(int const frequency)
 		{
 			if (this->frequency == frequency)
@@ -586,7 +605,8 @@ private:
 	};
 #pragma endregion classes
 	Node* root;
-
+	std::string decodedText;
+	
 	int elementMaxSize() const
 	{
 		return this->root->elementMaxSize();
@@ -600,6 +620,51 @@ private:
 		}
 
 		return this->root->height();
+	}
+
+	std::string operator[](char const letter)
+	{
+		return this->root->getNodeCode(letter, "");
+	}
+
+	std::string getEncodedText(std::string text)
+	{
+		int length = text.length();
+		std::string encodedText = "";
+
+		for (int i = 0; i < length; ++i)
+		{
+			encodedText += this->operator[](text[i]);
+		}
+
+		return encodedText;
+	}
+
+	std::string getDecodedText()
+	{
+		Node* temp = this->root;
+		std::string encodedText = this->encodedText;
+		std::string decodedText = "";
+		int length = encodedText.length();
+
+		for (int i = 0; i < length; ++i)
+		{
+			if (encodedText[i] == '0')
+			{
+				temp = temp->left;
+			}
+			else
+			{
+				temp = temp->right;
+			}
+			if (temp->left == nullptr && temp->right == nullptr)
+			{
+				decodedText += std::string(1, temp->letter);
+				temp = this->root;
+			}
+		}
+		//от греха подальше
+		return decodedText;
 	}
 
 	Node* getNode(int frequency)
@@ -664,7 +729,7 @@ private:
 		}
 
 		for (int i = 0; i < positions; ++i)
-		{// от греха подальше
+		{
 			a[i] = this->getNode(level, i + 1);
 		}
 
@@ -816,6 +881,8 @@ private:
 #pragma endregion private
 
 public:
+	std::string encodedText;
+
 	HaffmanTree(std::string const text)
 	{
 		FrequencyTable frequencyTable;
@@ -855,6 +922,8 @@ public:
 		}
 
 		this->root = sortedList.head->node;
+		this->decodedText = text;
+		this->encodedText = this->getEncodedText(text);
 	}
 
 	void printFrequencyTable()
@@ -881,16 +950,6 @@ public:
 		std::cout << std::endl << std::endl;
 	}
 
-	std::string getEncodedText()
-	{
-		// type your code here
-	}
-
-	std::string getDecodedText(std::string encodedText)
-	{
-		// type your code here
-	}
-
 	friend std::ostream& operator<<(std::ostream& out, HaffmanTree const& tree)
 	{
 		 out << tree.toStringFrequency();
@@ -901,3 +960,41 @@ public:
 		return out;
 	}
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ebooy
