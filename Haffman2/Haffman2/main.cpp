@@ -6,10 +6,11 @@ using namespace std;
 int main()
 {
 	HaffmanTree ooh("aaqbqaccc");
-	cout << ooh;
-	cout << ooh.encodedText << endl << endl << "aaqbqaccc" << endl << endl;
-	cout << ooh.getDecodedText() << endl << endl;
+	cout << "aaqbqaccc" << endl << endl;
+	cout << ooh << endl << endl;
 	ooh.printEncodingTable();
 	ooh.printFrequencyTable();
+
+	cout << ooh.getDecodedText() << endl << endl;
 	return 0;
 }

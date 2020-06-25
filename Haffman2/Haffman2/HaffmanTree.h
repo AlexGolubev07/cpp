@@ -2,6 +2,41 @@
 #include <string>
 #include <cassert>
 #include <iostream>
+#include <Windows.h>
+using namespace std;
+
+
+enum ConsoleColor
+{
+	Black = 0,
+	Blue = 1,
+	Green = 2,
+	Cyan = 3,
+	Red = 4,
+	Magenta = 5,
+	Brown = 6,
+	LightGray = 7,
+	DarkGray = 8,
+	LightBlue = 9,
+	LightGreen = 10,
+	LightCyan = 11,
+	LightRed = 12,
+	LightMagenta = 13,
+	Yellow = 14,
+	White = 15
+};
+
+void SetColor(int text, int background)
+{
+	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hStdOut, (WORD)((background << 4) | text));
+}
+
+void SetColor(int text, ConsoleColor/*int*/ background)
+{
+	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hStdOut, (WORD)((background << 4) | text));
+}
 
 class HaffmanTree
 {
@@ -81,11 +116,17 @@ private:
 			{
 				if (this->frequency <= 10)
 				{
-					std::cout << this->letter << ": " << this->frequency << std::endl;
+					SetColor(12, Black);
+					std::cout << this->letter << ": ";
+					SetColor(9, Black);
+					std::cout << this->frequency << std::endl;
 				}
 				else
 				{
-					std::cout << this->letter << ":" << this->frequency << std::endl;
+					SetColor(12, Black);
+					std::cout << this->letter << ":";
+					SetColor(9, Black);
+					std::cout << this->frequency << std::endl;
 				}
 				return;
 			}
@@ -97,7 +138,10 @@ private:
 		{
 			if (this->left == nullptr && this->right == nullptr)
 			{
-				std::cout << this->letter << ": " << code << std::endl;
+				SetColor(12, Black);
+				std::cout << this->letter << ": ";
+				SetColor(9, Black);
+				std::cout << code << std::endl;
 				return;
 			}
 
@@ -619,6 +663,7 @@ private:
 			return 0;
 		}
 
+		//от греха подальше
 		return this->root->height();
 	}
 
@@ -638,33 +683,6 @@ private:
 		}
 
 		return encodedText;
-	}
-
-	std::string getDecodedText()
-	{
-		Node* temp = this->root;
-		std::string encodedText = this->encodedText;
-		std::string decodedText = "";
-		int length = encodedText.length();
-
-		for (int i = 0; i < length; ++i)
-		{
-			if (encodedText[i] == '0')
-			{
-				temp = temp->left;
-			}
-			else
-			{
-				temp = temp->right;
-			}
-			if (temp->left == nullptr && temp->right == nullptr)
-			{
-				decodedText += std::string(1, temp->letter);
-				temp = this->root;
-			}
-		}
-		//от греха подальше
-		return decodedText;
 	}
 
 	Node* getNode(int frequency)
@@ -879,7 +897,6 @@ private:
 #pragma endregion out
 
 #pragma endregion private
-
 public:
 	std::string encodedText;
 
@@ -936,6 +953,7 @@ public:
 
 		this->root->printFrequencyTable();
 		std::cout << std::endl << std::endl;
+		SetColor(15, Black);
 	}
 
 	void printEncodingTable()
@@ -948,53 +966,76 @@ public:
 
 		this->root->helpPrintEncodingTable("");
 		std::cout << std::endl << std::endl;
+		SetColor(15, Black);
 	}
 
 	friend std::ostream& operator<<(std::ostream& out, HaffmanTree const& tree)
 	{
-		 out << tree.toStringFrequency();
+		SetColor(9, Black);
+		int length = tree.toStringLetters().length();
+		int index = 0;
+		for (int i = 0; i < length; ++i)
+		{
+			if (tree.toStringLetters()[i] == '0')
+			{
+				SetColor(9, Black);
+				out << tree.toStringFrequency()[i];
+			}
+			else
+			{
+				SetColor(12, Black);
+				out << tree.toStringLetters()[i];
+			}
+		}
+
 		 out << std::endl;
-		 out << tree.toStringLetters();
-		 out << std::endl;
+		 SetColor(15, Black);
 
 		return out;
 	}
+    
+	std::string getDecodedText()
+	{
+		Node* temp = this->root;
+		// ebooooy
+		std::string encodedText = this->encodedText;
+		std::string decodedText = "";
+		int length = encodedText.length();
+		int codeLength = 0;
+		bool red = false;
+
+		SetColor(12, Black);
+
+		for (int i = 0; i < length; ++i)
+		{
+			if (encodedText[i] == '0')
+			{
+				temp = temp->left;
+			}
+			else
+			{
+				temp = temp->right;
+			}
+			std::cout << encodedText[i];
+			if (temp->left == nullptr && temp->right == nullptr)
+			{
+				if (red == true)
+				{
+					SetColor(12, Black);
+					red = false;
+				}
+				else
+				{
+					SetColor(9, Black);
+					red = true;
+				}
+
+				decodedText += std::string(1, temp->letter);
+				temp = this->root;
+			}
+		}
+		std::cout << std::endl;
+		SetColor(15, Black);
+		return decodedText;
+	}
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ebooy
