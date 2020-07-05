@@ -4,6 +4,399 @@
 
 using namespace std;
 
+class intl
+{
+private:
+#pragma region private
+	int sumOfChar(char firstCh, char secondCh, bool firstm, bool secondm)
+	{
+		int first = toInt(firstCh);
+		int second = toInt(secondCh);
+		if (firstm && !secondm)
+			return -first + second;
+		if (!firstm && secondm)
+		{
+			if (first >= second)
+				return first - second;
+			return -(10 - abs(first - second));
+		}
+		if (firstm && secondm)
+			return -first - second;
+		return first + second;
+	}
+
+	int toInt(char data)
+	{
+		return data - '0';
+	}
+
+	int mult(char firstCh, char secondCh)
+	{
+		return toInt(firstCh) * toInt(secondCh);
+	}
+
+	string toString(int n)
+	{
+		if (n == 0)
+			return "0";
+		string res = "";
+		while (n > 0)
+		{
+			if ((n % 10) == 0)
+				res = "0" + res;
+			if ((n % 10) == 1)
+				res = "1" + res;
+			if ((n % 10) == 2)
+				res = "2" + res;
+			if ((n % 10) == 3)
+				res = "3" + res;
+			if ((n % 10) == 4)
+				res = "4" + res;
+			if ((n % 10) == 5)
+				res = "5" + res;
+			if ((n % 10) == 6)
+				res = "6" + res;
+			if ((n % 10) == 7)
+				res = "7" + res;
+			if ((n % 10) == 8)
+				res = "8" + res;
+			if ((n % 10) == 9)
+				res = "9" + res;
+		}
+		if (n < 0)
+			res = "-" + res;
+		return res;
+	}
+
+	string sumOfTwoPositivå(string const& firstf, string const& seconds)
+	{
+		string first = firstf;
+		string second = seconds;
+		int const length = first.length() > second.length() ? first.length() : second.length();
+
+		if (first.length() == length)
+			second = string(length - second.length(), '0') + second;
+		else
+			first = string(length - first.length(), '0') + first;
+
+		string res = "";
+		int one = 0;
+		for (int i = length - 1; i >= 0; --i)
+		{
+			int sum = sumOfChar(first[i], second[i], false, false);
+			res = toString((sum + one) % 10) + res;
+			if ((sum + one) >= 10)
+				one = 1;
+			if ((sum + one) < 10)
+				one = 0;
+			if (i == 0 && one == 1)
+				res = string(1, '1') + res;
+		}
+
+		return res;
+	}
+
+	string subtractOfTwoPositive(string const& firstf, string const& seconds, bool secondAttemp = false)
+	{
+		if (firstf == seconds)
+			return "0";
+		if (seconds.length() > firstf.length())
+			return "-" + subtractOfTwoPositive(seconds, firstf, true);
+		if (secondAttemp == false && firstf.length() == seconds.length())
+		{
+			for (int i = 0; i < firstf.length(); ++i)
+			{
+				if (toInt(firstf[i]) < toInt(seconds[i]))
+					return "-" + subtractOfTwoPositive(seconds, firstf, true);
+			}
+		}
+
+		int length = firstf.length() > seconds.length() ? firstf.length() : seconds.length();
+		int one = 0;
+		string first = firstf;
+		string second = seconds;
+		string res = "";
+
+		if (first.length() == length)
+			second = string(length - second.length(), '0') + second;
+		else
+			first = string(length - first.length(), '0') + first;
+
+		for (int i = length - 1; i >= 0; --i)
+		{
+			int sum = sumOfChar(first[i], second[i], false, true);
+			if (i == 0 && first.length() == second.length() + 1)
+				sum += 10;
+			if (sum != one)
+				res = toString(abs((sum + one)) % 10) + res;
+			else
+				res = "0" + res;
+			if ((sum + one) >= 0)
+				one = 0;
+			if ((sum + one) < 0)
+				one = -1;
+			if (i == 0 && one == -1)
+				res = "1" + res;
+		}
+		while (res[0] == '0')
+			res.erase(0, 1);
+		return res;
+	}
+
+	string multiple(string const& firstf, string const& seconds)
+	{
+		string first = firstf;
+		string second = seconds;
+		int const length = first.length() > second.length() ? first.length() : second.length();
+
+		if (first.length() == length)
+			second = string(length - second.length(), '0') + second;
+		else
+			first = string(length - first.length(), '0') + first;
+
+		string res = "";
+		int one = 0;
+		for (int i = length - 1; i >= 0; --i)
+		{
+			int mul = mult(first[i], second[i]);
+			res = toString((mul + one) % 10) + res;
+			if ((mul + one) >= 10)
+				one = (mul + one) / 10;
+			if ((mul + one) < 10)
+				one = 0;
+			if (i == 0 && one != 0)
+				res = toString(one) + res;
+		}
+
+		return res;
+	}
+
+	string operatorMult(string const& first, string const& second)
+	{
+		if ((first[0] == '-' && second[0] != '-') || (first[0] != '-' && second[0] == '-'))
+			return "-" + this->multiple(first, second);
+		return this->multiple(first, second);
+	}
+
+	string operatorPlus(string const& first, string const& second)
+	{
+		string positiveFirst = first;
+		string positiveSecond = second;
+
+		if (first[0] == '-')
+			positiveFirst = string(first, 1, first.length());
+		if (second[0] == '-')
+			positiveSecond = string(second, 1, second.length());
+
+		if (first[0] != '-' && second[0] != '-')
+			return sumOfTwoPositivå(positiveFirst, positiveSecond);
+
+		if (first[0] == '-' && second[0] == '-')
+			return "-" + sumOfTwoPositivå(positiveFirst, positiveSecond);
+
+		if (first[0] != '-' && second[0] == '-')
+			return subtractOfTwoPositive(positiveFirst, positiveSecond);
+
+		if (first[0] == '-' && second[0] != '-')
+			return subtractOfTwoPositive(positiveSecond, positiveFirst);
+	}
+#pragma endregion private
+public:
+	string data;
+
+	intl(string data = "0")
+	{
+		this->data = data;
+	}
+
+	intl operator=(intl& other)
+	{
+		return intl(other.data);
+	}
+
+	intl operator+(intl& other)
+	{
+		return this->operatorPlus(this->data, other.data);
+	}
+
+	intl operator+(int& other)
+	{
+		return this->operatorPlus(this->data, toString(other));
+	}
+
+	void operator+=(intl& other)
+	{
+		this->data = this->operator+(other).data;
+	}
+
+	intl operator-(intl& other)
+	{
+		return this->subtractOfTwoPositive(this->data, other.data);
+	}
+
+	intl operator-(int& other)
+	{
+		return this->sumOfTwoPositivå(this->data, toString(other));
+	}
+
+	void operator-=(intl& other)
+	{
+		this->data = this->operator-(other).data;
+	}
+
+	intl operator*(intl& other)
+	{
+		return intl(this->operatorMult((this->data), other.data));
+	}
+
+	void operator*=(intl& other)
+	{
+		this->data = this->operatorMult((this->data), other.data);
+	}
+
+	intl operator--()
+	{
+		this->data = this->subtractOfTwoPositive(this->data, "1");
+	}
+
+	intl operator++()
+	{
+		this->data = this->sumOfTwoPositivå(this->data, "1");
+	}
+
+	bool operator==(intl& other)
+	{
+		return this->data == other.data;
+	}
+
+	bool operator==(int& other)
+	{
+		return this->data == toString(other);
+	}
+
+	bool operator!=(intl& other)
+	{
+		return this->data != other.data;
+	}
+
+	bool operator!=(int& other)
+	{
+		return this->data != toString(other);
+	}
+
+	bool operator>(intl& other)
+	{
+		if (this->data == other.data)
+			return false;
+		if (this->data.length() > other.data.length())
+			return true;
+		if (this->data.length() < other.data.length())
+			return false;
+		for (int i = 0; i < this->data.length(); ++i)
+		{
+			if (toInt(this->data[i]) > toInt(other.data.length()))
+				return true;
+		}
+		return false;
+	}
+
+	bool operator>(int& otherInt)
+	{
+		intl other(toString(otherInt));
+		if (this->data == other.data)
+			return false;
+		if (this->data.length() > other.data.length())
+			return true;
+		if (this->data.length() < other.data.length())
+			return false;
+		for (int i = 0; i < this->data.length(); ++i)
+		{
+			if (toInt(this->data[i]) > toInt(other.data.length()))
+				return true;
+		}
+		return false;
+	}
+
+	bool operator<(intl& other)
+	{
+		if (this->data == other.data)
+			return false;
+		if (this->data.length() < other.data.length())
+			return true;
+		if (this->data.length() > other.data.length())
+			return false;
+		for (int i = 0; i < this->data.length(); ++i)
+		{
+			if (toInt(this->data[i]) < toInt(other.data.length()))
+				return true;
+		}
+		return false;
+	}
+
+	bool operator<(int& otherInt)
+	{
+		intl other(toString(otherInt));
+		if (this->data == other.data)
+			return false;
+		if (this->data.length() < other.data.length())
+			return true;
+		if (this->data.length() > other.data.length())
+			return false;
+		for (int i = 0; i < this->data.length(); ++i)
+		{
+			if (toInt(this->data[i]) < toInt(other.data.length()))
+				return true;
+		}
+		return false;
+	}
+
+	bool operator<=(intl& other)
+	{
+		intl help(this->data);
+		if (help.data == other.data)
+			return true;
+		return help > other;
+	}
+
+	bool operator<=(int& other)
+	{
+		intl help(this->data);
+		if (help.data == toString(other))
+			return true;
+		return help < other;
+	}
+
+	friend ostream& operator<<(ostream& out, intl& toOut)
+	{
+		out << toOut.data;
+		return out;
+	}
+
+	friend istream& operator>>(istream& in, intl& toIn)
+	{
+		string data = "";
+		in >> data;
+		toIn.data = data;
+		return in;
+	}
+	
+	int toInt()
+	{
+		int res = 0;
+		for (int i = 0; i < this->data.length(); ++i)
+		{
+			res += this->toInt(this->data[i]);
+			if ((INT_MAX / 10) < res)
+			{
+				cout << "data too big" << endl;
+				return 0;
+			}
+			res *= 10;
+		}
+		return res / 10;
+	}
+};
+
 namespace olimpic8
 {
 	int oleja(int t, int d, int p)
@@ -262,168 +655,7 @@ namespace olimpic8
 
 namespace allRus
 {
-	int to_int(char first)
-	{
-		if (first == '0')
-			return 0;
-		if (first == '1')
-			return 1;
-		if (first == '2')
-			return 2;
-		if (first == '3')
-			return 3;
-		if (first == '4')
-			return 4;
-		if (first == '5')
-			return 5;
-		if (first == '6')
-			return 6;
-		if (first == '7')
-			return 7;
-		if (first == '8')
-			return 8;
-		if (first == '9')
-			return 9;
-	}
-
-	int to_int(char firstCh, char secondCh, bool firstm, bool secondm)
-	{
-		int first = to_int(firstCh);
-		int second = to_int(secondCh);
-		if (firstm && !secondm)
-			return -first + second;
-		if (!firstm && secondm)
-		{
-			if (first >= second)
-				return first - second;
-			return -(10 - abs(first - second));
-		}
-		if (firstm && secondm)
-			return -first - second;
-		return first + second;
-	}
-
-	string to_string(int n)
-	{
-		if (n == 0)
-			return "0";
-		if (n == 1)
-			return "1";
-		if (n == 2)
-			return "2";
-		if (n == 3)
-			return "3";
-		if (n == 4)
-			return "4";
-		if (n == 5)
-			return "5";
-		if (n == 6)
-			return "6";
-		if (n == 7)
-			return "7";
-		if (n == 8)
-			return "8";
-		if (n == 9)
-			return "9";
-	}
-
-	string sumOfTwoPositivå(string const& firstf, string const& seconds)
-	{
-		string first = firstf;
-		string second = seconds;
-		int const length = first.length() > second.length() ? first.length() : second.length();
-
-		if (first.length() == length)
-			second = string(length - second.length(), '0') + second;
-		else
-			first = string(length - first.length(), '0') + first;
-
-		string res = "";
-		int one = 0;
-		for (int i = length - 1; i >= 0; --i)
-		{
-			int sum = to_int(first[i], second[i], false, false);
-			res = to_string((sum + one) % 10) + res;
-			if ((sum + one) >= 10)
-				one = 1;
-			if ((sum + one) < 10)
-				one = 0;
-			if (i == 0 && one == 1)
-				res = string(1, '1') + res;
-		}
-
-		return res;
-	}
-
-	string subtractOfTwoPositive(string const& firstf, string const& seconds, bool secondAttemp = false)
-	{
-		if (firstf == seconds)
-			return "0";
-		if(seconds.length() > firstf.length())
-			return "-" + subtractOfTwoPositive(seconds, firstf, true);
-		if (secondAttemp == false && firstf.length() == seconds.length())
-		{
-			for (int i = 0; i < firstf.length(); ++i)
-			{
-				if (to_int(firstf[i]) < to_int(seconds[i]))
-					return "-" + subtractOfTwoPositive(seconds, firstf, true);
-			}
-		}
-		
-		int length = firstf.length() > seconds.length() ? firstf.length() : seconds.length();
-		int one = 0;
-		string first = firstf;
-		string second = seconds;
-		string res = "";
-
-		if (first.length() == length)
-			second = string(length - second.length(), '0') + second;
-		else
-			first = string(length - first.length(), '0') + first;
-
-		for (int i = length - 1; i >= 0; --i)
-		{
-			int sum = to_int(first[i], second[i], false, true);
-			if(i == 0 && first.length() == second.length() + 1)
-				sum += 10;
-			if(sum != one)
-				res = to_string(abs((sum + one)) % 10) + res;
-			else
-				res = "0" + res;
-			if ((sum + one) >= 0)
-				one = 0;
-			if ((sum + one) < 0)
-				one = -1;
-			if (i == 0 && one == -1)
-				res = "1" + res;
-		}
-		while (res[0] == '0')
-			res.erase(0, 1);
-		return res;
-	}
-
-	string task2(string const& first, string const& second)
-	{
-		string positiveFirst = first;
-		string positiveSecond = second;
-
-		if (first[0] == '-')
-			positiveFirst = string(first, 1, first.length());
-		if (second[0] == '-')
-			positiveSecond = string(second, 1, second.length());
-
-		if (first[0] != '-' && second[0] != '-')
-			return sumOfTwoPositivå(positiveFirst, positiveSecond);
-
-		if (first[0] == '-' && second[0] == '-')
-			return "-" + sumOfTwoPositivå(positiveFirst, positiveSecond);
-
-		if (first[0] != '-' && second[0] == '-')
-			return subtractOfTwoPositive(positiveFirst, positiveSecond);
-
-		if (first[0] == '-' && second[0] != '-')
-			return subtractOfTwoPositive(positiveSecond, positiveFirst);
-	}
+	
 
 	void out(int max, int current)
 	{
@@ -482,6 +714,8 @@ using namespace std;
 
 int main()
 {
-	cout << allRus::task2("-99", "100");
+	intl check("1234567891011");
+	intl sum = check + 100;
+	cout << sum;
 	return 0;
 }
