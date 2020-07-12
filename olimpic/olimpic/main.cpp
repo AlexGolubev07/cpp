@@ -35,7 +35,7 @@ private:
 		return toInt(firstCh) * toInt(secondCh);
 	}
 
-	string toString(int n)
+	static string toString(int n)
 	{
 		if (n == 0)
 			return "0";
@@ -62,6 +62,7 @@ private:
 				res = "8" + res;
 			if ((n % 10) == 9)
 				res = "9" + res;
+			n /= 10;
 		}
 		if (n < 0)
 			res = "-" + res;
@@ -143,22 +144,22 @@ private:
 		return res;
 	}
 
-	string multiple(string const& firstf, string const& seconds)
+	static string multiple(string const& firstf, string const& seconds)
 	{
+		if (seconds == "0")
+			return "";
+		if (seconds == "10")
+			return firstf + "0";
 		string first = firstf;
 		string second = seconds;
 		int const length = first.length() > second.length() ? first.length() : second.length();
 
-		if (first.length() == length)
-			second = string(length - second.length(), '0') + second;
-		else
-			first = string(length - first.length(), '0') + first;
-
 		string res = "";
 		int one = 0;
+		intl help;
 		for (int i = length - 1; i >= 0; --i)
 		{
-			int mul = mult(first[i], second[i]);
+			int mul = help.mult(first[i], second[0]);
 			res = toString((mul + one) % 10) + res;
 			if ((mul + one) >= 10)
 				one = (mul + one) / 10;
@@ -171,11 +172,30 @@ private:
 		return res;
 	}
 
-	string operatorMult(string const& first, string const& second)
+	string operatorMult(string const& firstf, string const& seconds)
 	{
+		bool minus = false;
+		string first = firstf;
+		string second = seconds;
+		if (first[0] == '-')
+		{
+			first = string(firstf, 1, firstf.length());
+			minus = !minus;
+		}
+		if (second[0] == '-')
+		{
+			second = string(seconds, 1, seconds.length());
+			minus = !minus;
+		}
+
+		intl res = intl(intl::multiple(first, string(1, second[second.length() - 1])));
+		for (int i = second.length() - 2; i >= 0; i--)
+		{
+			res = intl::multiple(intl::multiple(first, string(1, second[i])), toString(pow(10, second.length() - i + 2)));
+		}
 		if ((first[0] == '-' && second[0] != '-') || (first[0] != '-' && second[0] == '-'))
-			return "-" + this->multiple(first, second);
-		return this->multiple(first, second);
+			return "-" + res.data;
+		return res.data;
 	}
 
 	string operatorPlus(string const& first, string const& second)
@@ -209,44 +229,50 @@ public:
 		this->data = data;
 	}
 
-	intl operator=(intl& other)
+	intl& operator=(intl const& other)
 	{
-		return intl(other.data);
+		this->data = other.data;
+		return *this;
 	}
 
-	intl operator+(intl& other)
+	friend intl operator+(intl& first, intl& second)
 	{
-		return this->operatorPlus(this->data, other.data);
+		return intl(first.operatorPlus(first.data, second.data));
 	}
 
-	intl operator+(int& other)
+	friend intl operator+(intl& first, int const second)
 	{
-		return this->operatorPlus(this->data, toString(other));
+		return intl(first.operatorPlus(first.data, intl::toString(second)));
 	}
 
-	void operator+=(intl& other)
-	{
+	// void operator+=(intl& other)
+	/*{
 		this->data = this->operator+(other).data;
+	}*/
+
+	friend intl operator-(intl& first, intl& second)
+	{
+		return intl(first.subtractOfTwoPositive(first.data, second.data));
 	}
 
-	intl operator-(intl& other)
+	friend intl operator-(intl& first, int const second)
 	{
-		return this->subtractOfTwoPositive(this->data, other.data);
+		return intl(first.subtractOfTwoPositive(first.data, intl::toString(second)));
 	}
 
-	intl operator-(int& other)
+	/*void operator-=(intl& other)
 	{
-		return this->sumOfTwoPositivå(this->data, toString(other));
+		this->data = this->operator-(*this, other).data;
+	}*/
+
+	friend intl operator*(intl& first, intl const& second)
+	{
+		return intl(first.operatorMult(first.data, second.data));
 	}
 
-	void operator-=(intl& other)
+	friend intl operator*(intl& first, int const second)
 	{
-		this->data = this->operator-(other).data;
-	}
-
-	intl operator*(intl& other)
-	{
-		return intl(this->operatorMult((this->data), other.data));
+		return intl(first.operatorMult((first.data), intl::toString(second)));
 	}
 
 	void operator*=(intl& other)
@@ -355,7 +381,7 @@ public:
 		intl help(this->data);
 		if (help.data == other.data)
 			return true;
-		return help > other;
+		return help < other;
 	}
 
 	bool operator<=(int& other)
@@ -366,7 +392,23 @@ public:
 		return help < other;
 	}
 
-	friend ostream& operator<<(ostream& out, intl& toOut)
+	bool operator>=(intl& other)
+	{
+		intl help(this->data);
+		if (help.data == other.data)
+			return true;
+		return help > other;
+	}
+
+	bool operator>=(int& other)
+	{
+		intl help(this->data);
+		if (help.data == toString(other))
+			return true;
+		return help > other;
+	}
+
+	friend ostream& operator<<(ostream& out, intl const& toOut)
 	{
 		out << toOut.data;
 		return out;
@@ -379,7 +421,7 @@ public:
 		toIn.data = data;
 		return in;
 	}
-	
+
 	int toInt()
 	{
 		int res = 0;
@@ -437,7 +479,7 @@ namespace olimpic8
 				res += 6;
 		}
 		return res;
-	} 
+	}
 
 	int tea(int a, int b, int c, int d, int n)
 	{
@@ -653,69 +695,228 @@ namespace olimpic8
 	}
 }
 
+//class AssociativeArray
+//{
+//public:
+//	class Node
+//	{
+//	public:
+//		Node* next;
+//		int data;
+//
+//		Node(int data = 0)
+//		{
+//			this->data = data;
+//		}
+//
+//		~Node()
+//		{
+//			delete this;
+//		}
+//	};
+//
+//	Node* head;
+//
+//	static int length;
+//
+//	AssociativeArray(int length)
+//	{
+//		this->length = length;
+//		this->head = nullptr;
+//	}
+//
+//	int& operator[](int index)
+//	{
+//		int i = 0;
+//		Node* temp = this->head;
+//		while (i != index)
+//		{
+//			if (temp->next != nullptr)
+//			{
+//				++i;
+//				temp = temp->next;
+//			}
+//			else
+//			{
+//				return;
+//			}
+//		}
+//		return temp->data;
+//	}
+//
+//	void change(int start, int end, int data)
+//	{
+//		for (int i = start; i <= end; ++i)
+//		{
+//			this[i] = data;
+//		}
+//	}
+//
+//	friend istream& operator>>(istream& in, AssociativeArray array)
+//	{
+//		Node* temp = array.head;
+//		int data;
+//		for (int i = 0; i < array.length; ++i)
+//		{
+//			
+//		}
+//	}
+//};
+
 namespace allRus
 {
-	
-
-	void out(int max, int current)
+	namespace zeroDay
 	{
-		if (current == max)
-			return;
-		int n = 0;
-		cin >> n;
-		out(max, current + 1);
-		cout << n << " ";
-	}
-
-	void print()
-	{
-		int n;
-		cin >> n;
-		out(n, 0);
-	}
-
-	void binaryFinding()
-	{
-		int n = 0;
-		cin >> n;
-
-		int left = 0;
-		int right = pow(10, 9);
-
-		while (true)
+		void out(int max, int current)
 		{
-			int mid = left + (right - left) / 2;
-
-			cout << mid << " ";
-			if (mid == n)
-			{
-				cout << 0;
+			if (current == max)
 				return;
-			}
-
-			if (mid > n)
-			{
-				cout << -1;
-				right = mid;
-			}
-			else
-			{
-				left = mid + 1;
-				cout << 1;
-			}
-
-			cout << endl;
+			int n = 0;
+			cin >> n;
+			out(max, current + 1);
+			cout << n << " ";
 		}
+
+		void print()
+		{
+			int n;
+			cin >> n;
+			out(n, 0);
+		}
+
+		void binaryFinding()
+		{
+			int n = 0;
+			cin >> n;
+
+			int left = 0;
+			int right = pow(10, 9);
+
+			while (true)
+			{
+				int mid = left + (right - left) / 2;
+
+				cout << mid << " ";
+				if (mid == n)
+				{
+					cout << 0;
+					return;
+				}
+
+				if (mid > n)
+				{
+					cout << -1;
+					right = mid;
+				}
+				else
+				{
+					left = mid + 1;
+					cout << 1;
+				}
+
+				cout << endl;
+			}
+		}
+	}
+
+	namespace firstDay
+	{
+		class Photo
+		{
+		private:
+			static int begin;
+
+			static bool outside(int const* a, int const m, int const value, int const second)
+			{
+				for (int i = second + 1; i < m; ++i)
+				{
+					if (a[i] == value)
+					{
+						return true;
+					}
+				}
+
+				return false;
+			}
+
+			static bool step(int const* a, int const m)
+			{
+				if (m == 0 || m == 1 || m == 2)
+					return true;
+				// ïîèñê âòîðîãî âõîæäåíèÿ
+				int second = 0;
+				for (int i = 1; i < m; ++i)
+				{
+					if (a[i] == a[0])
+					{
+						second = i;
+						break;
+					}
+				}
+
+				if (second == m - 1)
+					return true;
+				// åñòü ëè ëèøíåå âíå ãðóïïû
+				for (int i = 1; i < second; ++i)
+				{
+					if (a[i] != a[0] && outside(a, m, a[i], second))
+					{
+						return false;
+					}
+				}
+
+				begin = second + 1;
+				return step(a + 1, second - 1);
+			}
+
+			static bool solved(int const* a, int const m)
+			{
+				for (int i = 0; i < m; )
+				{
+					if (step(a + i, m - i))
+					{
+						if (i == begin)
+							break;
+						i = begin;
+					}
+					else
+					{
+						return false;
+					}
+				}
+
+				return true;
+			}
+
+		public:
+			static void photo(int begin = 0)
+			{
+				Photo::begin = begin;
+				int l = 0;
+				int m = 0;
+				cin >> l >> m;
+				int* array = new int[l];
+				for (int i = 0; i < l; ++i)
+					cin >> array[i];
+				cout << Photo::solved(array, l); // Bce nloxo
+			}
+		};
+
+		/*string firstHelp(string current, string res)
+		{
+			return "0";
+		}*/
 	}
 }
 
 #include <string>
 using namespace std;
 
+int allRus::firstDay::Photo::begin = 0;
+
 int main()
 {
-	intl check("1234567891011");
-	intl sum = check + 100;
-	cout << sum;
+	allRus::firstDay::Photo check;
+	check.photo(0);
 	return 0;
 }
