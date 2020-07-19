@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cassert>
 #include "windows.h"
+#include <cstring>
 
 using namespace std;
 
@@ -823,10 +824,51 @@ namespace allRus
 	{
 		class Photo
 		{
-		private:
-			static int begin;
+		public:
+			Photo()
+			{
+				cout << "n = ";
+				cin >> this->n;
+				cout << "m = ";
+				cin >> this->m;
 
-			static bool outside(int const* a, int const m, int const value, int const second)
+				this->begin = 0;
+				
+				this->a = new int[m];
+				for (int i = 0; i < m; ++i)
+				{
+					cin >> a[i];
+				}
+
+				this->unchecked = new bool[n];
+				for (int i = 0; i < n; ++i)
+				{
+					unchecked[i] = true;
+				}
+
+				if (!solved())
+				{
+					cout << "WTF?";
+					return;
+				}
+
+				decision();
+			}
+
+			~Photo()
+			{
+				delete[] unchecked;
+				delete[] a;
+			}
+
+		private:
+			int n;
+			int m;
+			int* a;
+			bool* unchecked;
+			int begin;
+
+			bool outside(int const* a, int const value, int const second)
 			{
 				for (int i = second + 1; i < m; ++i)
 				{
@@ -839,9 +881,9 @@ namespace allRus
 				return false;
 			}
 
-			static bool step(int const* a, int const m)
+			bool step(int const* a, int const m) // error
 			{
-				if (m == 0 || m == 1 || m == 2)
+				if (m == 0 || m == 1 || m == 2 || m == 3)
 					return true;
 				// поиск второго вхождения
 				int second = 0;
@@ -855,21 +897,28 @@ namespace allRus
 				}
 
 				if (second == m - 1)
-					return true;
+					return step(a + 1, m - 2);
 				// есть ли лишнее вне группы
 				for (int i = 1; i < second; ++i)
 				{
-					if (a[i] != a[0] && outside(a, m, a[i], second))
+					if (a[i] != a[0] && outside(a, a[i], second))
 					{
 						return false;
 					}
 				}
 
 				begin = second + 1;
+				if (a[0] == 9)
+				{
+					cout << "IIIIIIIIIIIIIIIIgor'";
+				}
+
+				if (second == 0)
+					return step(a + 1, m - 1);
 				return step(a + 1, second - 1);
 			}
 
-			static bool solved(int const* a, int const m)
+			bool solved()
 			{
 				for (int i = 0; i < m; )
 				{
@@ -888,35 +937,288 @@ namespace allRus
 				return true;
 			}
 
-		public:
-			static void photo(int begin = 0)
+			int lastPosition(int const first)
 			{
-				Photo::begin = begin;
-				int l = 0;
-				int m = 0;
-				cin >> l >> m;
-				int* array = new int[l];
-				for (int i = 0; i < l; ++i)
-					cin >> array[i];
-				cout << Photo::solved(array, l); // Bce nloxo
+				int last = -1;
+
+				for (int i = first; i < m; ++i)
+				{
+					if (a[i] == a[first])
+						last = i;
+				}
+
+				return last;
+			}
+
+			void groupDecision(int const start, int const end)
+			{
+				for (int i = start + 1; i <= end - 1; )
+				{
+					if (unchecked[a[i]])
+					{
+						int last = lastPosition(i);
+						cout << "group = " << a[i] << "; first = " << i + 1 << "; last = " << last + 1 << endl;
+						unchecked[a[i]] = false;
+						groupDecision(i, last);
+						i = last + 1;
+					}
+					else
+					{
+						++i;
+					}
+				}
+			}
+
+			void decision()
+			{
+				for (int i = 0; i < m; )
+				{
+					int last = lastPosition(i);
+					cout << "group = " << a[i] << "; first = " << i + 1 << "; last = " << last + 1 << endl;
+					unchecked[a[i]] = false;
+					groupDecision(i, last);
+					i = last + 1;
+				}
 			}
 		};
 
-		/*string firstHelp(string current, string res)
+		class Taxi
 		{
-			return "0";
-		}*/
+		private:
+			int** a;
+			int m;
+			int n;
+			int k = 0;
+			bool** check;
+
+			void arrayFree(int m = -1, int n = -1)
+			{
+				for (int i = 0; i < this->m; ++i)
+				{
+					for (int j = 0; i < this->n; ++i)
+					{
+						if (i != m && j != n)
+							++this->a[i][j];
+					}
+				}
+			}
+
+			int decision(int x1, int y1, int x2, int y2)
+			{
+				if (x1 > x2)
+				{
+					if (this->check[x1 - 1][y1] != 1)
+						return this->decision(x1 - 1, y1, x2, y2);
+					int up = 0;
+					int down = 0;
+					for (int i = y1; i < this->n; ++i)
+					{
+						if (this->check[x1 - 1][i] == 0)
+						{
+							break;
+						}
+						else
+						{
+							++up;
+						}
+					}
+					for (int i = y1; i >= 0; --i)
+					{
+						if (this->check[x1 - 1][i] == 0)
+						{
+							break;
+						}
+						else
+						{
+							++down;
+						}
+					}
+					return up > down ? this->decision(x1, y1 + up, x2, y2) + up : this->decision(x1, y1 - down, x2, y2) + down;
+				}
+
+				if (x1 < x2)
+				{
+					if (this->check[x1 + 1][y1] != 1)
+						return this->decision(x1 + 1, y1, x2, y2);
+					int up = 0;
+					int down = 0;
+					for (int i = y1; i < this->n; ++i)
+					{
+						if (this->check[x1 + 1][i] == 0)
+						{
+							break;
+						}
+						else
+						{
+							++up;
+						}
+					}
+					for (int i = y1; i >= 0; --i)
+					{
+						if (this->check[x1 + 1][i] == 0)
+						{
+							break;
+						}
+						else
+						{
+							++down;
+						}
+					}
+					return up > down ? this->decision(x1, y1 + up, x2, y2) + up : this->decision(x1, y1 - down, x2, y2) + down;
+				}
+
+				if (y1 > y2)
+				{
+					if (this->check[x1][y1 - 1] != 1)
+						return this->decision(x1, y1 - 1, x2, y2);
+					int right = 0;
+					int left = 0;
+					for (int i = x1; i < this->m; ++i)
+					{
+						if (this->check[i][y1 - 1] == 0)
+						{
+							break;
+						}
+						else
+						{
+							++right;
+						}
+					}
+					for (int i = x1; i >= 0; --i)
+					{
+						if (this->check[i][y1 - 1] == 0)
+						{
+							break;
+						}
+						else
+						{
+							++left;
+						}
+					}
+					return right > left ? this->decision(x1 + right, y1, x2, y2) + right : this->decision(x1 - left, y1, x2, y2) + left;
+				}
+
+				if (y1 < y2)
+				{
+					if (this->check[x1][y1 + 1] != 1)
+						return this->decision(x1, y1 + 1, x2, y2);
+					int right = 0;
+					int left = 0;
+					for (int i = x1; i < this->m; ++i)
+					{
+						if (this->check[i][y1 + 1] == 0)
+						{
+							break;
+						}
+						else
+						{
+							++right;
+						}
+					}
+					for (int i = x1; i >= 0; --i)
+					{
+						if (this->check[i][y1 + 1] == 0)
+						{
+							break;
+						}
+						else
+						{
+							++left;
+						}
+					}
+					return right > left ? this->decision(x1 + right, y1, x2, y2) + right : this->decision(x1 - left, y1, x2, y2) + left;
+				}
+
+				return 1;
+			}
+		public:
+
+			Taxi()
+			{
+				int q = 0;
+				cin >> this->m >> this->n >> q;
+				this->a = new int* [m];
+				this->check = new bool* [m];
+				for (int i = 0; i < m; ++i)
+				{
+					this->a[i] = new int[n];
+					this->check[i] = new bool[n];
+				}
+
+				for (int i = 0; i < m; ++i)
+				{
+					for (int j = 0; j < n; ++j)
+					{
+						this->a[i][j] = 0;
+						this->check[i][j] = 0;
+					}
+				}
+
+				for (int i = 0; i < q; ++i)
+				{
+
+				}
+			}
+
+			~Taxi()
+			{
+				for (int i = 0; i < m; ++i)
+				{
+					delete[] this->a[i];
+				}
+				delete[] this->a;
+			}
+
+			void move(int const data)
+			{
+				int move;
+				cin >> move;
+				int toDel = 0;
+				if (move == 1)
+				{
+					cin >> toDel;
+					for (int i = 0; i < n; ++i)
+						a[toDel][i] = 0;
+					this->arrayFree(toDel, -1);
+				}
+				if (move == 2)
+				{
+					cin >> toDel;
+					for (int i = 0; i < m; ++i)
+						a[i][toDel] = 0;
+					this->arrayFree(-1, toDel);
+				}
+				if (move == 3)
+				{
+					int x1 = 0;
+					int y1 = 0;
+					int x2 = 0;
+					int y2 = 0;
+					cin >> x1 >> y1 >> x2 >> y2 >> this->k;
+					for (int i = 0; i < m; ++i)
+					{
+						for (int j = 0; j < n; ++j)
+						{
+							if (this->a[i][j] > this->k)
+								this->check[i][j] = 1;
+						}
+					}
+					this->arrayFree();
+				}
+			}
+		};
+		
 	}
 }
 
 #include <string>
 using namespace std;
 
-int allRus::firstDay::Photo::begin = 0;
-
 int main()
 {
-	allRus::firstDay::Photo check;
-	check.photo(0);
+	allRus::firstDay::Photo photo;
+
+	cout << endl << "end";
+
 	return 0;
 }
