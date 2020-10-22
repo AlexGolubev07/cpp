@@ -3,6 +3,7 @@
 #include <cassert>
 #include <ctime>
 #include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -193,11 +194,25 @@ namespace work
 
 	int toys(int n);
 
-	void line(int first, int n, int m);
+	void kidToys(int n);
+
+	void line(int n, int m, int plus, int first, int line);
 
 	void boringLesson(int n, int m);
 
-	void E(int x, int y);
+	void water(int n);
+
+	void mathGame();
+
+	void E();
+
+	void Ee();
+
+	void F(int n);
+
+	string haker();
+
+	string hatsker();
 
 	class List
 	{
@@ -209,17 +224,131 @@ namespace work
 			Node* next;
 			Node* previous;
 
-			Node(int data, Node* previous = nullptr, Node* next = nullptr);
+			Node(int data, Node* previous = nullptr, Node* next = nullptr)
+			{
+				this->data = data;
+				this->next = next;
+				this->previous = previous;
+			}
 		};
 
-		void delNode(Node* toDel, Node* toPaste);
+		void delNode(Node* toDel, Node* toPaste)
+		{
+			Node* previous = toDel->previous;
+			previous->next = toPaste;
+			toPaste->previous = previous;
+			delete toDel;
+		}
 
 		Node* head;
 		int length;
 	public:
 
-		List(int n);
+		List()
+		{
+			int n = 100000;
+			//cin >> n;
+			this->length = n;
+			int num = 5;
+			//cin >> num;
+			this->head = new Node(num);
+			Node* current = this->head;
+			for (int i = 0; i < n - 1; ++i)
+			{
+				//cin >> num;
+				current->next = new Node(num, current);
+				current = current->next->previous = current;
+				current = current->next;
+			}
+			current->next = this->head;
+			this->head->previous = current;
+		}
 
-		void decision();
+		void decision()
+		{
+			Node* current = this->head;
+			bool cycle = true;
+			bool inCycle = false;
+			while (cycle == true)
+			{
+				if (current->next != this->head && current->data > 0 && current->next->data < 0)
+				{
+					inCycle = true;
+					if (current->data == abs(current->next->data))
+					{
+						if (this->length == 2)
+						{
+							cout << 0;
+							return;
+						}
+						current = current->next->next;
+						delNode(current->previous->previous, current->previous);
+						delNode(current->previous, current);
+						this->length -= 2;
+					}
+					else
+					{
+						if (current->data > abs(current->next->data))
+						{
+							delNode(current->next, current->next->next);
+							current = current->next;
+							--this->length;
+
+						}
+						else
+						{
+							current = current->next;
+							delNode(current->previous, current);
+							--this->length;
+						}
+					}
+				}
+				else
+				{
+					current = current->next;
+				}
+
+				if (inCycle == false && current == this->head)
+				{
+					cycle = false;
+				}
+
+				if (current == this->head)
+				{
+					inCycle = false;
+				}
+			}
+			current = this->head;
+			cout << this->length << endl;
+			while (current->next != this->head)
+			{
+				cout << current->data << " ";
+				current = current->next;
+			}
+			cout << current->data;
+		}
 	};
+
+	void meteorites(int n);
+
+	void meteor(int n);
+}
+
+namespace contest
+{
+	void numbers();
+
+	int math();
+
+	int fafa();
+
+	int downWord();
+
+	void boooks();
+
+	int books();
+
+	void magicStick();
+
+	void last();
 }
